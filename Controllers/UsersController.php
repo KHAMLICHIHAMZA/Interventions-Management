@@ -1,16 +1,25 @@
 <?php
 require_once './Models/User.php ';
+require_once 'Api_Ebrigade/Controllers/UtilisateurController.php';
 
 class UsersController{
 
-public function getAllUsers()
+static public function getAllUsers()
 {
+    /*
+    ob_start();
+    $users = UtilisateurController::ListUtilisateur();
+    include ("Views/home.php");
+    $html = ob_end_flush();
+    return $html;
+    */
 
-$users = User::getAll();
-
+$users = UtilisateurController::ListUtilisateur();
 return $users;
 
 }
+
+
 public function addUser(){
  
 if(isset($_POST['submit'])){

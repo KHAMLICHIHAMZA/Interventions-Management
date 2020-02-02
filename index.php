@@ -20,13 +20,11 @@ if(in_array($_GET['page'],$pages))
 
 
 }else{
-
     include ('Views/includes/404.php');
 }
-
-
 }else{
 $home->index('home');
+   // UsersController::getAllUsers();
 }
 ?>
 
