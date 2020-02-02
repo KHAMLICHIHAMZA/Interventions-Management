@@ -17,7 +17,7 @@ class Utilisateur
         $stmt=DB::connect()->prepare('SELECT * FROM pompier WHERE P_CODE LIKE :P_CODE');
         $stmt->bindParam(':P_CODE', $P_CODE);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetch(PDO::FETCH_OBJ);
         $stmt->closeCursor();
         $stmt=null;
     }
