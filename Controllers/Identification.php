@@ -3,9 +3,10 @@
 include_once ('connexion.php');
 global $bdd;
      
-public fonction login(email, mdp){     
-    $requete = $bdd -> prepare('SELECT * FROM user WHERE log = ? and password = ?');
-    $ligne = $requete->execute(array(login, mdp);
+ function login($email, $mdp)
+{     
+    $requete = DB::connect()->prepare('SELECT * FROM user WHERE log = ? and password = ?');
+    $ligne = $requete->execute();
     return $ligne; 
 }
 

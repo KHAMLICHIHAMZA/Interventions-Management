@@ -1,8 +1,12 @@
 <?php
-require_once './Views/includes/header.php';
+
+require_once './Api.php';
 require_once './autoload.php';
 require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
+include_once './Views/includes/header.php';
+include_once './Views/includes/navebar.php';
+include_once './Views/includes/sidebar.php' ;
 
 $home = new HomeController();
 
@@ -25,7 +29,5 @@ if(in_array($_GET['page'],$pages))
 $home->index('home');
 }
 ?>
-<?php
-require_once './Views/includes/footer.php';
 
-?>
+<?php require_once './Views/includes/footer.php';?>

@@ -1,60 +1,78 @@
 <?php
 
+
+/*
+if(iseet($_POST['submit']))
+{
+$newUser= new UsersController();
+$newUser->addUser();
+}
+*/
+
 $data= new UsersController();
- $users= $data->getAllUsers();
+$users= $data->getAllUsers();
+$dd=$data->getOnUser();
+//var_dump($users);
+
+
 
 ?>
-<div class="container">
-    <div class="row my-4">
-        <div clas="col-md-12 mx">
-        <div class="card">
-        <div class="card-body bg-light">
-        <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Prenom</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Sexe</th>
-      <th scope="col">Grade</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-   <?php foreach($users as $user):?>
-    <tr>
-      <th scope="row"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2']; ?></th>
-      <td><?php echo $user['P_NOM']; ?></td>
-      <td><?php echo $user['P_SEXE']; ?></td>
-      <td><?php echo $user['P_GRADE']; ?></td>
-      <td><?php  ?></td>
 
-    </tr>
-    <tr>
-      <th scope="row"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2']; ?></th>
-      <td><?php echo $user['P_NOM']; ?></td>
-      <td><?php echo $user['P_SEXE']; ?></td>
-      <td><?php echo $user['P_GRADE']; ?></td>
-      <td><?php  ?></td>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-row justify-content-end">
 
-    </tr>
+  <!-- Content Wrapper. Contains page content -->
 
-    <tr>
-      <th scope="row"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2']; ?></th>
-      <td><?php echo $user['P_NOM']; ?></td>
-      <td><?php echo $user['P_SEXE']; ?></td>
-      <td><?php echo $user['P_GRADE']; ?></td>
-      <td><?php  ?></td>
+                <!--de la -->
+              
+              
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Sexe</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($users as $user):?>
 
-    </tr>
+
+                  <tr>
+                        <td scope="col"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2'];  ?></td>
+                        <td scope="col"><?php echo $user['P_NOM'] ; ?></td>
+                        <td scope="col"><?php echo $user['P_SEXE']  ;?></td>
+                        <td scope="col"><?php echo $user['P_GRADE']  ;?></td>
+                        <td  class="d-flex flex-row" >
+                        <form  class="mr-1" method="post" action="update">
+                          <input type="hidden" name="id" value="<?php
+                           echo $user['P_ID'];?>">
+                           <button class="btn btn-sm btn-warning"><i class="fa fa-edit" ></i></button>
+                        </form>
+                        <form  class="mr-1" method="post" action="delete">
+                          <input type="hidden" name="id" value="<?php
+                           echo $user['P_ID'];?>
+                           ">
+                           <button class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
+                        </form>
+                        
+                   <a href="http://localhost/Interventions-Management/add" class="btn btn-sm btn-primary">
+              <i class="fas fa-plus"></i>
+                    </a>
+                        </td>
+                        
+                    </tr>
+                    <?php endforeach;?>
+
     
-    
-      <?php endforeach;?>
-
-    
-  </tbody>
-</table>
-</div>
-</div>
- </div>
-    </div>
-</div>
+                  </tbody>
+                  <!--jusque la qui doit changer-->
+                </table>
