@@ -47,11 +47,3 @@
 
 </form>                  <!--jusque la qui doit changer-->
                 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-</div>
