@@ -1,11 +1,12 @@
 <?php
-    require_once '../Model/Utilisateur.php';
+    require_once 'Api_Ebrigade/Model/Utilisateur.php';
     class UtilisateurController{
-        public function ListUtilisateur(){
+        static public function ListUtilisateur(){
             $response = Utilisateur::getAll();
             return json_encode($response);
+           // return $response;
         }
-        public function SearchUtilisateur($P_CODE){
+        static public function SearchUtilisateur($P_CODE){
             if(isset($P_CODE)){
                 // retourne L utilisateurs en fonction du p_code
                 $response = Utilisateur::getByP_CODE($P_CODE);
@@ -14,9 +15,7 @@
         }
     }
     
-    $id="1234";
-    $test= UtilisateurController::SearchUtilisateur($id);
-    echo $test;
+
 
 
 /*

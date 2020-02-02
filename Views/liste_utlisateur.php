@@ -1,24 +1,4 @@
-<?php
 
-
-/*
-if(iseet($_POST['submit']))
-{
-$newUser= new UsersController();
-$newUser->addUser();
-}
-*/
-require_once './Controllers/HomeController.php ';
-require_once './Controllers/UsersController.php ';
-
-//$data= new UsersController();
-$users= UsersController::getAllUsers();
-//$dd=$data->getOnUser();
-//var_dump($users);
-
-
-
-?>
 
 <div class="content-wrapper">
   <div class="content">
@@ -45,7 +25,7 @@ $users= UsersController::getAllUsers();
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($users as $user){?>
+                    <?php foreach($users as $user):?>
 
 
                   <tr>
@@ -72,7 +52,7 @@ $users= UsersController::getAllUsers();
                         </td>
                         
                     </tr>
-                    <?php }?>
+                    <?php endforeach;?>
 
     
                   </tbody>
