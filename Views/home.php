@@ -13,6 +13,9 @@ require_once './Controllers/UsersController.php ';
 
 //$data= new UsersController();
 $users= UsersController::getAllUsers();
+
+
+//echo  $users ;
 //$dd=$data->getOnUser();
 //var_dump($users);
 
@@ -45,7 +48,7 @@ $users= UsersController::getAllUsers();
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($users as $user){?>
+                    <?php foreach($users as $user):?>
 
 
                   <tr>
@@ -72,7 +75,7 @@ $users= UsersController::getAllUsers();
                         </td>
                         
                     </tr>
-                    <?php }?>
+                    <?php endforeach;?>
 
     
                   </tbody>
