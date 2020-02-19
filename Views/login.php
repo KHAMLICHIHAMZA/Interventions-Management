@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+
+
+<?php if(true)
+{
+$user= new UsersController;
+$user->auth();
+
+
+}
+else
+{
+echo "ererur";
+
+
+}?>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -35,7 +51,7 @@ display: block;"/>
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="identifiant">
+          <input type="text" class="form-control" placeholder="votre code pompier" name="username" id="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -43,7 +59,7 @@ display: block;"/>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="votre mot de passe" name="password" id =password>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -60,8 +76,8 @@ display: block;"/>
 
       <div class="social-auth-links text-center mb-3">
         <p></p>
-        <a href="#" class="btn btn-block btn-primary">
-          <button type="submit" class="btn btn-primary btn-block">Connexion </button>
+        <a href="http://localhost/Interventions-Management/home" class="btn btn-block btn-primary">
+          <button type="submit" class="btn btn-primary btn-block"  name="submit">Connexion </button>
 
         </a>
 

@@ -3,8 +3,8 @@
     class UtilisateurController{
         static public function ListUtilisateur(){
             $response = Utilisateur::getAll();
-            return json_encode($response);
-           // return $response;
+            //return json_encode($response);
+           return $response;
         }
         static public function SearchUtilisateur($P_CODE){
             if(isset($P_CODE)){
@@ -36,5 +36,7 @@ echo json_encode( $response);
 
 
 ///function d'enregistrement
+
+
 
 ?>

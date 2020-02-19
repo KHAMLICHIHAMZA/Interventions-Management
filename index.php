@@ -11,7 +11,7 @@ $home = new HomeController();
 
 $pages = ['add','home','update','delete'];
 
-if (isset($_SESSION['logged']) && $_SESSION['logged'] === true)
+if (true)
  {
     include_once './Views/includes/header.php';
     include_once './Views/includes/navebar.php';
