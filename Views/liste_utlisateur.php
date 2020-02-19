@@ -1,27 +1,4 @@
-<?php
 
-
-/*
-if(iseet($_POST['submit']))
-{
-$newUser= new UsersController();
-$newUser->addUser();
-}
-*/
-require_once './Controllers/HomeController.php ';
-require_once './Controllers/UsersController.php ';
-
-//$data= new UsersController();
-$users= UsersController::getAllUsers();
-
-
-//echo  $users ;
-//$dd=$data->getOnUser();
-//var_dump($users);
-
-
-
-?>
 
 <div class="content-wrapper">
   <div class="content">

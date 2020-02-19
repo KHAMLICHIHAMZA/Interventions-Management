@@ -1,3 +1,10 @@
+
+<?php
+$data= new UsersController();
+$users= $data->getAllUsers();
+$dd=$data->getOnUser();
+
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -14,7 +21,7 @@
           <img src="dist/img/pompier.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Nom du Pompier</a>
+          <a href="#" class="d-block"><?php    ?></a>
         </div>
       </div>
 
@@ -35,6 +42,17 @@
        
             </ul>
           </li>
+
+            <li class="nav-item">
+                <a href="http://localhost/Interventions-Management/" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        liste des utilisateurs
+                        <span class="right badge badge-danger"></span>
+                    </p>
+                </a>
+            </li>
+
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>

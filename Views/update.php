@@ -5,6 +5,7 @@ if(isset($_POST['P_ID']))
 $us= new UsersController();
 $user= $us->getOnUser();
 
+
 }
 else{
 
@@ -27,7 +28,7 @@ echo'errrrrrrreur a sat ';
 <div class="form-group">
 
 <label for="Nom">Prenom</label>
-<input type="text" name="Prenom" class="form-control" placeholder="Prenom"
+<input type="text" name="Prenom" class="form-control" placeholder="eeee"
 value="">
 </div>
 
