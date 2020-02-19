@@ -6,7 +6,7 @@ class Utilisateur
     public function construct(){}
     static public function getAll()
     {
-        $stmt=DB::connect()->prepare('SELECT * FROM pompier');
+        $stmt=DB::connect()->prepare('SELECT EmployeeID, NationalIDNumber, LoginID FROM pompier');
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->closeCursor();
