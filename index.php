@@ -9,7 +9,7 @@ require_once './Controllers/UsersController.php ';
 $home = new HomeController();
 
 
-$pages = ['add','home','update','delete','liste'];
+$pages = ['intervationAdd','add','home','update','delete','liste'];
 
 if (true)
  {
