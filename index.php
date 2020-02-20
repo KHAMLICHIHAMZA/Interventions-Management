@@ -1,6 +1,6 @@
 <?php
 
-require_once './Api.php';
+//require_once './Api.php';
 require_once './autoload.php';
 require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';

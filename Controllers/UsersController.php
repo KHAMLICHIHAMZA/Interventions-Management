@@ -1,5 +1,5 @@
 
-<script src="https://code.jquery.com/jquery-latest.js" ></script>
+
 <?php
 require_once './Models/User.php ';
 
@@ -7,7 +7,7 @@ class UsersController{
 
 static public function getAllUsers()
 {
-    $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=SearchUtilisateur&P_CODE=55t5");
+    $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
     return json_decode($users,true);
 }
 
