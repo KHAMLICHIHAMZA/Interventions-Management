@@ -25,23 +25,19 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>
-          <span class="badge badge-danger navbar-badge"></span>
-        </a>
-
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="http://localhost/Interventions-Management/liste" class="nav-link"><i
+            class="fas fa-door-open"></i></a></a>
       </li>
+
       
-      <li class="nav-item dropdown">
-
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-            class="fas fa-th-connexion"></i></a>
+      
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="http://localhost/Interventions-Management/home" class="nav-link"><i
+            class="far fa-user"></i></a></a>
       </li>
 
-
+    
     </ul>
   </nav>
   <!-- /.navbar -->

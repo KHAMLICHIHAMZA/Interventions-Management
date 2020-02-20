@@ -45,7 +45,7 @@ header('Location: https://localhost/Interventions-Management/home');
 {
 
 echo 'error Pseudo ou mot de pass est incorect';
-header('Location: https://localhost/Interventions-Management');
+header('Location: https://localhost/Interventions-Management/liste');
 
 }
 

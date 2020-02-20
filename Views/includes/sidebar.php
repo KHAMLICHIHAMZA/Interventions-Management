@@ -30,28 +30,15 @@ $dd=$data->getOnUser();
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fa-user-circle" aria-hidden="true"></i>
+               <li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-fire-extinguisher"></i>
               <p>
-                Gestion des Utilisateurs
-                <i class="right fas fa-angle-left"></i>
+                Inteventions
+                <span class="right badge badge-danger"></span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-       
-            </ul>
           </li>
-
-            <li class="nav-item">
-                <a href="http://localhost/Interventions-Management/" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        liste des utilisateurs
-                        <span class="right badge badge-danger"></span>
-                    </p>
-                </a>
-            </li>
 
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
