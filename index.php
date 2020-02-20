@@ -9,15 +9,18 @@ require_once './Controllers/UsersController.php ';
 $home = new HomeController();
 
 
-$pages = ['add','home','update','delete'];
+$pages = ['add','home','update','delete','liste'];
 
 if (true)
  {
     include_once './Views/includes/header.php';
     include_once './Views/includes/navebar.php';
     include_once './Views/includes/sidebar.php' ;
+    include_once './Views/includes/divs.php';
 
-    if(isset($_GET['page'])){
+
+    if(isset($_GET['page']))
+    {
         if(in_array($_GET['page'],$pages))
         {
         

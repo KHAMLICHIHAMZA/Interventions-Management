@@ -32,7 +32,7 @@ CREATE TABLE `Intervention` (
   PRIMARY KEY (`Numero_Intervention`, `Geographique_idGeographique`),
   CONSTRAINT `fk_Intervention_Geographique1`
     FOREIGN KEY (`Geographique_idGeographique`)
-    REFERENCES `BDD_Ebrigade`.`Geographique` (`idGeographique`)
+    REFERENCES `Geographique` (`idGeographique`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -62,12 +62,12 @@ CREATE TABLE `Intervention_Engins` (
   PRIMARY KEY (`Intervention_Numero_Intervention`, `Engins_idEngins`),
   CONSTRAINT `fk_Intervention_has_Engins_Intervention`
     FOREIGN KEY (`Intervention_Numero_Intervention`)
-    REFERENCES `BDD_Ebrigade`.`Intervention` (`Numero_Intervention`)
+    REFERENCES `Intervention` (`Numero_Intervention`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Intervention_has_Engins_Engins1`
     FOREIGN KEY (`Engins_idEngins`)
-    REFERENCES `BDD_Ebrigade`.`Engins` (`idEngins`)
+    REFERENCES `Engins` (`idEngins`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -88,22 +88,40 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `BDD_Ebrigade`.`Parametre`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Parametre` (
+  `idParametre` INT NOT NULL,
+  `Jours_Feries` VARCHAR(45) NULL,
+  `Heure_Debut` DATETIME NULL,
+  `Heure_Fin` DATETIME NULL,
+  PRIMARY KEY (`idParametre`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `BDD_Ebrigade`.`Personnel`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Personnel` (
+CREATE TABLE `Personnel` (
   `idPersonnel` INT NOT NULL,
   `Nom` VARCHAR(45) NULL,
   `Role` VARCHAR(45) NULL,
   `Responsable_idResponsable` INT NOT NULL,
-  PRIMARY KEY (`idPersonnel`, `Responsable_idResponsable`),
+  `Parametre_idParametre` INT NOT NULL,
+  PRIMARY KEY (`idPersonnel`, `Responsable_idResponsable`, `Parametre_idParametre`),
+  INDEX `fk_Personnel_Responsable1_idx` (`Responsable_idResponsable` ASC),
+  INDEX `fk_Personnel_Parametre1_idx` (`Parametre_idParametre` ASC),
   CONSTRAINT `fk_Personnel_Responsable1`
     FOREIGN KEY (`Responsable_idResponsable`)
-    REFERENCES `BDD_Ebrigade`.`Responsable` (`idResponsable`)
+    REFERENCES `Responsable` (`idResponsable`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Personnel_Parametre1`
+    FOREIGN KEY (`Parametre_idParametre`)
+    REFERENCES `Parametre` (`idParametre`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_Personnel_Responsable1_idx` ON `Personnel` (`Responsable_idResponsable` ASC);
 
 
 -- -----------------------------------------------------
@@ -113,31 +131,16 @@ CREATE TABLE `Engins_Personnel` (
   `Engins_idEngins` INT NOT NULL,
   `Personnel_idPersonnel` INT NOT NULL,
   PRIMARY KEY (`Engins_idEngins`, `Personnel_idPersonnel`),
+  INDEX `fk_Engins_has_Personnel_Personnel1_idx` (`Personnel_idPersonnel` ASC),
+  INDEX `fk_Engins_has_Personnel_Engins1_idx` (`Engins_idEngins` ASC),
   CONSTRAINT `fk_Engins_has_Personnel_Engins1`
     FOREIGN KEY (`Engins_idEngins`)
-    REFERENCES `BDD_Ebrigade`.`Engins` (`idEngins`)
+    REFERENCES `Engins` (`idEngins`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Engins_has_Personnel_Personnel1`
     FOREIGN KEY (`Personnel_idPersonnel`)
-    REFERENCES `BDD_Ebrigade`.`Personnel` (`idPersonnel`)
+    REFERENCES `Personnel` (`idPersonnel`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_Engins_has_Personnel_Personnel1_idx` ON `Engins_Personnel` (`Personnel_idPersonnel` ASC);
-
-CREATE INDEX `fk_Engins_has_Personnel_Engins1_idx` ON `Engins_Personnel` (`Engins_idEngins` ASC);
-
-
--- -----------------------------------------------------
--- Table `BDD_Ebrigade`.`Parametre`
--- -----------------------------------------------------
-CREATE TABLE `Parametre` (
-  `idParametre` INT NOT NULL,
-  `Jours_Feries` VARCHAR(45) NULL,
-  `Heure_Debut` DATETIME NULL,
-  `Heure_Fin` DATETIME NULL,
-  PRIMARY KEY (`idParametre`))
-ENGINE = InnoDB;
-

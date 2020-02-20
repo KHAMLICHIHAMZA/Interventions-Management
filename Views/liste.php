@@ -1,13 +1,14 @@
+<?php
 
 
-<div class="content-wrapper">
-  <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex flex-row justify-content-end">
+require_once './Controllers/HomeController.php ';
+require_once './Controllers/UsersController.php ';
+
+$users= UsersController::getAllUsers();
+
+?>
+
+
 
   <!-- Content Wrapper. Contains page content -->
 
@@ -46,9 +47,7 @@
                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
                         </form>
                         
-                   <a href="http://localhost/Interventions-Management/add" class="btn btn-sm btn-primary">
-              <i class="fas fa-plus"></i>
-                    </a>
+       
                         </td>
                         
                     </tr>
