@@ -19,6 +19,7 @@ if (true)
     include_once './Views/includes/divs.php';
 
 
+
     if(isset($_GET['page']))
     {
         if(in_array($_GET['page'],$pages))
@@ -38,7 +39,7 @@ if (true)
         {
         $home->index('home');
         }
-
+        
          require_once './Views/includes/footer.php';
 
 }else 

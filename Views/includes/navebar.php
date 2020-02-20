@@ -31,33 +31,17 @@
           <i class="far fa-user"></i>
           <span class="badge badge-danger navbar-badge"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-  
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-          
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
 
-            <!-- Message End -->
-          </a>
-      
       </li>
-      <!-- Notifications Dropdown Menu -->
+      
       <li class="nav-item dropdown">
 
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-            class="fas fa-th-large"></i></a>
+            class="fas fa-th-connexion"></i></a>
       </li>
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
