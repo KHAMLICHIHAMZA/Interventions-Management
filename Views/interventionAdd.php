@@ -1,8 +1,8 @@
 
 </br>
-<div class="col-md-8 container container-fluid" >
+<div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
   <!-- general form elements disabled -->
-  <div class="card card-warning">
+  <div class="card card-primary">
     <div class="card-header">
       <h3 class="card-title"><strong>Intervention</strong></h3>
     </div>
@@ -95,7 +95,7 @@
 
     </div>
     <!-- /.card-body -->
-    <div class="card-warning">
+    <div class="card-primary">
       <div class="card-header">
         <h3 class="card-title"><strong> Engins et personnel </strong></h3>
       </div>
@@ -186,7 +186,7 @@
         </form>
       </div>
     </div>
-    <div class="card-warning">
+    <div class="card-primary">
       <div class="card-header">
         <h3 class="card-title"><strong> Responsable </strong></h3>
       </div>
