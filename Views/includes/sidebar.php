@@ -39,6 +39,15 @@ $dd=$data->getOnUser();
               </p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="index.php?c=userscontroller&m=getAllUsers" class="nav-link">
+                    <i class="nav-icon fas fa-fire-extinguisher"></i>
+                    <p>
+                        liste des utilisateurs
+                        <span class="right badge badge-danger"></span>
+                    </p>
+                </a>
+            </li>
 
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

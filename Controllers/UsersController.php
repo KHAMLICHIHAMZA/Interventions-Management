@@ -5,7 +5,7 @@ require_once './Models/User.php ';
 
 class UsersController{
 
-static public function getAllUsers()
+public static function getAllUsers()
 {
     $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
     return json_decode($users,true);
