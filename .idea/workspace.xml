@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99c2456e-d197-48d6-90b2-d195ac83ae98" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Api_Ebrigade/Controllers/EnginController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api_Ebrigade/Controllers/UtilisateurController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api_Ebrigade/Model/DB.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api_Ebrigade/Model/Engins.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api_Ebrigade/Model/Utilisateur.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api_Ebrigade/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATABASE/DB.php" beforeDir="false" afterPath="$PROJECT_DIR$/DATABASE/DB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/includes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/includes/sidebar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Intervention-management-oumar" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -59,7 +54,9 @@
       <workItem from="1581381663063" duration="618000" />
       <workItem from="1581419475973" duration="4590000" />
       <workItem from="1582123307289" duration="1276000" />
-      <workItem from="1582127100108" duration="1070000" />
+      <workItem from="1582127100108" duration="1715000" />
+      <workItem from="1582227244459" duration="3311000" />
+      <workItem from="1582314354110" duration="1247000" />
     </task>
     <servers />
   </component>
@@ -67,13 +64,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="191" key="FileChooserDialogImpl" timestamp="1582127561000">
+    <state x="564" y="125" key="#sidebar.php" timestamp="1582240198960">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="191" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1582127561000" />
-    <state x="477" y="261" key="com.intellij.ide.util.TipDialog" timestamp="1581029958165">
+    <state x="564" y="125" key="#sidebar.php/0.0.1536.864@0.0.1536.864" timestamp="1582240198960" />
+    <state x="549" y="191" key="FileChooserDialogImpl" timestamp="1582315579101">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="477" y="261" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1581029958165" />
+    <state x="549" y="191" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1582315579101" />
+    <state x="477" y="261" key="com.intellij.ide.util.TipDialog" timestamp="1582314354425">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="477" y="261" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1582314354425" />
   </component>
 </project>

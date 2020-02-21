@@ -1,10 +1,4 @@
 
-<?php
-$data= new UsersController();
-$users= $data->getAllUsers();
-$dd=$data->getOnUser();
-
-?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -39,6 +33,16 @@ $dd=$data->getOnUser();
               </p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="index.php?c=users&m=getAllUsers" class="nav-link">
+                    <i class="nav-icon fas fa-fire-extinguisher"></i>
+                    <p>
+                        liste des utilisateurs
+                        <span class="right badge badge-danger"></span>
+                    </p>
+                </a>
+            </li>
+
 
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

@@ -1,6 +1,6 @@
 <?php
 
-class User
+class UsersModel
 {
 
     static public function login($data)
@@ -61,9 +61,6 @@ return 'ok';
 
         }
     }
-
-
-
     static public function getUser($data)
     {
         $id =$data['P_ID'];

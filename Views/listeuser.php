@@ -1,14 +1,3 @@
-<?php
-
-
-require_once './Controllers/HomeController.php ';
-require_once './Controllers/UsersController.php ';
-
-$users= UsersController::getAllUsers();
-
-?>
-
-
 
   <!-- Content Wrapper. Contains page content -->
 
@@ -28,7 +17,6 @@ $users= UsersController::getAllUsers();
                   <tbody>
                     <?php foreach($users as $user):?>
 
-
                   <tr>
                         <td scope="col"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2'];  ?></td>
                         <td scope="col"><?php echo $user['P_NOM'] ; ?></td>
@@ -46,8 +34,7 @@ $users= UsersController::getAllUsers();
                            ">
                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
                         </form>
-                        
-       
+
                         </td>
                         
                     </tr>
