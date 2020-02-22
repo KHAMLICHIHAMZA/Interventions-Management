@@ -17,7 +17,7 @@ public static function getAllUsers()
 public static function getOneUser()
 {
    
- $users = file_get_contents("   ");
+ $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=getOne");
  return json_decode($users,true);
 
 }
