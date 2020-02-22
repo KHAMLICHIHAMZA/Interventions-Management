@@ -66,26 +66,6 @@ return 'ok';
 
     static public function getUser($data)
     {
-        $id =$data['P_ID'];
-        try
-        {
-            $query='SELECT * FROM pompier WHERE P_ID=:P_ID';
-            $stmt= DB::connect()->prepare($query);
-            $stmt->execute(array(":P_ID" => $id));
-            $user = $stmt->fetch(PDO::FETCH_OBJ);
-            return $user;
-
-
-        } catch(PDOException $ex){
-
-                    echo'erer' . $ex->getMessage();
-        }
-
-
-
-
-     
-
     }
 
 }

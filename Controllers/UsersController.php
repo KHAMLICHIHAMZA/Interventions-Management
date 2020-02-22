@@ -9,17 +9,23 @@ public static function getAllUsers()
 {
     
     $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
+   
     return $d=json_decode($users,true);
+
 }
 
-public static function getOneUser(){
-    $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
-    return json_decode($users,true);
+public static function getOneUser()
+{
+   
+ $users = file_get_contents("   ");
+ return json_decode($users,true);
 
 }
 public static function update(){
+
     $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
     return json_decode($users,true);
+
 }
 public static function delete(){
     $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");

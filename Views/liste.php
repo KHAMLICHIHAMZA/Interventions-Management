@@ -7,7 +7,7 @@ $users= UsersController::getAllUsers();
 
 
               
-                <table class="table table-hover">
+              <table class="table table-hover">
                   <thead>
                     <tr>
                         <th scope="col">Prenom</th>
@@ -57,6 +57,7 @@ $users= UsersController::getAllUsers();
                            <input type="hidden" name="P_ID" value="<?php
                            echo $user['P_ID'];?>
                            ">
+
                         </form>
                         
             
