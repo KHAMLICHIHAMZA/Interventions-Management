@@ -1,6 +1,13 @@
 <?php
 include_once('C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php');
-//$Type_Inter = InterventionsController::getAllType();
+
+$Type_Inters = InterventionsController::getAllType();
+//die(print_r($Type_Inters));
+foreach($Type_Inters as $Type_Inter){
+  die(print_r($Type_Inter['TI_CODE']));
+}
+//echo $Type_Inter['TI_CODE'];
+//die(print_r($Type_Intervention['TI_CODE']));
 //die(print_r($Type_Inter));
 ?>
 </br>
@@ -33,15 +40,17 @@ include_once('C:/wamp64/www/Interventions-Management/Controllers/InterventionsCo
             <!-- select -->
             <div class="form-group">
               <label>Type d'intervention</label>
+
               <select class="form-control" name="Type_interv">
-                <?php 
-                //$Type_Inter = InterventionsController::getAllType();
-                //die(print_r($Type_Inter));
-                foreach($Type_Inter as $Type_Intervention){
-                ?>
-                <option><?php echo $Type_Intervention['TI_CODE'] ?></option>
-                
-                <?php } ?>
+                <?php
+                  $Type_Inters = InterventionsController::getAllType();
+                  //die(print_r($Type_Inters));
+                  foreach($Type_Inters as $Type_Inter):
+                  //echo $Type_Inter['TI_CODE'];
+                  //die(print_r($Type_Intervention['TI_CODE']));
+                  ?>
+                <option> <?php echo $Type_Inter['TI_CODE']; ?> </option>
+                <?php endforeach; ?>
               </select>
             </div>
           </div>

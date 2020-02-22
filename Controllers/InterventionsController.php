@@ -3,13 +3,17 @@
 class InterventionsController{
     static public function getAllType(){
 
-        $Type_Inter = file_get_contents("http://localhost/API-Ebrigade-Interventions/utilisateurs.php?c=typeintervention&m=getAll");
+        $Type_Inter = file_get_contents("http://localhost/API-Ebrigade-Interventions/utilisateurs.php?c=TypeIntervention&m=getAll");
         //  echo $response;
-        return $Type_Inter;
+        $type =json_decode($Type_Inter,true);
+        return $type;
         //return $response;
     }
 
 }
-$test = InterventionsController::getAllType();
-echo (($test));
+$tests = InterventionsController::getAllType();
+//echo $tests;
+foreach($tests as $test){
+echo $test;
+}
 ?>
