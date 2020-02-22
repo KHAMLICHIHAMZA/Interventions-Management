@@ -1,72 +1,87 @@
-<?php
-if(isset($_POST['P_ID']))
-{
-  echo 'ouiiii';
-$us= new UsersController();
-$user= $us->getOnUser();
 
+</br>
+<div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
+  <!-- general form elements disabled -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title"><strong>Modifier un utilisateur</strong></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <form role="form">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Commune d'intervention</label>
+              <input type="text" class="form-control" placeholder="Enter ...">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label>Adresse d'intervention</label>
+              <input type="text" class="form-control" placeholder="Enter ...">
+            </div>
+          </div>
+        </div>
+    
 
-}
-else{
-
-echo'errrrrrrreur a sat ';
-
-}
-?>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-  <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex flex-row justify-content-start">
-                <!--de la -->
-<form  method="post" action="">
-
-<div class="form-group">
-
-<label for="Nom">Prenom</label>
-<input type="text" name="Prenom" class="form-control" placeholder="eeee"
-value="">
-</div>
-
-<div class="form-group">
-<label for="Nom">Nom</label>
-<input type="text" name="Nom" class="form-control" placeholder="Nom">
-</div>
-
-
-<div class="form-group">
-<label for="Nom">Sexe</label>
-<input type="text" name="Sexe" class="form-control" placeholder="Sexe">
-</div>
-
-<div class="form-group">
-<label for="Nom">Grade</label>
-<input type="text" name="Grade" class="form-control" placeholder="Grade">
-</div>
-
-
-<div class="form-group" >
-  <select class="form-control" name="" id="">
-    <option value="">?</option>
-  </select>
-</div>
-<div class="form-group">
-
-<button type="submit" class ="btn btn-primary" name="submit"> valider</button>
-</div>
-
-
-</form>                  <!--jusque la qui doit changer-->
-                
+        <!-- input states -->
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="form-group">
+              <label>Date & Heure de declanchement :</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <input type="datetime-local" class="form-control float-right" id="reservation">
+              </div>
+              <!-- /.input group -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Date & Heure de fin :</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <input type="datetime-local" class="form-control float-right" id="reservation">
+              </div>
+              <!-- /.input group -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <!-- checkbox -->
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">Important</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- checkbox -->
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">OPM</label>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
+
     </div>
-</div>
+    <!-- /.card-body -->
+
+
+  </div>
 </div>

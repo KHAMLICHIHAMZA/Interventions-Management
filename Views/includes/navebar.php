@@ -45,6 +45,8 @@ function myFunction2() {
       
 
       <li class="nav-item d-none d-sm-inline-block">
+      <!--       <a href="index.php?c=userscontroller&m=getAllUsers" class="nav-link"><i
+-->
         <a href="http://localhost/Interventions-Management/liste" class="nav-link"><i
             class="far fa-user"></i></a></a>
             
