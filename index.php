@@ -67,6 +67,7 @@ if (true)
          include_once './Views/includes/footer.php';
 
 }else 
+
 {
 
 $home->index('login');
