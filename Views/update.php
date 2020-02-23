@@ -2,7 +2,7 @@
 require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 $users= UsersController::getOneUser();
-print_r($users);
+
 ?>
 
 </br>
