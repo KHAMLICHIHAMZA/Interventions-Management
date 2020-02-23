@@ -7,10 +7,6 @@ class UsersController{
 
 public static function getAllUsers()
 {
-<<<<<<< HEAD
-=======
-    
->>>>>>> 162116ea8f62791111af0de1aa37b9e4669193fb
     $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
    
     return $d=json_decode($users,true);
