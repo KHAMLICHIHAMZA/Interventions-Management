@@ -30,7 +30,7 @@ $dd=$data->getOnUser();
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
+            <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-fire-extinguisher"></i>
               <p>
@@ -39,6 +39,37 @@ $dd=$data->getOnUser();
               </p>
             </a>
           </li>
+
+            <li class="nav-item">
+                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>
+                        liste des Inteventions
+                        <span class="right badge badge-danger"></span>
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>
+                        Rapport en cours de validation
+                        <span class="right badge badge-danger"></span>
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>
+                        Rapport en cours de Redaction
+                        <span class="right badge badge-danger"></span>
+                    </p>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a href="index.php?c=userscontroller&m=getAllUsers" class="nav-link">
                     <i class="nav-icon fas fa-fire-extinguisher"></i>
