@@ -39,6 +39,7 @@ $dd=$data->getOnUser();
               </p>
             </a>
           </li>
+<<<<<<< HEAD
 
             <li class="nav-item">
                 <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
@@ -79,6 +80,9 @@ $dd=$data->getOnUser();
                     </p>
                 </a>
             </li>
+=======
+     
+>>>>>>> 93b9e6ebdcf166d670cbd2de18bb02550a589fcb
 
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

@@ -9,7 +9,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 
 
 CREATE TABLE `Geographique` (
-  `idGeographique` INT NOT NULL,
+  `idGeographique` INT NOT NULL AUTO_INCREMENT,
   `Position_X` INT NULL,
   `Position_Y` INT NULL,
   PRIMARY KEY (`idGeographique`))
@@ -20,7 +20,7 @@ ENGINE = InnoDB;
 -- Table `BDD_Ebrigade`.`Intervention`
 -- -----------------------------------------------------
 CREATE TABLE `Intervention` (
-  `Numero_Intervention` INT NOT NULL,
+  `Numero_Intervention` INT NOT NULL AUTO_INCREMENT,
   `Commune` VARCHAR(45) NULL,
   `Adresse` VARCHAR(45) NULL,
   `Type_interv` VARCHAR(45) NULL,
@@ -44,7 +44,7 @@ CREATE INDEX `fk_Intervention_Geographique1_idx` ON `Intervention` (`Geographiqu
 -- Table `BDD_Ebrigade`.`Engins`
 -- -----------------------------------------------------
 CREATE TABLE `Engins` (
-  `idEngins` INT NOT NULL,
+  `idEngins` INT  NOT NULL AUTO_INCREMENT,
   `Nom_Engin` VARCHAR(45) NULL,
   `Date_Heur_Depart` DATE NULL,
   `Date_Heure_Arriver` DATE NULL,
@@ -57,8 +57,8 @@ ENGINE = InnoDB;
 -- Table `BDD_Ebrigade`.`Intervention_Engins`
 -- -----------------------------------------------------
 CREATE TABLE `Intervention_Engins` (
-  `Intervention_Numero_Intervention` INT NOT NULL,
-  `Engins_idEngins` INT NOT NULL,
+  `Intervention_Numero_Intervention` INT  NOT NULL AUTO_INCREMENT,
+  `Engins_idEngins` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Intervention_Numero_Intervention`, `Engins_idEngins`),
   CONSTRAINT `fk_Intervention_has_Engins_Intervention`
     FOREIGN KEY (`Intervention_Numero_Intervention`)
@@ -81,7 +81,7 @@ CREATE INDEX `fk_Intervention_has_Engins_Intervention_idx` ON `Intervention_Engi
 -- Table `BDD_Ebrigade`.`Responsable`
 -- -----------------------------------------------------
 CREATE TABLE `Responsable` (
-  `idResponsable` INT NOT NULL,
+  `idResponsable` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   PRIMARY KEY (`idResponsable`))
 ENGINE = InnoDB;
@@ -90,8 +90,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `BDD_Ebrigade`.`Parametre`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Parametre` (
-  `idParametre` INT NOT NULL,
+CREATE TABLE `Parametre` (
+  `idParametre` INT NOT NULL AUTO_INCREMENT,
   `Jours_Feries` VARCHAR(45) NULL,
   `Heure_Debut` DATETIME NULL,
   `Heure_Fin` DATETIME NULL,
@@ -103,7 +103,7 @@ ENGINE = InnoDB;
 -- Table `BDD_Ebrigade`.`Personnel`
 -- -----------------------------------------------------
 CREATE TABLE `Personnel` (
-  `idPersonnel` INT NOT NULL,
+  `idPersonnel` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   `Role` VARCHAR(45) NULL,
   `Responsable_idResponsable` INT NOT NULL,
