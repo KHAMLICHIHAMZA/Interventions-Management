@@ -41,36 +41,6 @@ $dd=$data->getOnUser();
 
             
           </li>
-
-            <li class="nav-item">
-                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
-                    <i class="nav-icon fas fa-list"></i>
-                    <p>
-                        liste des Inteventions
-                        <span class="right badge badge-danger"></span>
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
-                    <i class="nav-icon fas fa-list"></i>
-                    <p>
-                        Rapport en cours de validation
-                        <span class="right badge badge-danger"></span>
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
-                    <i class="nav-icon fas fa-list"></i>
-                    <p>
-                        Rapport en cours de Redaction
-                        <span class="right badge badge-danger"></span>
-                    </p>
-                </a>
-            </li>
      
 
           <li class="nav-item">

@@ -28,7 +28,8 @@ CREATE TABLE `Intervention` (
   `Important` TINYINT NULL,
   `Date_Heure_Debut` DATE NULL,
   `Date_Heure_Fin` DATE NULL,
-  `Geographique_idGeographique` INT NOT NULL,
+  `Geographique_idGeographique` INT NOT NULL AUTO_INCREMENT,
+  `Statut` VARCHAR(45) NULL,
   PRIMARY KEY (`Numero_Intervention`, `Geographique_idGeographique`),
   CONSTRAINT `fk_Intervention_Geographique1`
     FOREIGN KEY (`Geographique_idGeographique`)
@@ -106,8 +107,8 @@ CREATE TABLE `Personnel` (
   `idPersonnel` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   `Role` VARCHAR(45) NULL,
-  `Responsable_idResponsable` INT NOT NULL,
-  `Parametre_idParametre` INT NOT NULL,
+  `Responsable_idResponsable` INT NOT NULL AUTO_INCREMENT, 
+  `Parametre_idParametre` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idPersonnel`, `Responsable_idResponsable`, `Parametre_idParametre`),
   INDEX `fk_Personnel_Responsable1_idx` (`Responsable_idResponsable` ASC),
   INDEX `fk_Personnel_Parametre1_idx` (`Parametre_idParametre` ASC),
@@ -128,8 +129,8 @@ ENGINE = InnoDB;
 -- Table `BDD_Ebrigade`.`Engins_Personnel`
 -- -----------------------------------------------------
 CREATE TABLE `Engins_Personnel` (
-  `Engins_idEngins` INT NOT NULL,
-  `Personnel_idPersonnel` INT NOT NULL,
+  `Engins_idEngins` INT NOT NULL AUTO_INCREMENT,
+  `Personnel_idPersonnel` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Engins_idEngins`, `Personnel_idPersonnel`),
   INDEX `fk_Engins_has_Personnel_Personnel1_idx` (`Personnel_idPersonnel` ASC),
   INDEX `fk_Engins_has_Personnel_Engins1_idx` (`Engins_idEngins` ASC),
