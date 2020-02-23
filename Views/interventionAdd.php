@@ -1,14 +1,5 @@
 <?php
-include_once('C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php');
-
-$Type_Inters = InterventionsController::getAllType();
-//die(print_r($Type_Inters));
-foreach($Type_Inters as $Type_Inter){
-  die(print_r($Type_Inter['TI_CODE']));
-}
-//echo $Type_Inter['TI_CODE'];
-//die(print_r($Type_Intervention['TI_CODE']));
-//die(print_r($Type_Inter));
+require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php' ;
 ?>
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
@@ -44,11 +35,8 @@ foreach($Type_Inters as $Type_Inter){
               <select class="form-control" name="Type_interv">
                 <?php
                   $Type_Inters = InterventionsController::getAllType();
-                  //die(print_r($Type_Inters));
                   foreach($Type_Inters as $Type_Inter):
-                  //echo $Type_Inter['TI_CODE'];
-                  //die(print_r($Type_Intervention['TI_CODE']));
-                  ?>
+                ?>
                 <option> <?php echo $Type_Inter['TI_CODE']; ?> </option>
                 <?php endforeach; ?>
               </select>
@@ -108,7 +96,6 @@ foreach($Type_Inters as $Type_Inter){
           </div>
         </div>
       </form>
-
     </div>
     <!-- /.card-body -->
     <div class="card-primary">
@@ -124,16 +111,16 @@ foreach($Type_Inters as $Type_Inter){
               <div class="form-group">
                 <label>Nom de l'engin N1</label>
                 <select class="form-control" name="Nom_Engin">
-                  <option>Type</option>
-                  <option>option 2</option>
-                  <option>option 3</option>
-                  <option>option 4</option>
-                  <option>option 5</option>
+                  <?php
+                    $Engins = InterventionsController::getAllEngins();
+                    foreach($Engins as $Engin):
+                  ?>
+                    <option><?php echo $Engin['TV_LIBELLE']; ?></option>
+                  <?php endforeach; ?>
                 </select>
               </div>
             </div>
           </div>
-
           <!-- input states -->
           <div class="row">
             <div class="col-sm-6">
@@ -165,7 +152,6 @@ foreach($Type_Inters as $Type_Inter){
               </div>
             </div>
           </div>
-
           <!-- input states -->
           <div class="row">
             <div class="col-sm-6">

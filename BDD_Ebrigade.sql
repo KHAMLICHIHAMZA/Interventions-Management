@@ -29,6 +29,7 @@ CREATE TABLE `Intervention` (
   `Date_Heure_Debut` DATE NULL,
   `Date_Heure_Fin` DATE NULL,
   `Geographique_idGeographique` INT NOT NULL,
+  `Statut` VARCHAR(45) NULL,
   PRIMARY KEY (`Numero_Intervention`, `Geographique_idGeographique`),
   CONSTRAINT `fk_Intervention_Geographique1`
     FOREIGN KEY (`Geographique_idGeographique`)
@@ -57,8 +58,8 @@ ENGINE = InnoDB;
 -- Table `BDD_Ebrigade`.`Intervention_Engins`
 -- -----------------------------------------------------
 CREATE TABLE `Intervention_Engins` (
-  `Intervention_Numero_Intervention` INT  NOT NULL AUTO_INCREMENT,
-  `Engins_idEngins` INT NOT NULL AUTO_INCREMENT,
+  `Intervention_Numero_Intervention` INT  NOT NULL,
+  `Engins_idEngins` INT NOT NULL,
   PRIMARY KEY (`Intervention_Numero_Intervention`, `Engins_idEngins`),
   CONSTRAINT `fk_Intervention_has_Engins_Intervention`
     FOREIGN KEY (`Intervention_Numero_Intervention`)
@@ -106,7 +107,7 @@ CREATE TABLE `Personnel` (
   `idPersonnel` INT NOT NULL AUTO_INCREMENT,
   `Nom` VARCHAR(45) NULL,
   `Role` VARCHAR(45) NULL,
-  `Responsable_idResponsable` INT NOT NULL,
+  `Responsable_idResponsable` INT NOT NULL, 
   `Parametre_idParametre` INT NOT NULL,
   PRIMARY KEY (`idPersonnel`, `Responsable_idResponsable`, `Parametre_idParametre`),
   INDEX `fk_Personnel_Responsable1_idx` (`Responsable_idResponsable` ASC),
