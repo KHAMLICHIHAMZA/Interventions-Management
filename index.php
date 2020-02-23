@@ -44,12 +44,8 @@ if (true)
  {
     include_once './Views/includes/header.php';
     include_once './Views/includes/navebar.php';
-<<<<<<< HEAD
-    include_once './Views/includes/sidebar.php';
-=======
 
     include_once './Views/includes/sidebar.php' ;
->>>>>>> 93b9e6ebdcf166d670cbd2de18bb02550a589fcb
     include_once './Views/includes/divs.php';
 
     if(isset($_GET['page']))
