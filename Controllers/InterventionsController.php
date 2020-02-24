@@ -44,6 +44,7 @@ class InterventionsController
     }
 
 
+
     static public function getAllType()
     {
         $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=typeintervention&m=getAll");

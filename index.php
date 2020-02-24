@@ -34,17 +34,12 @@ else
 
 
 $home = new HomeController();
-
-
 $pages = ['interventionAdd','add','home','update','delete','liste'];
-
-
 
 if (true)
  {
     include_once './Views/includes/header.php';
     include_once './Views/includes/navebar.php';
-    include_once './Views/includes/sidebar.php';
 
     include_once './Views/includes/sidebar.php' ;
     include_once './Views/includes/divs.php';
@@ -63,10 +58,10 @@ if (true)
         {
         $home->index('home');
         }
-        
-         include_once './Views/includes/footer.php';
+        include_once './Views/includes/footer.php';
 
 }else 
+
 {
 
 $home->index('login');
