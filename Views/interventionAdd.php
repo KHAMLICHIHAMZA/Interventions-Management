@@ -1,5 +1,11 @@
 <?php
 require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php' ;
+
+// Handle AJAX request (start)
+$Type_Inters = InterventionsController::getRolebyEngins("CCFM");
+die($Type_Inters);
+// Handle AJAX request (end)
+  
 ?>
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
@@ -10,7 +16,7 @@ require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsCo
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <form role="form">
+      <form role="form" method="POST">
         <div class="row">
           <div class="col-sm-6">
             <!-- text input -->
@@ -31,14 +37,16 @@ require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsCo
             <!-- select -->
             <div class="form-group">
               <label>Type d'intervention</label>
-
-              <select class="form-control" name="Type_interv">
+              <select class="form-control" id="TI_CODE">
                 <?php
                   $Type_Inters = InterventionsController::getAllType();
+
                   foreach($Type_Inters as $Type_Inter):
                 ?>
-                <option> <?php echo $Type_Inter['TI_CODE']; ?> </option>
-                <?php endforeach; ?>
+                <option value="name" value="<?php $Type_Inter['TI_CODE']; ?>"> <?php echo $Type_Inter['TI_CODE']; ?> </option>
+                  <?php
+                    endforeach; 
+                  ?>
               </select>
             </div>
           </div>
@@ -207,3 +215,19 @@ require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsCo
     </div>
   </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $('#name').keyup(function(){
+     var name = $('#name').val();
+
+     $.ajax({
+      type: 'post',
+      data: {ajax: 1,name: name},
+      success: function(response){
+       $('#response').text('name : ' + response);
+      }
+     });
+    });
+  });
+  </script>
