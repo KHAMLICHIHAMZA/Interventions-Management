@@ -1,8 +1,10 @@
 
 <?php
+/*
 $data= new UsersController();
 $users= $data->getAllUsers();
 $dd=$data->getOnUser();
+*/
 
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -39,7 +41,7 @@ $dd=$data->getOnUser();
               </p>
             </a>
           </li>
-<<<<<<< HEAD
+
 
             <li class="nav-item">
                 <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
@@ -51,25 +53,32 @@ $dd=$data->getOnUser();
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
-                        Rapport en cours de validation
-                        <span class="right badge badge-danger"></span>
+                        Rapport
+                        <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="index.php?c=InterventionsController&m=redactionRapport" class="nav-link">
+                            <i class="nav-icon fas fa-pencil "></i>
+                            <p>Rediger Rapport</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?c=InterventionsController&m=validationRapport" class="nav-link">
+                            <i class="nav-icon fas fa-layers-text "></i>
+                            <p>Valider Rapport</p>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
-                    <i class="nav-icon fas fa-list"></i>
-                    <p>
-                        Rapport en cours de Redaction
-                        <span class="right badge badge-danger"></span>
-                    </p>
-                </a>
-            </li>
+
 
             <li class="nav-item">
                 <a href="index.php?c=userscontroller&m=getAllUsers" class="nav-link">
@@ -80,9 +89,7 @@ $dd=$data->getOnUser();
                     </p>
                 </a>
             </li>
-=======
-     
->>>>>>> 93b9e6ebdcf166d670cbd2de18bb02550a589fcb
+
 
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

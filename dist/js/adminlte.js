@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.0.3-pre (https://adminlte.io)
+ * AdminLTE v3.0.2 (https://adminlte.io)
  * Copyright 2014-2020 Colorlib <http://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -1126,8 +1126,6 @@
     var ClassName = {
       CARD: 'card',
       COLLAPSED: 'collapsed-card',
-      COLLAPSING: 'collapsing-card',
-      EXPANDING: 'expanding-card',
       WAS_COLLAPSED: 'was-collapsed',
       MAXIMIZED: 'maximized-card'
     };
@@ -1171,8 +1169,8 @@
       _proto.collapse = function collapse() {
         var _this = this;
 
-        this._parent.addClass(ClassName.COLLAPSING).children(Selector.CARD_BODY + ", " + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
-          _this._parent.addClass(ClassName.COLLAPSED).removeClass(ClassName.COLLAPSING);
+        this._parent.children(Selector.CARD_BODY + ", " + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
+          _this._parent.addClass(ClassName.COLLAPSED);
         });
 
         this._parent.find('> ' + Selector.CARD_HEADER + ' ' + this._settings.collapseTrigger + ' .' + this._settings.collapseIcon).addClass(this._settings.expandIcon).removeClass(this._settings.collapseIcon);
@@ -1185,8 +1183,8 @@
       _proto.expand = function expand() {
         var _this2 = this;
 
-        this._parent.addClass(ClassName.EXPANDING).children(Selector.CARD_BODY + ", " + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
-          _this2._parent.removeClass(ClassName.COLLAPSED).removeClass(ClassName.EXPANDING);
+        this._parent.children(Selector.CARD_BODY + ", " + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+          _this2._parent.removeClass(ClassName.COLLAPSED);
         });
 
         this._parent.find('> ' + Selector.CARD_HEADER + ' ' + this._settings.collapseTrigger + ' .' + this._settings.expandIcon).addClass(this._settings.collapseIcon).removeClass(this._settings.expandIcon);

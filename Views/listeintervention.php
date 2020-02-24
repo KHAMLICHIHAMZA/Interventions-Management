@@ -1,5 +1,6 @@
- <!-- Content Wrapper. Contains page content -->
-                <!--de la -->
+
+
+
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -26,7 +27,7 @@
                       <td scope="col"><?php if (isset($i->rnom)) echo $i->rnom ;?></td>
 
                         <td  class="d-flex flex-row" >
-                           <a href="index.php?c=InterventionsController&m=detailintervention&id='<?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?>'"><button class="btn btn-sm btn-warning"><i class="fa fa-eye" ></i></button></a>
+                           <a href="index.php?c=InterventionsController&m=detailintervention&id=<?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye" ></i></button></a>
                             <a><button class="btn btn-sm btn-primary"><i class="fa fa-edit" ></i></button></a>
                             <a><button class="btn btn-sm btn-danger"><i class="fa fa-remove-format" ></i></button></a>
                         </td>

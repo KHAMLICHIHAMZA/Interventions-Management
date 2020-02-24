@@ -38,9 +38,9 @@ class interventionsModel {
             die();
         }
     }
-    public  function getbenginbyinterventionID($id){
-        $sql='SELECT E.* FROM intervention as I, engins_personnel as EP , engins as E where I.Numero_Intervention =IE.Intervention_Numero_Intervention 
-                  and IE.Engins_idEngins=E.idEngins and intervention.Numero_Intervention=:id ';
+    public  function getenginbyinterventionID($id){
+        $sql='SELECT E.* FROM intervention as I, intervention_engins as IE , engins as E where I.Numero_Intervention =IE.Intervention_Numero_Intervention 
+                  and IE.Engins_idEngins=E.idEngins and I.Numero_Intervention=:id ';
         try {
             $db = DB::connect();
             $stmt=$db->prepare($sql);
@@ -54,17 +54,18 @@ class interventionsModel {
         }
     }
 
-    public  function getpersonnelbyenginID($id){
+    public  function getpersonnelbyenginID($id,$interventionid){
        /* $sql1='SELECT engins FROM intervention as I, engins_personnel as EP , engins as E where I.Numero_Intervention =IE.Intervention_Numero_Intervention
                   and IE.Engins_idEngins=E.idEngins and intervention.Numero_Intervention=:id ';*/
 
-         $sql='SELECT P.* FROM engins_personnel as EP , engins as E,personnel as P
- where  E.idEngins = EP.Engins_idEngins and EP.Personnel_idPersonnel =P.idPersonnel
- and E.idEngins=:id ';
+         $sql='SELECT P.* FROM engins_personnel as EP , engins as E,personnel as P 
+ where  E.idEngins = EP.Engins_idEngins and EP.Personnel_idPersonnel =P.idPersonnel 
+ and E.idEngins=:id and EP.Intervention_Numero_intervention =:interventionid ';
         try {
             $db = DB::connect();
             $stmt=$db->prepare($sql);
             $stmt->bindParam(":id",$id);
+            $stmt->bindParam(":interventionid",$interventionid);
             $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
             $db = null;
             return $res;
@@ -74,9 +75,9 @@ class interventionsModel {
         }
     }
 
-    public  function getResponsablePersonnelID($id){
-         $sql='SELECT R.Nom as rnom FROM responsable as R,personnel as P
-                        where P.Responsable_idResponsable = R.idResponsable and P.P.idPersonnel:=id ';
+    public  function getResponsableIntervention($id){
+         $sql='SELECT R.* FROM responsable as R,personnel as P
+                        where P.Responsable_idResponsable = R.idResponsable and P.idPersonnel=:id   ';
         try {
             $db = DB::connect();
             $stmt=$db->prepare($sql);

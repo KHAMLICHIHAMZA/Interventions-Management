@@ -32,5 +32,13 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
+
+    <!-- Ionicons -->
+
+
+    <!-- summernote -->
+
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

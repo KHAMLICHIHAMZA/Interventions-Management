@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v3.0.3-pre
+ *   AdminLTE v3.0.2
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
@@ -17561,26 +17561,6 @@ textarea.form-control.is-warning {
   margin-left: 0;
 }
 
-.card.card-tabs .card-tools {
-  margin: .3rem .5rem;
-}
-
-.card.card-tabs:not(.expanding-card).collapsed-card .card-header {
-  border-bottom: 0;
-}
-
-.card.card-tabs:not(.expanding-card).collapsed-card .card-header .nav-tabs {
-  border-bottom: 0;
-}
-
-.card.card-tabs:not(.expanding-card).collapsed-card .card-header .nav-tabs .nav-item {
-  margin-bottom: 0;
-}
-
-.card.card-tabs.expanding-card  .card-header .nav-tabs .nav-item {
-  margin-bottom: -1px;
-}
-
 .card.card-outline-tabs {
   border-top: 0;
 }
@@ -17600,26 +17580,6 @@ textarea.form-control.is-warning {
 
 .card.card-outline-tabs .card-header a.active:hover {
   margin-top: 0;
-}
-
-.card.card-outline-tabs .card-tools {
-  margin: .5rem .5rem .3rem;
-}
-
-.card.card-outline-tabs:not(.expanding-card).collapsed-card .card-header {
-  border-bottom: 0;
-}
-
-.card.card-outline-tabs:not(.expanding-card).collapsed-card .card-header .nav-tabs {
-  border-bottom: 0;
-}
-
-.card.card-outline-tabs:not(.expanding-card).collapsed-card .card-header .nav-tabs .nav-item {
-  margin-bottom: 0;
-}
-
-.card.card-outline-tabs.expanding-card  .card-header .nav-tabs .nav-item {
-  margin-bottom: -1px;
 }
 
 html.maximized-card {
