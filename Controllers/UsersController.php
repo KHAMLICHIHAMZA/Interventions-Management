@@ -8,22 +8,30 @@ class UsersController{
 public static function getAllUsers()
 {
 
+
     $users = file_get_contents("http://localhost/API-Ebrigade-Interventions/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
     return json_decode($users,true);
 
     
     //$users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
+
+//    $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
+
    
   //  return $d=json_decode($users,true);
 
 }
 
-public static function getOneUser()
+public static function getOneUser($id)
 {
    
- $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=getOne");
- return json_decode($users,true);
+    
+ $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=getOne&P_ID=".$id);
 
+
+
+
+return json_decode($users,true);
 
 }
 public static function update(){

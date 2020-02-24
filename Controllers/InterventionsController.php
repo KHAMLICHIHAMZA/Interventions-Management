@@ -4,14 +4,7 @@ require_once './Models/InterventionModel.php ';
 
 class InterventionsController
 {
-    static public function getAllType(){
 
-       // $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=TypeIntervention&m=getAll");
-        //  echo $response;
-        //$type =json_decode($Type_Inter,true);
-        //return $type;
-        //return $response;
-    }
 
 
 
@@ -19,7 +12,7 @@ class InterventionsController
     {
         $interventionM = new interventionsModel();
         $listeIntervention =  $interventionM->getall();
-      //  var_dump($listeIntervention);
+        //  var_dump($listeIntervention);
 
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
@@ -65,11 +58,51 @@ class InterventionsController
     }
 
 
+
+
+    static public function getAllType()
+    {
+        $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=typeintervention&m=getAll");
+
+        //  echo $response;
+        $type = json_decode($Type_Inter,true);
+        return $type;
+        //return $response;
+    }
+    static public function getAllEngins(){
+
+        $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=engin&m=getAll");
+        //  echo $response;
+        $type = json_decode($Type_Inter,true);
+
+       
+
+        return $type;
+        //return $response;
+    }
+    static public function getRolebyEngins($TV){
+
+        $Role = file_get_contents("http://localhost/api/utilisateurs.php?c=engin&m=getAllRoles");
+        //  echo $response;
+        $Roles =  json_decode($Role,true);
+
+        $var=array();
+
+        for($i =1;$i<sizeof($Roles);$i++){
+            for($j =1;$j<sizeof($Roles[$i]);$j++){
+                if( $Roles[$i][$j]['TV_CODE'] == $TV){
+                    echo $Roles[$i][$j]['TV_CODE'].'  '. $Roles[$i][$j]['ROLE_ID'].'  '. $Roles[$i][$j]['ROLE_NAME'].'</br>';
+                }
+            }
+        }
+
+        
+        //return $response;
+    }
+
+
 }
 
-//$tests = InterventionsController::getAllType();
-//echo $tests;
-//foreach($tests as $test){
-//echo $test;
-//}
+
+
 ?>
