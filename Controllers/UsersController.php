@@ -9,7 +9,7 @@ public static function getAllUsers()
 {
 
 
-    $users = file_get_contents("http://localhost/API-Ebrigade-Interventions/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
+    $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
     return json_decode($users,true);
 
     
