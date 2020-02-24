@@ -28,6 +28,7 @@ CREATE TABLE `Intervention` (
   `Important` TINYINT NULL,
   `Date_Heure_Debut` DATE NULL,
   `Date_Heure_Fin` DATE NULL,
+
   `Geographique_idGeographique` INT NOT NULL AUTO_INCREMENT,
   `Statut` VARCHAR(45) NULL,
   PRIMARY KEY (`Numero_Intervention`, `Geographique_idGeographique`),
