@@ -79,10 +79,6 @@ $dd=$data->getOnUser();
                 </ul>
             </li>
 
-
-
-           git 
-
             
           </li>
      
