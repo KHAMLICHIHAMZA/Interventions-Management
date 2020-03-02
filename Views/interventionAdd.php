@@ -1,18 +1,17 @@
 <?php
 require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php' ;
-
+$Type_Inters = InterventionsController::getAllType();
 // Handle AJAX request (start)
-$Type_Inters = InterventionsController::getRolebyEngins("CCFM");
-die($Type_Inters);
-// Handle AJAX request (end)
-  
-?>
+//$Type_Inters = InterventionsController::getRolebyEngins("CCFM");
+//die($Type_Inters);
+// Check if form is submitted successfully 
+?> 
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
   <!-- general form elements disabled -->
   <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title"><strong>Intervention</strong></h3>
+      <h3 class="card-title"><strong>Intervention :</strong></h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -39,14 +38,12 @@ die($Type_Inters);
               <label>Type d'intervention</label>
               <select class="form-control" id="TI_CODE">
                 <?php
-                  $Type_Inters = InterventionsController::getAllType();
-
                   foreach($Type_Inters as $Type_Inter):
                 ?>
-                <option value="name" value="<?php $Type_Inter['TI_CODE']; ?>"> <?php echo $Type_Inter['TI_CODE']; ?> </option>
-                  <?php
-                    endforeach;
-                  ?>
+                <option value="name" value="<?php echo $Type_Inter['TI_CODE']; ?>"> <?php echo $Type_Inter['TI_CODE']; ?> </option>
+                <?php
+                  endforeach;
+                ?>
               </select>
             </div>
           </div>
@@ -112,7 +109,7 @@ die($Type_Inters);
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form role="form">
+        <form role="form" method="POST" action="">
           <div class="row">
             <div class="col-sm-6">
               <!-- select -->
@@ -123,12 +120,35 @@ die($Type_Inters);
                     $Engins = InterventionsController::getAllEngins();
                     foreach($Engins as $Engin):
                   ?>
-                    <option><?php echo $Engin['TV_LIBELLE']; ?></option>
+                    <option value="<?php echo $Engin['TV_LIBELLE']; ?>"> <?php echo $Engin['TV_LIBELLE']; ?> </option>
                   <?php endforeach; ?>
                 </select>
               </div>
             </div>
+            <div class="col-sm-3">
+              <!-- select -->
+              <div class="form-group"></br>
+                <button type="submit" class="btn btn-block btn-success" name="Valider" value="submit">Valider</button>
+              </div>
+            </div>
           </div>
+          <label>
+          <?php 
+              // Check if form is submitted successfully 
+              if(isset($_POST['Valider']))  
+              { 
+                  // Check if any option is selected 
+                  if(isset($_POST['Nom_Engin']))  
+                  { 
+                      // Retrieving each selected option 
+                      $Type_Inters = InterventionsController::getRolebyEngins("Remorque");//$_POST['Nom_Engin']);
+                      die(print_r($Type_Inters));
+                  } 
+              else
+                  echo "Select an option first !!"; 
+              } 
+          ?> 
+          </label>
           <!-- input states -->
           <div class="row">
             <div class="col-sm-6">
@@ -200,7 +220,7 @@ die($Type_Inters);
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form role="form">
+        <form role="form" method="POST">
           <div class="row">
             <div class="col-sm-6">
               <!-- text input -->
@@ -215,19 +235,3 @@ die($Type_Inters);
     </div>
   </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-  $(document).ready(function(){
-    $('#name').keyup(function(){
-     var name = $('#name').val();
-
-     $.ajax({
-      type: 'post',
-      data: {ajax: 1,name: name},
-      success: function(response){
-       $('#response').text('name : ' + response);
-      }
-     });
-    });
-  });
-  </script>
