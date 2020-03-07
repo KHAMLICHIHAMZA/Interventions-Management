@@ -1,6 +1,6 @@
 <?php
-require_once CLASSES.DS.'view.php';
-require_once './Models/InterventionModel.php ';
+//require_once CLASSES.DS.'view.php';
+require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
 
 class InterventionsController
 {
@@ -69,33 +69,16 @@ class InterventionsController
     static public function getAllEngins(){
         $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=engin&m=getAll");
         $type = json_decode($Type_Inter,true);
-        
         //return $response;
         //die(print_r($_POST['Valider']));
         // Check if any option is selected 
-       return $type;
+        return $type;
     }
-    //static $TV="Ambulance de secours et de soins d'urgence";
+    //Recuperation des Roles associers a l'engin
     static public function getRolebyEngins($TV){
-        $Eng_Code=null;
-        $Engin = file_get_contents("http://localhost/api/utilisateurs.php?c=engin&m=getEngin&P_CODE=".$TV);
-        $Eng=json_decode($Engin,true);
-        //var_dump($Eng);
-        foreach ($Eng as $tst){
-            echo("<script>console.log('PHP: " . $tst . "');</script>");
-        }
-        var_dump($Eng_Code);
-        $Role = file_get_contents("http://localhost/api/utilisateurs.php?c=engin&m=getAllRoles");
-        $Roles =  json_decode($Role,true);
-        //$var=array();
-        for($i =1;$i<sizeof($Roles);$i++){
-            for($j =1;$j<sizeof($Roles[$i]);$j++){
-                if( $Roles[$i][$j]['TV_CODE'] == $TV){
-                    echo $Roles[$i][$j]['TV_CODE'].'  '. $Roles[$i][$j]['ROLE_ID'].'  '. $Roles[$i][$j]['ROLE_NAME'].'</br>';
-                }
-            }
-        }        
-        //return $response;
+        $Role = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
+        return json_decode($Role,true);
     }
 }
+
 ?>

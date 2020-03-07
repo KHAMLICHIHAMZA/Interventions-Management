@@ -1,5 +1,5 @@
 <?php
-require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php' ;
+require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php';
 $Type_Inters = InterventionsController::getAllType();
 // Handle AJAX request (start)
 //$Type_Inters = InterventionsController::getRolebyEngins("CCFM");
@@ -120,7 +120,7 @@ $Type_Inters = InterventionsController::getAllType();
                     $Engins = InterventionsController::getAllEngins();
                     foreach($Engins as $Engin):
                   ?>
-                    <option value="<?php echo $Engin['TV_LIBELLE']; ?>"> <?php echo $Engin['TV_LIBELLE']; ?> </option>
+                    <option value="<?php echo $Engin['TV_CODE']; ?>"> <?php echo $Engin['TV_LIBELLE']; ?> </option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -131,8 +131,7 @@ $Type_Inters = InterventionsController::getAllType();
                 <button type="submit" class="btn btn-block btn-success" name="Valider" value="submit">Valider</button>
               </div>
             </div>
-          </div>
-          <label>
+          </div>   
           <?php 
               // Check if form is submitted successfully 
               if(isset($_POST['Valider']))  
@@ -140,15 +139,25 @@ $Type_Inters = InterventionsController::getAllType();
                   // Check if any option is selected 
                   if(isset($_POST['Nom_Engin']))  
                   { 
-                      // Retrieving each selected option 
-                      $Type_Inters = InterventionsController::getRolebyEngins("Remorque");//$_POST['Nom_Engin']);
-                      die(print_r($Type_Inters));
-                  } 
-              else
-                  echo "Select an option first !!"; 
-              } 
+                      $Type_Inters = InterventionsController::getRolebyEngins($_POST['Nom_Engin']);
+                      foreach($Type_Inters as $Type){
+                      //$_POST['Nom_Engin']);
+                      //die(print_r($Type_Inters));
+          ?>
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- text input -->
+              <div class="form-group">
+                <label> <?php echo $Type ?> </label>
+                <input type="text" class="form-control" name="" placeholder="Nom & Prenom">
+              </div>
+            </div>
+          </div>
+          <?php
+                      }
+                  }
+            } 
           ?> 
-          </label>
           <!-- input states -->
           <div class="row">
             <div class="col-sm-6">
@@ -233,5 +242,4 @@ $Type_Inters = InterventionsController::getAllType();
         </form>
       </div>
     </div>
-  </div>
-</div>
+ </div>
