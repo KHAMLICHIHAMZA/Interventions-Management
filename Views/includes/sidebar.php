@@ -86,7 +86,7 @@ $dd=$data->getOnUser();
 
 
           <li class="nav-item">
-            <a href="http://localhost/Interventions-Management/Analyses" class="nav-link">
+            <a href="http://localhost/Interventions-Management/analyses" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Analyses

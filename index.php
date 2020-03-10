@@ -37,7 +37,7 @@ else{
 
 
 $home = new HomeController();
-$pages = ['parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepass'];
+$pages = ['analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepass'];
 if(true)
 //if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
 {
