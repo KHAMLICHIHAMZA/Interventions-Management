@@ -3,11 +3,7 @@
 require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
 
 class InterventionsController
-{
-
-
-
-
+{   
     public static function getAll()
     {
         $interventionM = new interventionsModel();
