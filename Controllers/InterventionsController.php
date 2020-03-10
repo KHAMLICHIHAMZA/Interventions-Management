@@ -5,7 +5,7 @@ require_once './classes/view.php ';
 
 
 class InterventionsController
-{
+{   
     public static function getAll()
     {
         $interventionM = new interventionsModel();
