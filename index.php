@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 define('CONTROLLERS', ROOT.DS.'controllers');
@@ -36,40 +37,48 @@ else{
 
 
 $home = new HomeController();
-$pages = ['interventionAdd','add','home','update','delete','liste'];
-
-if (true)
- {
-    include_once './Views/includes/header.php';
-    include_once './Views/includes/navebar.php';
-
-    include_once './Views/includes/sidebar.php';
-
-
-
-    include_once './Views/includes/divs.php';
+$pages = ['parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepass'];
+if(true)
+//if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
+{
+//var_dump($_SESSION);
+    include './Views/includes/header.php';
+    include './Views/includes/navebar.php';
+    include './Views/includes/sidebar.php';
+    include './Views/includes/divs.php';
 
     if(isset($_GET['page']))
     {
+
         if(in_array($_GET['page'],$pages))
         {
             $page = $_GET['page'];
             $home->index($page);
-        }else{
+        }
+
+        else
+        {
             include ('Views/includes/404.php');
         }
 
-        }else
-        {
+    }
+
+    else
+
+    {
+        
         $home->index('home');
-        }
+    }
+
         include_once './Views/includes/footer.php';
 
-}else 
+}
+
+else 
 
 {
 
-$home->index('login');
+$home->index('login2');
 
 }
 
