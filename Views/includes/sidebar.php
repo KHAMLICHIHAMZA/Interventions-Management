@@ -84,33 +84,26 @@ $dd=$data->getOnUser();
      
 
 
+
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="http://localhost/Interventions-Management/Analyses" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Analyses
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
+     
+
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Charts
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-car"></i>
-              <p>
-                Engines
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
+                <a href="http://localhost/Interventions-Management/parame"  class="nav-link">
+                    <i class="nav-icon fas fa-calendar"></i>
+                    <p>
+                    paramètres                     </p>
+                </a>
+            </li>
+            
           <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
