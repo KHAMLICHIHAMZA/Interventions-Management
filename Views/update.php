@@ -3,7 +3,7 @@ require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 
 $users= UsersController::getOneUser($_POST['P_ID']);
-//die(var_dump($users));
+
 ?>
 
 </br>
@@ -57,9 +57,14 @@ $users= UsersController::getOneUser($_POST['P_ID']);
             </div>
      
 
-            <div class="form-group">
-
+          <div class="form-group">
+          <form action="get">
           <input type="submit" class ="btn btn-primary" name="submit" value="valider"> 
+          <input type="hidden" name="&P_ID" value="<?php
+                        echo $_POST['P_ID'];?>
+                        ">
+</form>
+
             </div>
             
     
