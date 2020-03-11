@@ -18,28 +18,14 @@
                   <table class="table table-hover">
                   <thead>
                     <tr>
-                        <th scope="col">numero Intervention</th>
-                        <th scope="col">Commune</th>
-                        <th scope="col">adresse</th>
-                        <th scope="col">typeintervention</th>
-                        <th scope="col">date heure debut</th>
-                        <th scope="col">date heure fin </th>
-                        <th scope="col">nom responsable</th>
+                        <th scope="col"><?php if(isset($name)) echo $name; ?></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($interventions as $i):?>
+                    <?php foreach($filtres as $i):?>
                   <tr onclick="window.location='index.php?c=ArchiveController&m=detailintervention&id=<?php echo $i->Numero_Intervention?>'">
-                         <td scope="col"><?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?></td>
-                      <td scope="col"><?php if (isset($i->Commune)) echo $i->Commune  ?></td>
-                        <td scope="col"><?php if (isset($i->Adresse)) echo $i->Adresse  ?></td>
-                        <td scope="col"><?php if (isset($i->Type_interv)) echo $i->Type_interv ; ?></td>
-                        <td scope="col"><?php if (isset($i->Date_Heure_Debut)) echo  $i->Date_Heure_Debut ;?></td>
-                      <td scope="col"><?php if (isset($i->Date_Heure_Fin)) echo  $i->Date_Heure_Fin ;?></td>
-                      <td scope="col"><?php if (isset($i->rnom)) echo $i->rnom ;?></td>
+                         <td scope="col"><?php if (isset($i->$nameBD)) echo $i->$nameBD  ?></td>
 
-                       
-                        
                     </tr>
                     <?php endforeach;?>
 
