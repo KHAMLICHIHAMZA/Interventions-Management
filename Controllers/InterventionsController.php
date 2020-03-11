@@ -1,5 +1,6 @@
 <?php
 //require_once CLASSES.DS.'view.php';
+
 require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
 require_once './classes/view.php ';
 
@@ -10,7 +11,7 @@ class InterventionsController
     {
         $interventionM = new interventionsModel();
         $listeIntervention =  $interventionM->getall();
-        //  var_dump($listeIntervention);
+
 
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
