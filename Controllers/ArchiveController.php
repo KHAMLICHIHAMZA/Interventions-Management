@@ -1,4 +1,6 @@
 <?php
+
+
 require_once CLASSES.DS.'view.php';
 require_once './Models/InterventionModel.php ';
 
@@ -14,6 +16,41 @@ class ArchiveController
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
         $v->render('archiveintervention');
+    }
+    public static function filtrage($element)
+    {
+        switch ($element) {
+            case 'date': {
+                    $nameBD = "Date_Heure_Debut";
+                    $name="date heure debut";
+                    break;
+                }
+            case 'numerointervention': {
+                    $nameBD = "Numero_Intervention";
+                    $name = "numero Intervention";
+                    break;
+                }
+            case 'adresse': {
+                    $nameBD = "Adresse";
+                    $name = "Adresse";
+                    break;
+                }
+            case 'adresse': {
+                    $nameBD = "Adresse";
+                    $name = "Adresse";
+                    break;
+                }
+        }
+        require_once './Models/Filtre.php ';
+        $filtreF = new Filtre();
+        $listeFiltre =  $filtreF->filtrepar($nameBD);
+
+        $v=new View();
+        $v->setVar('filtres',$listeFiltre);
+        $v->setVar('nameBD',$nameBD);
+        $v->setVar('name',$name);
+
+        $v->render('archivefiltrer');
     }
     public static function detailintervention($id)
     {
