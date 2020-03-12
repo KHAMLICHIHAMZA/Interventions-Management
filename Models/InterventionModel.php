@@ -2,6 +2,111 @@
 require_once "./DATABASE/DB.php";
 class interventionsModel {
     public function construct(){}
+
+
+
+
+    public  function getinterventionrapport($id){
+        $sql="select * from rapport where Numero_intervention=:id";
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $stmt->bindParam(":id",$id);
+            $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public  function ajoutcommentaire($id,$contenu){
+        $sql="INSERT into  commentaire(id_rapport,contenu) value('$id','$contenu') ;";
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $res=$stmt->execute();
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    public  function validationrapport($etat,$id){
+        $sql='UPDATE rapport SET statut=:etat where id_rapport=:id ';
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $stmt->bindParam(":etat",$etat);
+            $stmt->bindParam(":id",$id);
+            $res=$stmt->execute();
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public  function listeAllRapportresponsable(){
+        $sql='SELECT * FROM rapport ';
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public  function listeIRapportnonrediger(){
+        $sql='SELECT I.* FROM intervention as I 
+            left join rapport as R on I.Numero_Intervention = R.Numero_intervention where R.Numero_intervention is null  ';
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public  function listeAllRapport(){
+        $sql="SELECT * FROM rapport as R where R.statut is null or R.statut ='rejete' ";
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public  function ajoutrapport($rapport,$numero_intervention){
+        $sql="Insert into rapport (contenu,Numero_intervention ) value ('$rapport','$numero_intervention')" ;
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $res=$stmt->execute();
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
     public  function getall(){
         $sql='SELECT * FROM intervention ';
        /* $sql='SELECT I.*, P.Nom as pnom ,R.Nom as rnom FROM intervention as I,
@@ -24,6 +129,8 @@ class interventionsModel {
             die();
         }
     }
+
+
     public  function getbyinterventionid($id){
         $sql='SELECT * FROM intervention where intervention.Numero_Intervention=:id ';
         try {
@@ -105,4 +212,6 @@ class interventionsModel {
         }
     }
 }
+
 ?>
+

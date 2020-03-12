@@ -170,14 +170,15 @@
                 </div><!-- /.container-fluid -->
             </section>
 
-            <form  class=" col-sm-12" action="index.php" role="form">
+            <form style="width: 100%"  class=" col-sm-12" action="index.php" role="form">
                 <div class="col-sm-12">
                     <!-- textarea -->
-                    <input name="m" type="hidden" class="form-control" type="text" placeholder="Default input" value="ajoutrapport">
-                    <input name="c" type="hidden" class="form-control" type="text" placeholder="Default input" value="InterventionsController">
+                    <input name="id_rapport" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($rapport->id_rapport))  echo $rapport->id_rapport ; ?>">
+                    <input name="c" type="hidden" class="form-control" type="text" placeholder="Default input" value="RapportsController">
+                    <input name="m" type="hidden" class="form-control" type="text" placeholder="Default input" value="Modificationrapport">
                     <input name="numero_intervention" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>">
-                    <div class="form-group">
-                        <textarea name="rapport" class="form-control" rows="7" placeholder="Rapport ..."></textarea>
+                    <div class="form-group" style="width: 100%" >
+                        <textarea style="width: 100%"  name="rapport"  class="form-control" rows="7" placeholder="Rapport ..."><?php if (isset($rapport->contenu))  echo $rapport->contenu ; ?></textarea>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -185,6 +186,65 @@
                     <button type="submit" class="btn btn-primary align-items-center">Valider</button>
                 </div>
             </form>
+
+
+            <section class="content" style="width: 100%">
+                <div class="container-fluid">
+
+                    <!-- Timelime example  -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- The time line -->
+                            <div class="timeline">
+                                <!-- timeline time label -->
+                                <div class="time-label">
+
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline time label -->
+                                <?php  foreach($commentaire as $c){?>
+                                    <div>
+                                        <i class="fas fa-comments bg-yellow"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i> <?php if (isset($c->date))  echo date('d/m/Y',strtotime($c->date)); ?></span>
+                                            <h3 class="timeline-header"><a href="#"><!-- nom chef --></a> commentaire</h3>
+                                            <div class="timeline-body">
+                                                <?php if (isset($c->contenu))  echo $c->contenu ; ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </div>
+                <!-- /.timeline -->
+
+            </section>
+
 
 
 

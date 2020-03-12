@@ -66,13 +66,21 @@ $dd=$data->getOnUser();
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=redactionRapport" class="nav-link">
+                        <a href="index.php?c=InterventionsController&m=listeIRapportnonrediger" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Rediger Rapport</p>
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=validationRapport" class="nav-link">
+                        <a href="index.php?c=RapportsController&m=listeAllrapportresponsable" class="nav-link">
+                            <i class="nav-icon fas fa-pencil "></i>
+                            <p>liste all rapport</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="index.php?c=InterventionsController&m=listeallrapportchef" class="nav-link">
                             <i class="nav-icon fas fa-layers-text "></i>
                             <p>Valider Rapport</p>
                         </a>

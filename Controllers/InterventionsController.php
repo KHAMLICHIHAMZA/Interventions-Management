@@ -1,12 +1,38 @@
 <?php
 //require_once CLASSES.DS.'view.php';
 
+
 require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
 //require_once './classes/view.php ';
-
+require_once CLASSES.DS.'view.php';
+require_once './Models/InterventionModel.php ';
+require_once 'Controllers/RapportsController.php';
 
 class InterventionsController
-{   
+{
+    public static function validerapport($etat,$id,$commentaire)
+    {
+        $interventionM = new interventionsModel();
+        if ($commentaire!=null){
+            $interventionM->ajoutcommentaire($id,$commentaire);
+        }
+        $listeIntervention =  $interventionM->validationrapport($etat,$id);
+        //  var_dump($listeIntervention);
+        $v=new View();
+        $v->setVar('message',"validation effectuer avec succè");
+        self::listeallrapportchef();
+    }
+
+    public static function valide($etat,$id,$commentaire){
+        self::validerapport($etat,$id,$commentaire);
+    }
+    public static function rejete($etat,$id,$commentaire){
+        self::validerapport($etat,$id,$commentaire);
+    }
+
+
+
+
     public static function getAll()
     {
         $interventionM = new interventionsModel();
@@ -15,49 +41,89 @@ class InterventionsController
         $v->setVar('interventions',$listeIntervention);
         $v->render('listeintervention');
     }
-    
-    public static function detailintervention($id)
+
+
+
+    public static function ajoutRapport($rapport,$numero_intervention)
+    {
+        $interventionM = new interventionsModel();
+        $listeIntervention =  $interventionM->ajoutrapport($rapport,$numero_intervention);
+        //var_dump($listeIntervention);
+        self::listeIRapportnonrediger();
+    }
+
+    public static function listeallrapportchef()
+    {
+        $interventionM = new interventionsModel();
+        $listeR = $interventionM->listeAllRapport();
+        //var_dump($listeIntervention);
+        $v=new View();
+        $v->setVar('rapport',$listeR);
+        $v->render('listeAllRapportchef');
+    }
+
+
+    public static function listeIRapportnonrediger()
+    {
+        $interventionM = new interventionsModel();
+        $listeIntervention =  $interventionM->listeIRapportnonrediger();
+         // var_dump($listeIntervention);
+
+        $v=new View();
+        $v->setVar('interventions',$listeIntervention);
+        $v->render('liste_rapport_en_attente_de_redaction');
+    }
+
+    public static function detail($id,$pageretourner)
     {
         $interventionM = new interventionsModel();
         $Intervention =  $interventionM->getbyinterventionid($id);
         //var_dump($listeIntervention);
+        $rapports =  $interventionM->getinterventionrapport($id);
+        if(isset($rapports[0]))
+            $rapports = $rapports[0];
+
         $listeengin =  $interventionM->getenginbyinterventionID($id);
         //var_dump($listeengin);
         $listepersonnel =  $interventionM->getpersonnelbyenginID(1,$id);    
         //var_dump($listepersonnel);
         //$responsable = $interventionM->getResponsablePersonnelID(4);
-       // var_dump($responsable);
+        // var_dump($responsable);
         $v=new View();
-        $v->setVar('intervention',$Intervention[0]);
+        $v->setVar('intervention',$Intervention);
         $v->setVar('engins',$listeengin);
         $v->setVar('idinterventions',$id);
+        $v->setVar('rapport',$rapports);
+        $rapport = new rapportsModel();
+        $comment = null;
+        if(isset($rapports->id_rapport))
+            $comment = $rapport->listerapportcommentaire($rapports->id_rapport);
+        $v->setVar('commentaire',$comment);
         $v->setVar('interventionM',$interventionM);
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('interventiondetail');
-    }
-    public static function redactionRapport()
-    {
-        $interventionM = new interventionsModel();
-        //$listeIntervention =  $interventionM->getall();
-        //  var_dump($listeIntervention);
-        $v=new View();
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('redactionrapport');
+
+        $v->render($pageretourner);
     }
 
-    public static function validationRapport()
+    public static function detailintervention($id)
     {
-        $interventionM = new interventionsModel();
-        //$listeIntervention =  $interventionM->getall();
-        //var_dump($listeIntervention);
-        $v=new View();
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('validationrapport');
+        self::detail($id,'interventiondetail');
+    }
+    public static function redactionRapport($id)
+    {
+        self::detail($id,'redactionrapport');
+    }
+    public static function validationRapport($id)
+    {
+        self::detail($id,'validationrapport');
     }
 
     static public function getAllType()
     {
+
+        $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=typeintervention&m=getAll");
+
         $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=interventions&m=getAll");
+
         //  echo $response;
         $type = json_decode($Type_Inter,true);
         return $type;
