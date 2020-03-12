@@ -1,10 +1,6 @@
 
 
 
-
-
-
-
 <div class="card card-primary " style="width: 100%">
     <div class="card-header">
         <h3 class="card-title">
@@ -231,8 +227,8 @@
                                                 </div>
                                             </div>
                                             <!-- /.card-body -->
-                                            <div class="" style="display: flex; justify-content: center;">
-                                                <input style="margin-right : 10%; "  type="submit" name="m" class="btn btn-primary align-items-center" value="valide">
+                                            <div class="" style="display: flex; ">
+                                                <input style="margin-right : 2%; "  type="submit" name="m" class="btn btn-primary align-items-center" value="valide">
                                                 <input type="submit" name="m" class="btn btn-danger align-items-center" value="rejete">
                                             </div>
                                         </form>
@@ -256,8 +252,24 @@
                                         </section>
 
 
+
+
                                     </div>
                                 </div>
+
+                                <?php if(isset($commentaire)) foreach($commentaire as $c){?>
+                                    <div>
+                                        <i class="fas fa-comments bg-yellow"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i> <?php if (isset($c->date))  echo date('d/m/Y',strtotime($c->date)); ?></span>
+                                            <h3 class="timeline-header"><a href="#"><!-- nom chef --></a> commentaire</h3>
+                                            <div class="timeline-body">
+                                                <?php if (isset($c->contenu))  echo $c->contenu ; ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <?php } ?>
 
                                 
                                 <!-- END timeline item -->

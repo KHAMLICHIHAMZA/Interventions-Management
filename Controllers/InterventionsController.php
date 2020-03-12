@@ -6,6 +6,7 @@ require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.ph
 //require_once './classes/view.php ';
 require_once CLASSES.DS.'view.php';
 require_once './Models/InterventionModel.php ';
+require_once 'Controllers/RapportsController.php';
 
 class InterventionsController
 {
@@ -93,8 +94,13 @@ class InterventionsController
         $v->setVar('engins',$listeengin);
         $v->setVar('idinterventions',$id);
         $v->setVar('rapport',$rapports);
+        $rapport = new rapportsModel();
+        $comment = null;
+        if(isset($rapports->id_rapport))
+            $comment = $rapport->listerapportcommentaire($rapports->id_rapport);
+        $v->setVar('commentaire',$comment);
         $v->setVar('interventionM',$interventionM);
-        //$v->setVar('interventions',$listeIntervention);
+
         $v->render($pageretourner);
     }
 
@@ -106,19 +112,9 @@ class InterventionsController
     {
         self::detail($id,'redactionrapport');
     }
-
     public static function validationRapport($id)
     {
-
         self::detail($id,'validationrapport');
-
-        $interventionM = new interventionsModel();
-        //$listeIntervention =  $interventionM->getall();
-        //var_dump($listeIntervention);
-        $v=new View();
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('validationrapport');
-
     }
 
     static public function getAllType()

@@ -187,10 +187,11 @@
                                 <div>
                                     <i class="fas fa-envelope bg-blue"></i>
                                     <div class="timeline-item">
-                                        <span class="time"><i class="fas fa-clock"></i> 12:05</span>
+                                        <span class="time"><i class="fas fa-clock"></i> <?php if (isset($rapport->date))  echo date('d/m/Y',strtotime($rapport->date)); ?></span>
                                         <h3 class="timeline-header"> RAPPORT </h3>
 
                                         <div class="  timeline-body">
+                                            <?php if (isset($rapport->contenu))  echo $rapport->contenu ; ?>
 
                                             <!--  ************************** rapport     *****************************33 -->
                                         </div>
@@ -205,9 +206,21 @@
 
                                 <!-- END timeline item -->
                                 <!-- timeline time label -->
-                                <div class="time-label">
+                                <?php if(isset($commentaire)) foreach($commentaire as $c){?>
+                                    <div>
+                                        <i class="fas fa-comments bg-yellow"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i> <?php if (isset($c->date))  echo date('d/m/Y',strtotime($c->date)); ?></span>
+                                            <h3 class="timeline-header"><a href="#"><!-- nom chef --></a> commentaire</h3>
+                                            <div class="timeline-body">
+                                                <?php if (isset($c->contenu))  echo $c->contenu ; ?>
+                                            </div>
 
-                                </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+
+
                                 <!-- /.timeline-label -->
                                 <!-- timeline item -->
 

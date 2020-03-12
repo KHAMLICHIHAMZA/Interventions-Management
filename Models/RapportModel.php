@@ -5,6 +5,20 @@ class rapportsModel
     public function construct()
     {
     }
+    public  function listerapportcommentaire($id){
+        $sql="select * from commentaire where id_rapport=:id";
+        try {
+            $db = DB::connect();
+            $stmt=$db->prepare($sql);
+            $stmt->bindParam(":id",$id);
+            $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
+            $db = null;
+            return $res;
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
 
     public function listeAllRapportresponsable()
     {

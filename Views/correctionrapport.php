@@ -188,6 +188,65 @@
             </form>
 
 
+            <section class="content" style="width: 100%">
+                <div class="container-fluid">
+
+                    <!-- Timelime example  -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- The time line -->
+                            <div class="timeline">
+                                <!-- timeline time label -->
+                                <div class="time-label">
+
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline time label -->
+                                <?php  foreach($commentaire as $c){?>
+                                    <div>
+                                        <i class="fas fa-comments bg-yellow"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i> <?php if (isset($c->date))  echo date('d/m/Y',strtotime($c->date)); ?></span>
+                                            <h3 class="timeline-header"><a href="#"><!-- nom chef --></a> commentaire</h3>
+                                            <div class="timeline-body">
+                                                <?php if (isset($c->contenu))  echo $c->contenu ; ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </div>
+                <!-- /.timeline -->
+
+            </section>
+
+
+
 
         </div>
     </div>

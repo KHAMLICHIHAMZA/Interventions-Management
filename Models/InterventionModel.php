@@ -4,6 +4,8 @@ class interventionsModel {
     public function construct(){}
 
 
+
+
     public  function getinterventionrapport($id){
         $sql="select * from rapport where Numero_intervention=:id";
         try {
@@ -20,7 +22,7 @@ class interventionsModel {
     }
 
     public  function ajoutcommentaire($id,$contenu){
-        $sql="INSERT into  commentaire(contenu,id_rapport) value('$contenu','$id') ;";
+        $sql="INSERT into  commentaire(id_rapport,contenu) value('$id','$contenu') ;";
         try {
             $db = DB::connect();
             $stmt=$db->prepare($sql);

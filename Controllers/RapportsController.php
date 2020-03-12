@@ -5,6 +5,14 @@ require_once 'Controllers/InterventionsController.php';
 
 class RapportsController
 {
+
+
+    public static function listerapportcommentaire($id)
+    {
+        $RapportM = new rapportsModel();
+        return $RapportM->listerapportcommentaire($id);
+    }
+
     public static function listeAllrapportresponsable()
     {
         $RapportM = new rapportsModel();
@@ -22,10 +30,7 @@ class RapportsController
         $v->setVar('message','rapport modifier avec succè');
         self::listeAllrapportresponsable();
     }
-    public static function correctionrapport($id)
-    {
-        self::detail($id,'correctionrapport');
-    }
+
     public static function detail($id,$pageretourner)
     {
         $interventionM = new interventionsModel();
@@ -40,13 +45,21 @@ class RapportsController
         $listeengin =  $interventionM->getenginbyinterventionID($id);
         $listepersonnel =  $interventionM->getpersonnelbyenginID(1,$id);
         $v=new View();
-        $v->setVar('intervention',$Intervention[0]);
+        $v->setVar('intervention',$Intervention);
         $v->setVar('engins',$listeengin);
         $v->setVar('idinterventions',$id);
         $v->setVar('rapport',$rapports);
+        $rapport = new rapportsModel();
+        $comment = null;
+        if(isset($rapports->id_rapport))
+            $comment = $rapport->listerapportcommentaire($rapports->id_rapport);
+        $v->setVar('commentaire',$comment);
         $v->setVar('interventionM',$interventionM);
         $v->render($pageretourner);
-
+    }
+    public static function correctionrapport($id)
+    {
+        self::detail($id,'correctionrapport');
     }
 
 
