@@ -89,7 +89,7 @@ class InterventionsController
         //$responsable = $interventionM->getResponsablePersonnelID(4);
         // var_dump($responsable);
         $v=new View();
-        $v->setVar('intervention',$Intervention[0]);
+        $v->setVar('intervention',$Intervention);
         $v->setVar('engins',$listeengin);
         $v->setVar('idinterventions',$id);
         $v->setVar('rapport',$rapports);
