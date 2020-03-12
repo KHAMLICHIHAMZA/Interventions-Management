@@ -6,39 +6,25 @@ $Type_Inters = InterventionsController::getAllType();
 //die($Type_Inters);
 // Check if form is submitted successfully 
 ?>
-<script>
 
-    $(document).ready(function() { 
-		// au changement du select :
-		$('#Nom_Engins').on( 'click', function() { 
-			var val = $(this).val(); 
-			$.ajax({
-				type		: 'POST',				// on envoie en post
-				url		: 'http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin',			// fichier de traitement PHP => Attention a bien vérifier le chemin (rrelatif, ou absolu) !
-				data		:'P_CODE='+val ,	// on transmet la donnée, qui sera récupérée par $_POST['TV_CODE']
-        // on transmet la donnée, qui sera récupérée par $_POST['TV_CODE']
 
-			});
-		});
-	})
-
-</script>
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
   <!-- general form elements disabled -->
+
   <div class="card card-primary">
     <div class="card-header">
       <h3 class="card-title"><strong>Intervention :</strong></h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <form role="form" method="POST" action="">
+      <form method="POST" action="">
         <div class="row">
           <div class="col-sm-6">
             <!-- text input -->
             <div class="form-group">
               <label>Commune d'intervention </label>
-              <input type="text" class="form-control" value="" name="Commune" placeholder="Commune ...">
+              <input type="text" class="form-control" value="Commune" name="Commune" placeholder="Commune ...">
             </div>
           </div>
           <div class="col-sm-6">
@@ -53,7 +39,7 @@ $Type_Inters = InterventionsController::getAllType();
             <!-- select -->
             <div class="form-group">
               <label>Type d'intervention</label>
-              <select class="form-control" id="TI_CODE">
+              <select class="form-control" value="Type_interv">
                 <?php
                 foreach ($Type_Inters as $Type_Inter) :
                 ?>
@@ -132,7 +118,7 @@ $Type_Inters = InterventionsController::getAllType();
               <!-- select -->
               <div class="form-group">
                 <label>Nom de l'engin N1</label>
-                <select class="form-control" id="Nom_Engins" name="Nom_Engin">
+                <select class="form-control" value="Nom_Engins" id="Nom_Engin">
                   <?php
                   $Engins = InterventionsController::getAllEngins();
                   foreach ($Engins as $Engin) :
@@ -145,46 +131,12 @@ $Type_Inters = InterventionsController::getAllType();
             <div class="col-sm-3">
               <!-- select -->
               <div class="form-group"></br>
-                <button type="Submit" class="btn btn-block btn-success" name="Valider" value="submit">Valider</button>
+                <button type="Submit" class="btn btn-block btn-success" id="submitBtn" value="submit">Valider</button>
               </div>
+              
             </div>
           </div>
-          
-          <?php
-          /*
-          // Check if form is submitted successfully 
-          if (isset($_POST['Valider'])) {
-            // Check if any option is selected 
-            if (isset($_POST['Nom_Engin'])) {
-              $Type_Inters = InterventionsController::getRolebyEngins($_POST['Nom_Engin']);
-              $i = 1;
-              foreach ($Type_Inters as $Type) {
-                if ($i % 2 == 1) {
-          ?>
-                  <div class="row">
-
-                  <?php
-                }
-                  ?>
-                  <div class="col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                      <label> <?php echo $Type ?> </label>
-                      <input type="text" class="form-control" name="" placeholder="Nom & Prenom">
-                    </div>
-                  </div>
-                  <?php
-                  $i++;
-                  if ($i % 2 == 1) {
-                  ?>
-                  </div>
-          <?php
-                  }
-                }
-              }
-            }
-            */
-          ?>
+          <div id="content"></div>
           <!-- input states -->
           <div class="row">
             <div class="col-sm-6">
@@ -256,7 +208,7 @@ $Type_Inters = InterventionsController::getAllType();
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form role="form" method="POST">
+        <form role="form" method="POST" action="">
           <div class="row">
             <div class="col-sm-6">
               <!-- text input -->
@@ -269,4 +221,29 @@ $Type_Inters = InterventionsController::getAllType();
         </form>
       </div>
     </div>
+    <div class="col-sm-12">
+      <!-- select -->
+      <div class="form-group"></br>
+        <input type="Submit" class="btn btn-block btn-success" id="submitForm" value="Valider Formulaire">
+      </div>          
+    </div>
   </div>
+  
+  <!--<div id="content"></div>-->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  $('#submitBtn').click(function(event){
+    event.preventDefault();
+    var name = $('#Nom_Engin').val();
+    $.ajax({
+      url: 'Views/php/page.php',
+      data: 'name='+name,
+      success: function(data){
+        $('#content').html(data);
+      },
+      error: function(){     
+        alert('failure');   
+        }
+    }); 
+  }); 
+</script>
