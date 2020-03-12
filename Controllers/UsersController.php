@@ -1,20 +1,57 @@
 <?php
+//session_start();
 require_once './Models/User.php ';
 require_once './Controllers/HomeController.php ';
 
 
-
 class UsersController{
 
-    public static function logout ()
+    public static function update()
+{
+    $data=array('post'=>$_POST);
+    
+    $str=http_build_query($data);
+    
+    $ch= curl_init();
+    
+    curl_setopt($ch, CURLOPT_URL,"http://localhost/api/utilisateurs.php?c=utilisateurs&m=update");
+    curl_setopt($ch, CURLOPT_POST,1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$str);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+    
+    $output = curl_exec($ch);
+    
+    curl_close($ch);
+
+    $result= json_decode($output,true);
+
+
+    return $result;
+  
+
+
+   
+
+
+}
+public static function mdpoublie()
 {
 
+
+}
+    public static function logout ()
+{
+var_dump($_SESSION);
         session_destroy();
+        
+
+        //header("Location:http://localhost/Interventions-Management/login2");
 
 }
 
 public static function test()
 {
+
     $username=$_POST['username'];
     $password=$_POST['password'];
     
@@ -36,29 +73,27 @@ public static function test()
 
     $result= json_decode($output,true);
 
+
     $home = new HomeController();
 
 
     if ( isset($username) && isset($result) && $result['P_CODE'] === $username && md5($password) == $result['P_MDP']) 
         
         {
-
             $_SESSION['logged'] = true;
             $_SESSION['username']=$result['P_CODE'];
             $_SESSION['P_ID']=$result['P_ID'];  
-            $home->index('home');
-
+            header("Location:http://localhost/Interventions-Management/home");
         }
-
-        else{
-            $home->index('login2');
+        else
+        {
+            header("Location:http://localhost/Interventions-Management/login2");
         }
 
 
 }
 public static function getAllUsers()
 {
-
 
     $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=ListUtilisateur");
     return json_decode($users,true);
@@ -67,7 +102,6 @@ public static function getAllUsers()
 
 public static function getOneUser($id)
 {
-   
     
  $users = file_get_contents("http://localhost/api/utilisateurs.php?c=utilisateurs&m=getOne&P_ID=".$id);
 

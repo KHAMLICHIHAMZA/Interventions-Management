@@ -1,89 +1,27 @@
-<?php  include_once './Views/includes/header.php' ?>
-
-<?php  include_once './Views/includes/navebar.php' ?>
-
-
-  <!-- Main Sidebar Container -->
-  <?php  include_once './Views/includes/sidebar.php' ?>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-
-            <div class="card">
-
-              <div class="card-body">
-
-               <div class="d-flex flex-row justify-content-end">
-               <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">Prenom</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Sexe</th>
-                        <th scope="col">Grade</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                         
-
-    
-                    </tbody>
-                  </table>
-
- 
-  </div>
-</div>
-</div>
-            <!-- premier card -->
-            <?php
-             // include_once './Views/includes/firstcard.php' 
-            ?>
-
-
-            <!-- /.card -->
-                        <!-- deuxieme card -->
-
-            <?php 
-             //include_once './Views/includes/secondcard.php' 
-             ?>
-
-            <!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-          <?php 
-           //include_once './Views/includes/thirdcard.php' 
-           ?>
-
-            <!-- /.card -->
-
-            <?php  
-            
-          //include_once './Views/includes/forthcard.php'
-             ?>
-
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-
-  <?php  include_once './Views/includes/footer.php' ?>
+<h4 class="title-element"> Récupération de mot de passe </h4>
+<?php if($section == 'code')
+ { ?>
+Un code de vérification vous a été envoyé par mail: <?= $_SESSION['recup_mail'] ?>
+<br/>
+<form method="post">
+   <input type="text" placeholder="Code de vérification" name="verif_code"/><br/>
+   <input type="submit" value="Valider" name="verif_submit"/>
+</form>
+<?php }
+ elseif($section == "changemdp")
+  { ?>
+Nouveau mot de passe pour <?= $_SESSION['recup_mail'] ?>
+<form method="post">
+   <input type="password" placeholder="Nouveau mot de passe" name="change_mdp"/><br/>
+   <input type="password" placeholder="Confirmation du mot de passe" name="change_mdpc"/><br/>
+   <input type="submit" value="Valider" name="change_submit"/>
+</form>
+<?php } 
+else
+ { ?>
+<form method="post">
+   <input type="email" placeholder="Votre adresse mail" name="recup_mail"/><br/>
+   <input type="submit" value="Valider" name="recup_submit"/>
+</form>
+<?php } ?>
+<?php if(isset($error)) { echo '<span style="color:red">'.$error.'</span>'; } else { echo ""; } ?>

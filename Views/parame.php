@@ -1,7 +1,6 @@
   <!-- Content Wrapper. Contains page content -->
     <!-- Content Header (Page header) -->
-
-    <!-- Main content -->
+       <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">

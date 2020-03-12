@@ -12,6 +12,7 @@ $dd=$data->getOnUser();
     <a href="" class="brand-link">
       <img src="dist/img/sdis68.png" alt="AdminLTE Logo" class="brand-image img-responsive elevation-3"
            style="opacity: .8">
+           
       <span class="brand-text font-weight-light">gestion d'intervention </span>
     </a>
 
@@ -21,6 +22,7 @@ $dd=$data->getOnUser();
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="dist/img/pompier.jpg" class="img-circle elevation-2" alt="User Image">
+        <span>  <?php if( isset( $_SESSION['username'] ) ) echo  $_SESSION['username'] ?></span>
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php    ?></a>
