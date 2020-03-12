@@ -28,10 +28,10 @@ if(isset($_POST['submit']))
 
 
 echo $output;
-//echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/liste");</script>';
+echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/liste");</script>';
 
 
-header('location:http://localhost/Interventions-Management/liste');
+//header('location:http://localhost/Interventions-Management/liste');
 
 }
 ?>

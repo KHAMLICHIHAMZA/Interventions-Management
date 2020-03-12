@@ -11,12 +11,11 @@ class InterventionsController
     {
         $interventionM = new interventionsModel();
         $listeIntervention =  $interventionM->getall();
-
-
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
         $v->render('listeintervention');
     }
+    
     public static function detailintervention($id)
     {
         $interventionM = new interventionsModel();

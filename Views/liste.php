@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 $_SESSION['logged']=true;
 require_once './autoload.php';
 require_once './index.php';
