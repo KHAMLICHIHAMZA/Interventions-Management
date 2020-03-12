@@ -1,5 +1,5 @@
 <?php
-require_once "DATABASE/DB.php";
+require_once "./DATABASE/DB.php";
 class interventionsModel {
     public function construct(){}
 
@@ -137,7 +137,7 @@ class interventionsModel {
             $stmt->bindParam(":id",$id);
             $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
             $db = null;
-            return $res;
+            return current($res);
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
@@ -211,6 +211,5 @@ class interventionsModel {
     }
 }
 
-
-
 ?>
+

@@ -1,4 +1,8 @@
 <?php
+//session_start();
+$_SESSION['logged']=true;
+require_once './autoload.php';
+require_once './index.php';
 require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 $users= UsersController::getAllUsers();
@@ -24,7 +28,6 @@ $users= UsersController::getAllUsers();
                   <tbody>
                     <?php foreach($users as $user):?>
 
-
                   <tr>
                         <td scope="col"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2'];  ?></td>
                         <td scope="col"><?php echo $user['P_NOM'] ; ?></td>
@@ -45,14 +48,14 @@ $users= UsersController::getAllUsers();
                         echo $user['P_ID'];?>
                         ">
                      </form>
-                        <form  class="mr-1" method="post" action="update">
+                        <form  class="mr-1" method="post" action="http://localhost/Interventions-Management/update">
                           <input type="hidden" name="P_ID" value="<?php
                            echo $user['P_ID'];?>">
                            <button class="btn btn-sm btn-warning"><i class="fa fa-edit" ></i></button>
                         </form>
                         <form  class="mr-1" method="post" action="delete">
                         
-                           <button class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
+                           <button name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
 
                            <input type="hidden" name="P_ID" value="<?php
                            echo $user['P_ID'];?>

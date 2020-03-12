@@ -1,4 +1,6 @@
-  <!-- Navbar -->
+<div class="wrapper">
+
+<!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -33,7 +35,11 @@
 function myFunction2() {
   var txt;
   if (confirm("vous étes sure de vous deconecter !")) {
-    window.open('http://localhost/Interventions-Management/liste');
+    <?php 
+     require_once './Controllers/UsersController.php ';
+              UsersController::logout();
+            ?>
+   // window.open('http://localhost/Interventions-Management/home');
   } else {
     window.location.href;
   }

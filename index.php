@@ -1,4 +1,7 @@
 <?php
+ 
+require_once './autoload.php';
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 define('CONTROLLERS', ROOT.DS.'controllers');
@@ -8,7 +11,7 @@ define('VENDORS', ROOT.DS.'vendors');
 define('CLASSES', ROOT.DS.'classes');
 
 //require_once './Api.php';
-require_once './autoload.php';
+//require_once './autoload.php';
 require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 
@@ -45,40 +48,56 @@ else{
 
 
 $home = new HomeController();
-$pages = ['interventionAdd','add','home','update','delete','liste'];
+$pages = ['analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepasse'];
+//if(true)
+//var_dump($_SESSION);
+if(true)
+//if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
+{
+   // echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/liste");</script>';
 
-if (true)
- {
-    include_once './Views/includes/header.php';
-    include_once './Views/includes/navebar.php';
+    //var_dump($_SESSION);
 
-    include_once './Views/includes/sidebar.php';
-
-
-
-    include_once './Views/includes/divs.php';
+    include './Views/includes/header.php';
+    include './Views/includes/navebar.php';
+    include './Views/includes/sidebar.php';
+    include './Views/includes/divs.php';
 
     if(isset($_GET['page']))
     {
+
         if(in_array($_GET['page'],$pages))
         {
             $page = $_GET['page'];
             $home->index($page);
-        }else{
+        }
+
+        else
+        {
             include ('Views/includes/404.php');
         }
 
-        }else
-        {
+
+    }
+
+    else
+
+    {
+        
         $home->index('home');
-        }
+    }
+
         include_once './Views/includes/footer.php';
 
-}else 
+}
+
+else 
 
 {
 
-$home->index('login');
+var_dump($_SESSION);
+
+$home->index('login2');
 
 }
 
