@@ -1,7 +1,7 @@
 <?php
 //require_once CLASSES.DS.'view.php';
 require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
-require_once './classes/view.php ';
+//require_once './classes/view.php ';
 
 
 class InterventionsController
