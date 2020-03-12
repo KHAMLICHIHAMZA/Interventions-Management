@@ -1,5 +1,5 @@
 
-<div class="card card-primary ">
+<div class="card card-primary " style="width: 100%">
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
@@ -8,6 +8,8 @@
     </div>
     <div class="card-body">
         <h4>DETAIL</h4>
+
+
         <div class="row">
             <div class="col-5 col-sm-3">
                 <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
@@ -18,6 +20,7 @@
             </div>
             <div class="col-7 col-sm-9">
                 <div class="tab-content" id="vert-tabs-tabContent">
+
                     <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
                         <!--            detail intervention       -->
 
@@ -149,6 +152,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <section class="content-header">
                 <div class="container-fluid">
@@ -166,7 +170,7 @@
                 </div><!-- /.container-fluid -->
             </section>
 
-            <section class="content">
+            <section class="content" style="width: 100%">
                 <div class="container-fluid">
 
                     <!-- Timelime example  -->
@@ -186,11 +190,9 @@
                                         <span class="time"><i class="fas fa-clock"></i> 12:05</span>
                                         <h3 class="timeline-header"> RAPPORT </h3>
 
-                                        <div class="timeline-body">
-                                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                            quora plaxo ideeli hulu weebly balihoo...
+                                        <div class="  timeline-body">
+
+                                            <!--  ************************** rapport     *****************************33 -->
                                         </div>
 
                                     </div>

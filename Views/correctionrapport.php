@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 <div class="card card-primary " style="width: 100%">
     <div class="card-header">
         <h3 class="card-title">
@@ -176,119 +170,22 @@
                 </div><!-- /.container-fluid -->
             </section>
 
-            <section class="content" style="width: 100%">
-                <div class="container-fluid">
-
-                    <!-- Timelime example  -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- The time line -->
-                            <div class="timeline">
-                                <!-- timeline time label -->
-                                <div class="time-label">
-
-                                </div>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
-                                <div>
-                                    <i class="fas fa-envelope bg-blue"></i>
-                                    <div class="timeline-item">
-                                        <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                                        <h3 class="timeline-header"> RAPPORT </h3>
-
-                                        <div class="timeline-body">
-                                            <?php if (isset($rapport->contenu))  echo $rapport->contenu ; ?>
-                                        </div>
-
-                                        <section class="content-header">
-                                            <div class="container-fluid">
-                                                <div class="row mb-2">
-                                                    <div class="col-sm-6">
-
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <ol class="breadcrumb float-sm-right">
-                                                            <li class="breadcrumb-item"></li>
-
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.container-fluid -->
-                                        </section>
-                                                                    
-
-
-
-
-                                        <form   class=" col-sm-12" action="index.php" role="form">
-                                            <div class="col-sm-12">
-                                                <!-- textarea -->
-                                                <input name="id_rapport" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($rapport->id_rapport))  echo $rapport->id_rapport ; ?>">
-                                                <input name="c" type="hidden" class="form-control" type="text" placeholder="Default input" value="InterventionsController">
-                                                <input name="numero_intervention" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>">
-                                                <div class="form-group">
-                                                    <textarea name="commentaire" class="form-control" rows="2" placeholder="commentaire ..."></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- /.card-body -->
-                                            <div class="" style="display: flex; justify-content: center;">
-                                                <input style="margin-right : 10%; "  type="submit" name="m" class="btn btn-primary align-items-center" value="valide">
-                                                <input type="submit" name="m" class="btn btn-danger align-items-center" value="rejete">
-                                            </div>
-                                        </form>
-
-
-
-                                        <section class="content-header">
-                                            <div class="container-fluid">
-                                                <div class="row mb-2">
-                                                    <div class="col-sm-6">
-
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <ol class="breadcrumb float-sm-right">
-                                                            <li class="breadcrumb-item"></li>
-
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-
-
-                                    </div>
-                                </div>
-
-                                
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
-
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
-
-                                <!-- END timeline item -->
-                                <!-- timeline time label -->
-                                <div class="time-label">
-
-                                </div>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
-
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
-
-                                <!-- END timeline item -->
-                                <div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.col -->
+            <form style="width: 100%"  class=" col-sm-12" action="index.php" role="form">
+                <div class="col-sm-12">
+                    <!-- textarea -->
+                    <input name="id_rapport" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($rapport->id_rapport))  echo $rapport->id_rapport ; ?>">
+                    <input name="c" type="hidden" class="form-control" type="text" placeholder="Default input" value="RapportsController">
+                    <input name="m" type="hidden" class="form-control" type="text" placeholder="Default input" value="Modificationrapport">
+                    <input name="numero_intervention" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>">
+                    <div class="form-group" style="width: 100%" >
+                        <textarea style="width: 100%"  name="rapport"  class="form-control" rows="7" placeholder="Rapport ..."><?php if (isset($rapport->contenu))  echo $rapport->contenu ; ?></textarea>
                     </div>
                 </div>
-                <!-- /.timeline -->
-
-            </section>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary align-items-center">Valider</button>
+                </div>
+            </form>
 
 
 
@@ -296,7 +193,3 @@
     </div>
     <!-- /.card -->
 </div>
-
-
-
-
