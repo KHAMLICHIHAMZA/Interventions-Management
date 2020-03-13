@@ -6,6 +6,32 @@ require_once './Controllers/HomeController.php ';
 
 class UsersController{
 
+
+    public static function groupDescrption()
+    {
+
+        $data=array('post'=>$_POST);
+    
+        $str=http_build_query($data);
+        
+        $ch= curl_init();
+        
+        curl_setopt($ch, CURLOPT_URL,"http://localhost/api/utilisateurs.php?c=utilisateurs&m=gdrp");
+        curl_setopt($ch, CURLOPT_POST,1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$str);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        
+        $output = curl_exec($ch);
+        
+        curl_close($ch);
+    
+        $result= json_decode($output,true);
+    
+    
+        return $result;
+      
+
+    }
     public static function update()
 {
     $data=array('post'=>$_POST);
@@ -41,9 +67,9 @@ public static function mdpoublie()
 }
     public static function logout ()
 {
-var_dump($_SESSION);
-        session_destroy();
-        
+
+        $_SESSION['logged']=false;
+
 
         //header("Location:http://localhost/Interventions-Management/login2");
 

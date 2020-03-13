@@ -48,11 +48,11 @@ else{
 
 
 $home = new HomeController();
-$pages = ['analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepasse'];
+$pages = ['details','analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepasse',];
 //if(true)
 //var_dump($_SESSION);
-if(true)
-//if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
+//if(true)
+if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
 {
    // echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/liste");</script>';
 

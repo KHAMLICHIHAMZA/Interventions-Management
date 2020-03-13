@@ -36,10 +36,11 @@ function myFunction2() {
   var txt;
   if (confirm("vous étes sure de vous deconecter !")) {
     <?php 
-     require_once './Controllers/UsersController.php ';
-              UsersController::logout();
-            ?>
-   // window.open('http://localhost/Interventions-Management/home');
+     require_once '././Controllers/UsersController.php ';
+//UsersController::logout()    
+//window.open('http://localhost/Interventions-Management/login2');
+    ?>
+
   } else {
     window.location.href;
   }

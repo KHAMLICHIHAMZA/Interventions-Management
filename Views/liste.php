@@ -1,6 +1,5 @@
 <?php
-//session_start();
-$_SESSION['logged']=true;
+
 require_once './autoload.php';
 require_once './index.php';
 require_once './Controllers/HomeController.php ';
@@ -40,13 +39,11 @@ $users= UsersController::getAllUsers();
 
                         <td  class="d-flex flex-row" >
                           
-                        <form  class="mr-1" method="post" action="details">
-                        
+                        <form  class="mr-1" method="post" action="http://localhost/Interventions-Management/details">
+                          <input type="hidden" name="P_ID" value="<?php
+                           echo $user['P_ID'];?>">
                         <button class="btn btn-sm btn-info "><i class="fa fa-eye" ></i></button>
-
-                        <input type="hidden" name="P_ID" value="<?php
-                        echo $user['P_ID'];?>
-                        ">
+                          
                      </form>
                         <form  class="mr-1" method="post" action="http://localhost/Interventions-Management/update">
                           <input type="hidden" name="P_ID" value="<?php
