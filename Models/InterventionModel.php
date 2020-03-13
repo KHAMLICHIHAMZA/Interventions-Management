@@ -1,5 +1,6 @@
 <?php
-require_once "./DATABASE/DB.php";
+require_once "C:/wamp64/www/Interventions-Management/DATABASE/DB.php";
+//require_once "./DATABASE/DB.php";
 class interventionsModel {
     public function construct(){}
 
@@ -212,7 +213,7 @@ class interventionsModel {
         }
     }
 
-    public function AddIntervention($TableIntervention,$TableEngin){
+     public function AddIntervention($TableIntervention,$TableEngin,$Responsable){
         $Roles = InterventionsController::getRolebyEngins($_POST['Nom_Engin']);
         $i=1;
         $stmt=DB::connect()->prepare('INSERT INTO intervention(Commune, Adresse, Type_interv, Date_Heure_Debut, Date_Heure_Fin, Important, Opm) VALUES ("'.$TableIntervention['Commune'].'","'.$TableIntervention['Adresse'].'","'.$TableIntervention['Type_interv'].'","'.$TableIntervention['Date_Heure_Debut'].'","'.$TableIntervention['Date_Heure_Fin'].'","'.$TableIntervention['Important'].'","'.$TableIntervention['Opm'].'"');

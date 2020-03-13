@@ -5,6 +5,9 @@ if (isset($_GET['name'])) {
     $Type_Inters = InterventionsController::getRolebyEngins($_GET['name']);
     //var_dump(print_r($Type_Inters));
     //echo $name = $_GET['name'];
+    ?>
+    <form action="" id="idform" method="post">
+    <?php
     $i = 1;
     foreach ($Type_Inters as $Type) {
         if ($i % 2 == 1) {
@@ -17,7 +20,7 @@ if (isset($_GET['name'])) {
                 <!-- text input -->
                 <div class="form-group">
                     <label> <?php echo $Type ?> </label>
-                    <input type="text" class="form-control" name="<?php echo "Role".$i ?>" placeholder="Nom & Prenom">
+                    <input type="text" class="form-control" name="<?php echo "Role" . $i ?>" placeholder="Nom & Prenom">
                 </div>
             </div>
             <?php
@@ -28,6 +31,6 @@ if (isset($_GET['name'])) {
 <?php
             }
         }
-        //}
     }
 ?>
+    </form> 
