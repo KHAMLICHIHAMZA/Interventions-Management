@@ -143,6 +143,33 @@ class InterventionsController
         $Role = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
         return json_decode($Role,true);
     }
+
+    public function addInterventionEngins(){
+        $TableIntervention=null;
+        $TableEngin=array();
+        if(isset($_POST['submit']) || isset($_POST['submit1'])){
+            if(empty($TableIntervention)){
+                $TableIntervention = array(
+                    'Commune' => $_POST['Commune'],
+                    'Adresse' => $_POST['Adresse'],
+                    'Type_interv' => $_POST['Type_interv'],
+                    'Date_Heure_Debut' => $_POST['Date_Heure_Debut'],
+                    'Date_Heure_Fin' => $_POST['Date_Heure_Fin'],
+                    'Important' => $_POST['Important'],
+                    'Opm' => $_POST['Opm'],
+                );
+                die(var_dump($TableIntervention));               
+            }else{
+                $TableEngin = array(
+                    'Nom_Engin' => $_POST['Nom_Engin'],
+                    'Date_Heur_Depart' => $_POST['Date_Heur_Depart'],
+                    'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
+                    'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
+                );
+            }
+        //$TableEngin=json_encode($TableIntervention);
+        }
+    }
 }
 
 ?>
