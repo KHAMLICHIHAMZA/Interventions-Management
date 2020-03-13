@@ -2,6 +2,9 @@
     <!-- Content Header (Page header) -->
        <!-- Main content -->
        <?php // var_dump($_SESSION);
+
+//die(print_r($_SESSION));
+
 ?>
     <section class="content">
       <div class="container-fluid">
