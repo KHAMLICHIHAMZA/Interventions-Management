@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 13, 2020 at 08:31 AM
+-- Generation Time: Mar 13, 2020 at 11:10 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.0.33
 
@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `engins_personnel` (
   `Engins_idEngins` int(11) NOT NULL,
   `Personnel_idPersonnel` int(11) NOT NULL,
   `Intervention_Numero_intervention` int(11) DEFAULT NULL,
+  `Responsable_idResponsable` int(11) DEFAULT NULL,
   PRIMARY KEY (`Engins_idEngins`,`Personnel_idPersonnel`),
   KEY `fk_Engins_has_Personnel_Personnel1_idx` (`Personnel_idPersonnel`),
   KEY `fk_Engins_has_Personnel_Engins1_idx` (`Engins_idEngins`),
@@ -97,12 +98,12 @@ CREATE TABLE IF NOT EXISTS `engins_personnel` (
 -- Dumping data for table `engins_personnel`
 --
 
-INSERT INTO `engins_personnel` (`Engins_idEngins`, `Personnel_idPersonnel`, `Intervention_Numero_intervention`) VALUES
-(1, 4, 1),
-(2, 1, 1),
-(1, 5, 2),
-(2, 2, 2),
-(2, 3, 3);
+INSERT INTO `engins_personnel` (`Engins_idEngins`, `Personnel_idPersonnel`, `Intervention_Numero_intervention`, `Responsable_idResponsable`) VALUES
+(1, 4, 1, NULL),
+(1, 5, 2, NULL),
+(2, 1, 1, NULL),
+(2, 2, 2, NULL),
+(2, 3, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -145,19 +146,21 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   `Date_Heure_Debut` datetime DEFAULT NULL,
   `Date_Heure_Fin` date DEFAULT NULL,
   `Geographique_idGeographique` int(11) NOT NULL,
+  `Responsable_idResponsable` int(11) DEFAULT NULL,
   PRIMARY KEY (`Numero_Intervention`,`Geographique_idGeographique`),
-  KEY `fk_Intervention_Geographique1_idx` (`Geographique_idGeographique`)
+  KEY `fk_Intervention_Geographique1_idx` (`Geographique_idGeographique`),
+  KEY `Responsable_idResponsable` (`Responsable_idResponsable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `intervention`
 --
 
-INSERT INTO `intervention` (`Numero_Intervention`, `Commune`, `Adresse`, `Type_interv`, `Opm`, `Important`, `Date_Heure_Debut`, `Date_Heure_Fin`, `Geographique_idGeographique`) VALUES
-(1, 'casa', '47 barte', 'feu de brousse', 1, 1, '2020-02-03 00:00:00', '2020-02-10', 1),
-(2, 'bamako', '56 charle stoessel', 'bombe', 1, 1, '2020-02-11 00:00:00', '2020-02-29', 2),
-(3, 'kalaban', '46 deste', 'tremblement', 4, 5, '2020-02-26 00:00:00', '2020-02-27', 3),
-(4, 'paris', '57 retw', 'terrorist', 0, 0, '2020-02-11 00:00:00', '2020-02-19', 4);
+INSERT INTO `intervention` (`Numero_Intervention`, `Commune`, `Adresse`, `Type_interv`, `Opm`, `Important`, `Date_Heure_Debut`, `Date_Heure_Fin`, `Geographique_idGeographique`, `Responsable_idResponsable`) VALUES
+(1, 'casa', '47 barte', 'feu de brousse', 1, 1, '2020-02-03 00:00:00', '2020-02-10', 1, 1),
+(2, 'bamako', '56 charle stoessel', 'bombe', 1, 1, '2020-02-11 00:00:00', '2020-02-29', 2, 2),
+(3, 'kalaban', '46 deste', 'tremblement', 4, 5, '2020-02-26 00:00:00', '2020-02-27', 3, 3),
+(4, 'paris', '57 retw', 'terrorist', 0, 0, '2020-02-11 00:00:00', '2020-02-19', 4, 3);
 
 -- --------------------------------------------------------
 
@@ -224,6 +227,7 @@ CREATE TABLE IF NOT EXISTS `personnel` (
   `Role` varchar(45) DEFAULT NULL,
   `Responsable_idResponsable` int(11) NOT NULL,
   `Parametre_idParametre` int(11) NOT NULL,
+  `P_CODE` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idPersonnel`,`Responsable_idResponsable`,`Parametre_idParametre`),
   KEY `fk_Personnel_Responsable1_idx` (`Responsable_idResponsable`),
   KEY `fk_Personnel_Parametre1_idx` (`Parametre_idParametre`)
@@ -233,12 +237,12 @@ CREATE TABLE IF NOT EXISTS `personnel` (
 -- Dumping data for table `personnel`
 --
 
-INSERT INTO `personnel` (`idPersonnel`, `Nom`, `Role`, `Responsable_idResponsable`, `Parametre_idParametre`) VALUES
-(1, 'sidi', 'conducteur', 2, 1),
-(2, 'toto', 'equipier', 1, 2),
-(3, 'tat', 'apprenant', 3, 2),
-(4, 'amine', 'chef equipe', 2, 1),
-(5, 'sali', 'equipier', 1, 2);
+INSERT INTO `personnel` (`idPersonnel`, `Nom`, `Role`, `Responsable_idResponsable`, `Parametre_idParametre`, `P_CODE`) VALUES
+(1, 'sidi', 'conducteur', 2, 1, '4'),
+(2, 'toto', 'equipier', 1, 2, '5'),
+(3, 'tat', 'apprenant', 3, 2, '6'),
+(4, 'amine', 'chef equipe', 2, 1, '7'),
+(5, 'sali', 'equipier', 1, 2, '8');
 
 -- --------------------------------------------------------
 
@@ -276,6 +280,7 @@ DROP TABLE IF EXISTS `responsable`;
 CREATE TABLE IF NOT EXISTS `responsable` (
   `idResponsable` int(11) NOT NULL,
   `Nom` varchar(45) DEFAULT NULL,
+  `P_CODE` varchar(20) NOT NULL,
   PRIMARY KEY (`idResponsable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -283,10 +288,10 @@ CREATE TABLE IF NOT EXISTS `responsable` (
 -- Dumping data for table `responsable`
 --
 
-INSERT INTO `responsable` (`idResponsable`, `Nom`) VALUES
-(1, 'kante'),
-(2, 'hamza'),
-(3, 'oumar');
+INSERT INTO `responsable` (`idResponsable`, `Nom`, `P_CODE`) VALUES
+(1, 'kante', '1'),
+(2, 'hamza', '2'),
+(3, 'oumar', '3');
 
 --
 -- Constraints for dumped tables
@@ -303,14 +308,15 @@ ALTER TABLE `commentaire`
 --
 ALTER TABLE `engins_personnel`
   ADD CONSTRAINT `engins_personnel_ibfk_1` FOREIGN KEY (`Intervention_Numero_intervention`) REFERENCES `intervention` (`Numero_Intervention`),
-  ADD CONSTRAINT `fk_Engins_has_Personnel_Engins1` FOREIGN KEY (`Engins_idEngins`) REFERENCES `engins` (`idEngins`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Engins_has_Personnel_Personnel1` FOREIGN KEY (`Personnel_idPersonnel`) REFERENCES `personnel` (`idPersonnel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `engins_personnel_ibfk_2` FOREIGN KEY (`Responsable_idResponsable`) REFERENCES `responsable` (`idResponsable`),
+  ADD CONSTRAINT `fk_Engins_has_Personnel_Engins1` FOREIGN KEY (`Engins_idEngins`) REFERENCES `engins` (`idEngins`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `intervention`
 --
 ALTER TABLE `intervention`
-  ADD CONSTRAINT `fk_Intervention_Geographique1` FOREIGN KEY (`Geographique_idGeographique`) REFERENCES `geographique` (`idGeographique`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Intervention_Geographique1` FOREIGN KEY (`Geographique_idGeographique`) REFERENCES `geographique` (`idGeographique`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `intervention_ibfk_1` FOREIGN KEY (`Responsable_idResponsable`) REFERENCES `responsable` (`idResponsable`);
 
 --
 -- Constraints for table `intervention_engins`

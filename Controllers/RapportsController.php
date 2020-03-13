@@ -18,9 +18,12 @@ class RapportsController
         $RapportM = new rapportsModel();
         //  var_dump($listeIntervention);
         $v=new View();
-        $v->setVar('rapport',$RapportM->listeAllRapportresponsable());
+
+      //  $v->setVar('rapport',$RapportM->listeAllRapportresponsable());
+        $v->setVar('rapport',$RapportM->listeAllRapportresponsablebylogin(3));
         $v->render('listeAllRapportresponsable');
     }
+
     public static function Modificationrapport($id,$contenu)
     {
         $RapportM = new rapportsModel();

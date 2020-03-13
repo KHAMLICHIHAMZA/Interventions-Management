@@ -32,12 +32,40 @@ class InterventionsController
         self::validerapport($etat,$id,$commentaire);
     }
 
+<<<<<<< HEAD
+=======
+
+    public static function ispersonnel($P_CODE)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->ispersonnel($P_CODE);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
+    public static function isresponsable($P_CODE)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->isresponsable($P_CODE);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
+
+
+>>>>>>> 066f4b43196b90d593fee9a6ce52ce3b6f71699b
     public static function getAll()
     {
         $interventionM = new interventionsModel();
         $listeIntervention =  $interventionM->getall();
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
+        $v->setVar('listeinterventions',$interventionM);
+
         $v->render('listeintervention');
     }
 
@@ -65,7 +93,9 @@ class InterventionsController
     public static function listeIRapportnonrediger()
     {
         $interventionM = new interventionsModel();
-        $listeIntervention =  $interventionM->listeIRapportnonrediger();
+        //$listeIntervention =  $interventionM->listeIRapportnonrediger();
+        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin(1);
+
          // var_dump($listeIntervention);
 
         $v=new View();
@@ -86,7 +116,7 @@ class InterventionsController
         //var_dump($listeengin);
         $listepersonnel =  $interventionM->getpersonnelbyenginID(1,$id);    
         //var_dump($listepersonnel);
-        //$responsable = $interventionM->getResponsablePersonnelID(4);
+        $responsable = $interventionM->getResponsableIntervention($id);
         // var_dump($responsable);
         $v=new View();
         $v->setVar('intervention',$Intervention);
@@ -99,6 +129,7 @@ class InterventionsController
             $comment = $rapport->listerapportcommentaire($rapports->id_rapport);
         $v->setVar('commentaire',$comment);
         $v->setVar('interventionM',$interventionM);
+        $v->setVar('responsable',$responsable);
 
         $v->render($pageretourner);
     }

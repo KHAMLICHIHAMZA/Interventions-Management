@@ -5,7 +5,8 @@ require_once './index.php';
 require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 $users= UsersController::getAllUsers();
-//print_r($users);
+
+
 ?>
 
 
