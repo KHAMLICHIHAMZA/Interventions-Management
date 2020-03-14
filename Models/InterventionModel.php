@@ -159,11 +159,13 @@ class interventionsModel {
     }
 
     public  function getallbyLogin(){
-        $sql='SELECT I.* FROM intervention as I,engins_personnel as E,Personnel as P where I.Numero_Intervention = E.Intervention_Numero_intervention
-                    and E.Personnel_idPersonnel = P.idPersonnel and P.P_CODE = 1 GROUP by I.Numero_Intervention ';
+        $sql="SELECT I.* FROM intervention as I,engins_personnel as E,Personnel as P where I.Numero_Intervention = E.Intervention_Numero_intervention
+                    and E.Personnel_idPersonnel = P.idPersonnel and P.P_CODE =:pcode  GROUP by I.Numero_Intervention ";
         try {
+
             $db = DB::connect();
             $stmt=$db->prepare($sql);
+            $stmt->bindParam(":pcode",$_SESSION['username']);
             $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
             $db = null;
             return $res;
@@ -175,10 +177,11 @@ class interventionsModel {
     }
     public  function getallbyLogin2(){
         $sql='SELECT I.* FROM intervention as I left join engins_personnel as E on I.Numero_Intervention = E.Intervention_Numero_intervention
-                    left join  Personnel as P on P.idPersonnel = E.Personnel_idPersonnel where P.P_CODE = 5  GROUP by I.Numero_Intervention   ';
+                    left join  Personnel as P on P.idPersonnel = E.Personnel_idPersonnel where P.P_CODE=:pcode  GROUP by I.Numero_Intervention   ';
         try {
             $db = DB::connect();
             $stmt=$db->prepare($sql);
+            $stmt->bindParam(":pcode",$_SESSION['username']);
             $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
             $db = null;
             return $res;

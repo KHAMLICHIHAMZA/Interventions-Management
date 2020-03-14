@@ -32,17 +32,53 @@ class InterventionsController
         self::validerapport($etat,$id,$commentaire);
     }
 
+<<<<<<< HEAD
+=======
+
+
+    public static function ispersonnel($P_CODE)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->ispersonnel($P_CODE);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
+    public static function isresponsable($P_CODE)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->isresponsable($P_CODE);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
+
+
+
+>>>>>>> ddc2eed75c26a01ac8d3f15e4bb8e3f65327f20e
     public static function getAll()
     {
         $interventionM = new interventionsModel();
-        $listeIntervention =  $interventionM->getall();
+        if(self::ispersonnel($_SESSION['username']))
+            $listeIntervention =  $interventionM->getallbyLogin2();
+        else
+            $listeIntervention =  $interventionM->getall();
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
         $v->setVar('listeinterventions',$interventionM);
 
         $v->render('listeintervention');
     }
-
+    public static function logout()
+    {
+        session_destroy();
+        $v=new View();
+        $v->renderlogin('login2');
+    }
 
 
     public static function ajoutRapport($rapport,$numero_intervention)
@@ -68,7 +104,7 @@ class InterventionsController
     {
         $interventionM = new interventionsModel();
         //$listeIntervention =  $interventionM->listeIRapportnonrediger();
-        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin(1);
+        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin($_SESSION['username']);
 
          // var_dump($listeIntervention);
 

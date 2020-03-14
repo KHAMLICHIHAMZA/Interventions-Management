@@ -20,7 +20,7 @@ class RapportsController
         $v=new View();
 
       //  $v->setVar('rapport',$RapportM->listeAllRapportresponsable());
-        $v->setVar('rapport',$RapportM->listeAllRapportresponsablebylogin(3));
+        $v->setVar('rapport',$RapportM->listeAllRapportresponsablebylogin($_SESSION['username']));
         $v->render('listeAllRapportresponsable');
     }
 

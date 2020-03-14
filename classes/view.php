@@ -14,6 +14,13 @@ class View {
         include VIEWS.DS.'includes'.DS.'footer.php';
 
     }
+
+    public function renderlogin($viewname){
+        if (isset($this->vars)){
+            extract($this->vars);
+        }
+        include VIEWS.DS.strtolower($viewname).'.php';
+    }
     public function setVar($key, $value = null){
         if (is_array($key)){
             $this->vars = $key;

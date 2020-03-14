@@ -1,5 +1,4 @@
 <?php
-
 require_once './autoload.php';
 require_once './index.php';
 require_once './Controllers/HomeController.php ';
