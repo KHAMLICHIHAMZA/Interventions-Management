@@ -17,7 +17,7 @@
                   </thead>
                   <tbody>
                     <?php foreach($interventions as $i):?>
-                  <tr>
+                  <tr <?php if (!$c->isinterventionresponsable($i->Numero_Intervention)) echo 'hidden' ?> >
                          <td scope="col"><?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?></td>
                       <td scope="col"><?php if (isset($i->Commune)) echo $i->Commune  ?></td>
                         <td scope="col"><?php if (isset($i->Adresse)) echo $i->Adresse  ?></td>

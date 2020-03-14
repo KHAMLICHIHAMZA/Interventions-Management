@@ -54,6 +54,16 @@ class InterventionsController
             return false;
     }
 
+    public static function isinterventionresponsable($idinter)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->isinterventionresponsable($idinter);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
 
 
 
@@ -65,8 +75,10 @@ class InterventionsController
         else
             $listeIntervention =  $interventionM->getall();
         $v=new View();
+        $c = new InterventionsController();
         $v->setVar('interventions',$listeIntervention);
         $v->setVar('listeinterventions',$interventionM);
+        $v->setVar('c',$c);
 
         $v->render('listeintervention');
     }
