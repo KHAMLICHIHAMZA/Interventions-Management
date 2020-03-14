@@ -131,12 +131,6 @@ $Intervention = new InterventionsController();
                             <p>Liste des interventions</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=validationRapport" class="nav-link">
-                            <i class="nav-icon fas fa-layers-text "></i>
-                            <p>Valider Rapport</p>
-                        </a>
-                    </li>
 
                 </ul>
             </li>

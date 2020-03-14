@@ -1,10 +1,10 @@
 <?php
 //require_once CLASSES.DS.'view.php';
-require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
-require_once 'C:/wamp64/www/Interventions-Management/classes/view.php ';
+require_once 'C:/wamp/www/Interventions-Management/Models/InterventionModel.php ';
+require_once 'C:/wamp/www/Interventions-Management/classes/view.php ';
 //require_once CLASSES.DS.'view.php';
 //require_once './Models/InterventionModel.php ';
-require_once 'C:/wamp64/www/Interventions-Management/Controllers/RapportsController.php';
+require_once 'C:/wamp/www/Interventions-Management/Controllers/RapportsController.php';
 
 
 

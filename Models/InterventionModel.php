@@ -1,5 +1,5 @@
 <?php
-require_once "C:/wamp64/www/Interventions-Management/DATABASE/DB.php";
+require_once "C:/wamp/www/Interventions-Management/DATABASE/DB.php";
 //require_once "./DATABASE/DB.php";
 class interventionsModel {
     public function construct(){}
