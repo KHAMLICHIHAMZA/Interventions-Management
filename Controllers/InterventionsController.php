@@ -33,6 +33,7 @@ class InterventionsController
     }
 
 
+
     public static function ispersonnel($P_CODE)
     {
         $interventionM = new interventionsModel();
@@ -55,17 +56,26 @@ class InterventionsController
 
 
 
+
     public static function getAll()
     {
         $interventionM = new interventionsModel();
-        $listeIntervention =  $interventionM->getall();
+        if(self::ispersonnel($_SESSION['username']))
+            $listeIntervention =  $interventionM->getallbyLogin2();
+        else
+            $listeIntervention =  $interventionM->getall();
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
         $v->setVar('listeinterventions',$interventionM);
 
         $v->render('listeintervention');
     }
-
+    public static function logout()
+    {
+        session_destroy();
+        $v=new View();
+        $v->renderlogin('login2');
+    }
 
 
     public static function ajoutRapport($rapport,$numero_intervention)
@@ -91,7 +101,7 @@ class InterventionsController
     {
         $interventionM = new interventionsModel();
         //$listeIntervention =  $interventionM->listeIRapportnonrediger();
-        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin(1);
+        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin($_SESSION['username']);
 
          // var_dump($listeIntervention);
 
@@ -200,25 +210,27 @@ class InterventionsController
                     'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
                     'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
                 );
-                $Pompier = array();
+                //$Pompier = array();
 //                    'Role'.$i => $_POST['Role'.$i]
 //                );
-                if(isset($_POST['su'])){
-                    do {
-                        $Pompier['Role'.$i]=$_POST['Role'.$i];
-                        $i++;
-                    } while (isset($_POST['Role'.$i]));
+                //if(isset($_POST['submit'])){
+                //    do {
+                //        $Pompier['Role'.$i]=$_POST['Role'.$i];
+                //        $i++;
+                //    } while (isset($_POST['Role'.$i]));
+               // }
+
+                $InserResp = interventionsModel::AddResponsable($$_POST['Nom']);
+                $InserInterv = interventionsModel::AddIntervention($TableIntervention);
+                $InserEngins = interventionsModel::AddEnginIntervention($TableEngin);
+
+                while (isset($_POST['Role'.$i])){
+                    $InserPersonnel = interventionsModel::AddPersonnel($_POST['Role'.$i]);
+                    $i++;
                 }
-                var_dump($_POST);
-                var_dump($TableIntervention);
-                var_dump($TableEngin);
-                die(var_dump($Pompier));
-                $Insertion = interventionsModel::AddIntervention($TableIntervention,$TableEngin,$_POST['Nom']);
                 //die(var_dump($TableIntervention));               
             //}
         //$TableEngin=json_encode($TableIntervention);
         }
     }
 }
-
-?>

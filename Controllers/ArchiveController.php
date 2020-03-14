@@ -35,9 +35,14 @@ class ArchiveController
                     $name = "Adresse";
                     break;
                 }
-            case 'adresse': {
-                    $nameBD = "Adresse";
-                    $name = "Adresse";
+            case 'redacteur': {
+                    $nameBD = "	Responsable_idResponsable";
+                    $name = "Rédacteur";
+                    break;
+                }
+            case 'motif': {
+                    $nameBD = "Type_interv";
+                    $name = "Motif";
                     break;
                 }
         }
@@ -81,12 +86,12 @@ class ArchiveController
         $output = '
         <table class="table" bordered="1">  
                          <tr>  
-                             <th>Nom d\'intervention</th>  
-                             <th>Statut</th>  
-                             <th>Date de debut</th>  
-                             <th>Heure de debut</th>
-                             <th>Date de fin</th>
-                             <th>Heure de fin</th>
+                             <th>numero Intervention</th>  
+                             <th>Commune</th>  
+                             <th>adresse</th>  
+                             <th>typeintervention</th>
+                             <th>date heure debut</th>
+                             <th>date heure fin	</th>
                          </tr>
        ';
        echo $output;

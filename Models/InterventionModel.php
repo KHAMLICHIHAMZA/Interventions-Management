@@ -159,11 +159,13 @@ class interventionsModel {
     }
 
     public  function getallbyLogin(){
-        $sql='SELECT I.* FROM intervention as I,engins_personnel as E,Personnel as P where I.Numero_Intervention = E.Intervention_Numero_intervention
-                    and E.Personnel_idPersonnel = P.idPersonnel and P.P_CODE = 1 GROUP by I.Numero_Intervention ';
+        $sql="SELECT I.* FROM intervention as I,engins_personnel as E,Personnel as P where I.Numero_Intervention = E.Intervention_Numero_intervention
+                    and E.Personnel_idPersonnel = P.idPersonnel and P.P_CODE =:pcode  GROUP by I.Numero_Intervention ";
         try {
+
             $db = DB::connect();
             $stmt=$db->prepare($sql);
+            $stmt->bindParam(":pcode",$_SESSION['username']);
             $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
             $db = null;
             return $res;
@@ -175,10 +177,11 @@ class interventionsModel {
     }
     public  function getallbyLogin2(){
         $sql='SELECT I.* FROM intervention as I left join engins_personnel as E on I.Numero_Intervention = E.Intervention_Numero_intervention
-                    left join  Personnel as P on P.idPersonnel = E.Personnel_idPersonnel where P.P_CODE = 5  GROUP by I.Numero_Intervention   ';
+                    left join  Personnel as P on P.idPersonnel = E.Personnel_idPersonnel where P.P_CODE=:pcode  GROUP by I.Numero_Intervention   ';
         try {
             $db = DB::connect();
             $stmt=$db->prepare($sql);
+            $stmt->bindParam(":pcode",$_SESSION['username']);
             $res=($stmt->execute())?$stmt->fetchAll(PDO::FETCH_OBJ): null;
             $db = null;
             return $res;
@@ -301,27 +304,40 @@ class interventionsModel {
             die();
         }
     }
-
-     public function AddIntervention($TableIntervention,$TableEngin,$Responsable){
-        $Roles = InterventionsController::getRolebyEngins($_POST['Nom_Engin']);
-        $i=1;
-        $stmt=DB::connect()->prepare('INSERT INTO intervention(Commune, Adresse, Type_interv, Date_Heure_Debut, Date_Heure_Fin, Important, Opm) VALUES ("'.$TableIntervention['Commune'].'","'.$TableIntervention['Adresse'].'","'.$TableIntervention['Type_interv'].'","'.$TableIntervention['Date_Heure_Debut'].'","'.$TableIntervention['Date_Heure_Fin'].'","'.$TableIntervention['Important'].'","'.$TableIntervention['Opm'].'"');
-        $stmt=DB::connect()->prepare('INSERT INTO engins(idEngins, Nom_Engin, Date_Heur_Depart, Date_Heure_Arriver, Date_Heure_Retour) VALUES ("'.$_POST['Nom_Engin'].'","'.$_POST['Date_Heur_Depart'].'","'.$_POST['Date_Heure_Arriver'].'","'.$_POST['Date_Heure_Retour'].'"');
+    public function AddResponsable($Resp){
+        $stmt=DB::connect()->prepare('INSERT INTO responsable(Nom) VALUES "'.$Resp.'"');
         $stmt->execute();
-        return $stmt->fetchAll();
         $stmt->closeCursor();
         $stmt=null;
-            //$LastLine=DB::connect()->prepare('SELECT TOP 1 * from engins order by idEngins DESC');
-        foreach($Roles as $RoleEng ){
-            if(isset($_POST['Role'.$i])){
-                $stmt=DB::connect()->prepare('INSERT INTO personnel(Nom, Role, Responsable_idResponsable, Parametre_idParametre) VALUES ("'.$_POST['Role'.$i].'","'.$RoleEng['ROLE_NAME'].'",[value-4],[value-5])');
-                $stmt->execute();
-                return $stmt->fetchAll();
-                $stmt->closeCursor();
-                $stmt=null;
-                $i++;
-            }
-        }
+    }
+    public function AddEnginIntervention($Eng){
+
+        $stmt=DB::connect()->prepare('INSERT INTO engins(Nom_Engin, Date_Heur_Depart, Date_Heure_Arriver, Date_Heure_Retour) VALUES ("'.$Eng['Nom_Engin'].'","'.$Eng['Date_Heur_Depart'].'","'.$Eng['Date_Heure_Arriver'].'","'.$Eng['Date_Heure_Retour'].'"');
+        $stmt->execute();
+        $stmt->closeCursor();
+        $stmt=null;
+
+
+    }
+
+    public function AddPersonnel($Personnel){
+        $LastLine=DB::connect()->prepare('SELECT TOP 1 * from responsable order by idResponsable DESC');
+        $LastLine->execute();
+        $stmt=DB::connect()->prepare('INSERT INTO engins(Nom, Responsable_idResponsable) VALUES ("'.$Personnel.'","'.$LastLine['idResponsable'].'"');
+        $stmt->execute();
+        $stmt->closeCursor();
+        $stmt=null;
+    }
+
+    public function AddIntervention($TableIntervention){
+        $LastLine=DB::connect()->prepare('SELECT TOP 1 * from engins order by idEngins DESC');
+        $LastLine->execute();
+        $stmt=DB::connect()->prepare('INSERT INTO intervention (Commune, Adresse, Type_interv, Date_Heure_Debut, Date_Heure_Fin, Important, Opm,Responsable_idResponsable) VALUES ("'.$TableIntervention['Commune'].'","'.$TableIntervention['Adresse'].'","'.$TableIntervention['Type_interv'].'","'.$TableIntervention['Date_Heure_Debut'].'","'.$TableIntervention['Date_Heure_Fin'].'","'.$TableIntervention['Important'].'","'.$TableIntervention['Opm'].'","'.$LastLine['idResponsable'].'"');
+        $stmt->execute();
+        $LastLine->closeCursor();
+        $stmt->closeCursor();
+        $LastLine=null;
+        $stmt=null;
     }
 }
 

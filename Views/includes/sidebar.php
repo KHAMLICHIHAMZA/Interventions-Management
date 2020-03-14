@@ -57,7 +57,7 @@ $Intervention = new InterventionsController();
                 </a>
             </li>
 
-            <li <?php if ($Intervention->ispersonnel(1) == true) echo 'hidden' ?> class="nav-item has-treeview">
+            <li <?php if ($Intervention->ispersonnel($_SESSION['username']) == true) echo 'hidden' ?> class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
@@ -66,21 +66,21 @@ $Intervention = new InterventionsController();
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li <?php if ($Intervention->isresponsable(1) == false) echo 'hidden' ?>  class="nav-item">
+                    <li <?php if ($Intervention->isresponsable($_SESSION['username']) == false) echo 'hidden' ?>  class="nav-item">
                         <a href="index.php?c=InterventionsController&m=listeIRapportnonrediger" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Rediger Rapport</p>
                         </a>
                     </li>
 
-                    <li <?php if ($Intervention->isresponsable(1) == false) echo 'hidden' ?> class="nav-item">
+                    <li <?php if ($Intervention->isresponsable($_SESSION['username']) == false) echo 'hidden' ?> class="nav-item">
                         <a href="index.php?c=RapportsController&m=listeAllrapportresponsable" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste all rapport</p>
                         </a>
                     </li>
                     <div  >
-                        <li  <?php if ($Intervention->isresponsable(1) == true) echo 'hidden' ?>  class="nav-item">
+                        <li  <?php if ($Intervention->isresponsable($_SESSION['username']) == true) echo 'hidden' ?>  class="nav-item">
                             <a href="index.php?c=InterventionsController&m=listeallrapportchef" class="nav-link">
                                 <i class="nav-icon fas fa-layers-text "></i>
                                 <p>Valider Rapport</p>
@@ -129,12 +129,6 @@ $Intervention = new InterventionsController();
                         <a href="index.php?c=ArchiveController&m=getAll" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Liste des interventions</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=validationRapport" class="nav-link">
-                            <i class="nav-icon fas fa-layers-text "></i>
-                            <p>Valider Rapport</p>
                         </a>
                     </li>
 

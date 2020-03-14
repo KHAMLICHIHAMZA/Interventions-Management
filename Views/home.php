@@ -5,7 +5,8 @@ require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 
 $users= UsersController::getAllUsers();
-
+//session_destroy();
+echo $_SESSION['username'];
 ?>
 
 
@@ -14,3 +15,4 @@ $users= UsersController::getAllUsers();
 
                 <!--de la -->
     <h1>ici c'est censé être un index personalisé ou bien on va afficher les interventions</h1>
+

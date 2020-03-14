@@ -51,8 +51,8 @@ $home = new HomeController();
 $pages = ['details','analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepasse',];
 //if(true)
 //var_dump($_SESSION);
-//if(true)
-if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
+if(true)
+//if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
 {
    // echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/liste");</script>';
 
@@ -95,7 +95,7 @@ else
 
 {
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 $home->index('login2');
 
