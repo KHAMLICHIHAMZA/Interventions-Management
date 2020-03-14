@@ -304,40 +304,88 @@ class interventionsModel {
             die();
         }
     }
-    public function AddResponsable($Resp){
-        $stmt=DB::connect()->prepare('INSERT INTO responsable(Nom) VALUES "'.$Resp.'"');
+    static public function AddResponsable($Resp){
+        //die(var_dump($Resp));
+        $stmt=DB::connect()->prepare('INSERT INTO responsable (Nom) VALUES ("'.$Resp.'")');
+        $stmt->execute();
+        //die(var_dump($stmt));
+        $stmt->closeCursor();
+        $stmt=null;
+        
+    }
+    static public function AddEnginIntervention($Nom_Engin,$Date_Heur_Depart,$Date_Heure_Arriver,$Date_Heure_Retour){
+        
+
+        $stmt=DB::connect()->prepare('INSERT INTO engins(Nom_Engin, Date_Heur_Depart, Date_Heure_Arriver, Date_Heure_Retour) VALUES ("'.$Nom_Engin.'","'.$Date_Heur_Depart.'","'.$Date_Heure_Arriver.'","'.$Date_Heure_Retour.'")');
         $stmt->execute();
         $stmt->closeCursor();
         $stmt=null;
-    }
-    public function AddEnginIntervention($Eng){
 
-        $stmt=DB::connect()->prepare('INSERT INTO engins(Nom_Engin, Date_Heur_Depart, Date_Heure_Arriver, Date_Heure_Retour) VALUES ("'.$Eng['Nom_Engin'].'","'.$Eng['Date_Heur_Depart'].'","'.$Eng['Date_Heure_Arriver'].'","'.$Eng['Date_Heure_Retour'].'"');
-        $stmt->execute();
-        $stmt->closeCursor();
-        $stmt=null;
 
 
     }
 
-    public function AddPersonnel($Personnel){
-        $LastLine=DB::connect()->prepare('SELECT TOP 1 * from responsable order by idResponsable DESC');
+    static public function AddPersonnel($Personnel){
+        $LastLine=DB::connect()->prepare('SELECT idResponsable from Responsable order by idResponsable DESC LIMIT 1');
         $LastLine->execute();
-        $stmt=DB::connect()->prepare('INSERT INTO engins(Nom, Responsable_idResponsable) VALUES ("'.$Personnel.'","'.$LastLine['idResponsable'].'"');
-        $stmt->execute();
-        $stmt->closeCursor();
-        $stmt=null;
-    }
-
-    public function AddIntervention($TableIntervention){
-        $LastLine=DB::connect()->prepare('SELECT TOP 1 * from engins order by idEngins DESC');
-        $LastLine->execute();
-        $stmt=DB::connect()->prepare('INSERT INTO intervention (Commune, Adresse, Type_interv, Date_Heure_Debut, Date_Heure_Fin, Important, Opm,Responsable_idResponsable) VALUES ("'.$TableIntervention['Commune'].'","'.$TableIntervention['Adresse'].'","'.$TableIntervention['Type_interv'].'","'.$TableIntervention['Date_Heure_Debut'].'","'.$TableIntervention['Date_Heure_Fin'].'","'.$TableIntervention['Important'].'","'.$TableIntervention['Opm'].'","'.$LastLine['idResponsable'].'"');
+        $data=$LastLine->fetch();
+        $stmt=DB::connect()->prepare('INSERT INTO personnel(Nom ,Responsable_idResponsable) VALUES ("'.$Personnel.'","'.$data['idResponsable'].'")');
+        //die(var_dump($stmt));
         $stmt->execute();
         $LastLine->closeCursor();
         $stmt->closeCursor();
         $LastLine=null;
         $stmt=null;
+
+        $LastLine1=DB::connect()->prepare('SELECT Numero_Intervention from intervention order by Numero_Intervention DESC LIMIT 1');
+        $LastLine1->execute();
+        $data1=$LastLine1->fetch();
+        $LastLine2=DB::connect()->prepare('SELECT idEngins from engins order by idEngins DESC LIMIT 1');
+        $LastLine2->execute();
+        $data2=$LastLine2->fetch();
+        $LastLine3=DB::connect()->prepare('SELECT idPersonnel from personnel order by idPersonnel DESC LIMIT 1');
+        $LastLine3->execute();
+        $data3=$LastLine3->fetch();
+
+        $Final=DB::connect()->prepare('INSERT INTO engins_personnel(Engins_idEngins, Personnel_idPersonnel , Intervention_Numero_intervention) VALUES ("'.$data2['idEngins'].'","'.$data3['idPersonnel'].'","'.$data1['Numero_Intervention'].'")');
+        $Final->execute();
+
+        $LastLine1->closeCursor();
+        $LastLine2->closeCursor();
+        $LastLine3->closeCursor();
+
+        $LastLine1=null;
+        $LastLine2=null;
+        $LastLine3=null;
+
+    }
+    static public function AddIntervention($Commune,$Adresse,$Type_interv,$Date_Heure_Debut,$Date_Heure_Fin,$Important,$Opm){
+        $LastLine=DB::connect()->prepare('SELECT idEngins from engins order by idEngins DESC LIMIT 1');
+        $LastLine->execute();
+        $data=$LastLine->fetch();
+        $stmt=DB::connect()->prepare('INSERT INTO intervention (Commune, Adresse, Type_interv, Opm, Important, Date_Heure_Debut, Date_Heure_Fin, Responsable_idResponsable) VALUES ("'.$Commune.'","'.$Adresse.'","'.$Type_interv.'","'.$Opm.'","'.$Important.'","'.$Date_Heure_Debut.'","'.$Date_Heure_Fin.'","'.$data['idEngins'].'")');
+        //die(var_dump($stmt));
+        $stmt->execute();
+        $stmt->closeCursor();
+        $stmt=null;
+        
+        $LastLine1=DB::connect()->prepare('SELECT Numero_Intervention from intervention order by Numero_Intervention DESC LIMIT 1');
+        $LastLine1->execute();
+        $data1=$LastLine1->fetch();
+        $LastLine2=DB::connect()->prepare('SELECT idEngins from engins order by idEngins DESC LIMIT 1');
+        $LastLine2->execute();
+        $data2=$LastLine2->fetch();
+        
+        $stmt1=DB::connect()->prepare('INSERT INTO intervention_engins (Intervention_Numero_Intervention, Engins_idEngins) VALUES ("'.$data1['Numero_Intervention'].'","'.$data2['idEngins'].'")');
+        //die(var_dump($stmt1));
+        $stmt1->execute();
+        $stmt1->closeCursor();
+        $stmt1=null;
+        $LastLine1->closeCursor();
+        $LastLine1=null;
+        $LastLine2->closeCursor();
+        $LastLine2=null;
+        
     }
 }
 

@@ -32,10 +32,6 @@ class InterventionsController
         self::validerapport($etat,$id,$commentaire);
     }
 
-<<<<<<< HEAD
-=======
-
-
     public static function ispersonnel($P_CODE)
     {
         $interventionM = new interventionsModel();
@@ -59,7 +55,6 @@ class InterventionsController
 
 
 
->>>>>>> ddc2eed75c26a01ac8d3f15e4bb8e3f65327f20e
     public static function getAll()
     {
         $interventionM = new interventionsModel();
@@ -184,16 +179,17 @@ class InterventionsController
         return json_decode($RoleEngin,true);
     }
 
-    public function addInterventionEngins(){
+    static public function addInterventionEngins(){
         $i=1;
         global $TableIntervention;
         global $TableEngin;
         global $Pompier;
+        //die(var_dump($_POST));
         if(isset($_POST['submit'])){
             if(is_null($_POST['Important'])){
                 $_POST['Important']="off";
             }
-            if(is_null($_POST['Opm'])){
+            if(!isset($_POST['Opm'])){
                 $_POST['Opm']="off";
             }
             //if(empty($TableIntervention)){
@@ -213,27 +209,16 @@ class InterventionsController
                     'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
                     'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
                 );
-                //$Pompier = array();
-//                    'Role'.$i => $_POST['Role'.$i]
-//                );
-                //if(isset($_POST['submit'])){
-                //    do {
-                //        $Pompier['Role'.$i]=$_POST['Role'.$i];
-                //        $i++;
-                //    } while (isset($_POST['Role'.$i]));
-               // }
-
-                $InserResp = interventionsModel::AddResponsable($$_POST['Nom']);
-                $InserInterv = interventionsModel::AddIntervention($TableIntervention);
-                $InserEngins = interventionsModel::AddEnginIntervention($TableEngin);
+                $InserResp = interventionsModel::AddResponsable($_POST['Nom']);
+                $InserEngins = interventionsModel::AddEnginIntervention($TableEngin['Nom_Engin'],$TableEngin['Date_Heur_Depart'],$TableEngin['Date_Heure_Arriver'],$TableEngin['Date_Heure_Retour']);
+                $InserInterv = interventionsModel::AddIntervention($TableIntervention['Commune'],$TableIntervention['Adresse'],$TableIntervention['Type_interv'],$TableIntervention['Date_Heure_Debut'],$TableIntervention['Date_Heure_Fin'],$TableIntervention['Important'],$TableIntervention['Opm']);
+                
 
                 while (isset($_POST['Role'.$i])){
+                    //die(var_dump($_POST['Role'.$i]));
                     $InserPersonnel = interventionsModel::AddPersonnel($_POST['Role'.$i]);
-                    $i++;
+                    $i++; 
                 }
-                //die(var_dump($TableIntervention));               
-            //}
-        //$TableEngin=json_encode($TableIntervention);
         }
     }
 }

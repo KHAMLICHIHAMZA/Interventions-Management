@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `engins` (
-  `idEngins` int(11) NOT NULL,
+  `idEngins` int(11) NOT NULL AUTO_INCREMENT,
   `Nom_Engin` varchar(45) DEFAULT NULL,
   `Date_Heur_Depart` date DEFAULT NULL,
   `Date_Heure_Arriver` date DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `geographique` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `intervention` (
-  `Numero_Intervention` int(11) NOT NULL,
+  `Numero_Intervention` int(11) NOT NULL AUTO_INCREMENT,
   `Commune` varchar(45) DEFAULT NULL,
   `Adresse` varchar(45) DEFAULT NULL,
   `Type_interv` varchar(45) DEFAULT NULL,
@@ -43,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   `Important` tinyint(4) DEFAULT NULL,
   `Date_Heure_Debut` datetime DEFAULT NULL,
   `Date_Heure_Fin` date DEFAULT NULL,
-  `Geographique_idGeographique` int(11) NOT NULL,
+  `Geographique_idGeographique` int(11) DEFAULT NULL,
   `Responsable_idResponsable` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Numero_Intervention`,`Geographique_idGeographique`),
+  PRIMARY KEY (`Numero_Intervention`),
   KEY `fk_Intervention_Geographique1_idx` (`Geographique_idGeographique`),
   KEY `Responsable_idResponsable` (`Responsable_idResponsable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -89,9 +89,9 @@ CREATE TABLE IF NOT EXISTS `rapport` (
 
 
 CREATE TABLE IF NOT EXISTS `responsable` (
-  `idResponsable` int(11) NOT NULL,
+  `idResponsable` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(45) DEFAULT NULL,
-  `P_CODE` varchar(20) NOT NULL,
+  `P_CODE` varchar(20) NULL,
   PRIMARY KEY (`idResponsable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
