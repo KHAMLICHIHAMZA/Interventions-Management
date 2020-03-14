@@ -1,10 +1,11 @@
 <?php
 
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
 
 //die(print_r($_SESSION));
 require_once './Controllers/UsersController.php ';
 require_once './index.php';
+
 
 if(isset($_POST['submit']))
 {

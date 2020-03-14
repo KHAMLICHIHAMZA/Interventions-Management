@@ -56,14 +56,22 @@ class InterventionsController
     public static function getAll()
     {
         $interventionM = new interventionsModel();
-        $listeIntervention =  $interventionM->getall();
+        if(self::ispersonnel($_SESSION['username']))
+            $listeIntervention =  $interventionM->getallbyLogin2();
+        else
+            $listeIntervention =  $interventionM->getall();
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
         $v->setVar('listeinterventions',$interventionM);
 
         $v->render('listeintervention');
     }
-
+    public static function logout()
+    {
+        session_destroy();
+        $v=new View();
+        $v->renderlogin('login2');
+    }
 
 
     public static function ajoutRapport($rapport,$numero_intervention)
@@ -89,7 +97,7 @@ class InterventionsController
     {
         $interventionM = new interventionsModel();
         //$listeIntervention =  $interventionM->listeIRapportnonrediger();
-        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin(1);
+        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin($_SESSION['username']);
 
          // var_dump($listeIntervention);
 

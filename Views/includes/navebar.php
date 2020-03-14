@@ -45,7 +45,7 @@ function googleTranslateElementInit()
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
     <li class="nav-item d-none d-sm-inline-block">
-        <a href="http://localhost/Interventions-Management/home"  onclick="myFunction2()"class="nav-link"><i
+        <a href="index.php?c=InterventionsController&m=logout"  class="nav-link"><i
             class="fas fa-door-open"></i></a></a>
             
             <script>
