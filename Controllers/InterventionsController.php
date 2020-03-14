@@ -32,8 +32,7 @@ class InterventionsController
         self::validerapport($etat,$id,$commentaire);
     }
 
-<<<<<<< HEAD
-=======
+
 
     public static function ispersonnel($P_CODE)
     {
@@ -57,7 +56,7 @@ class InterventionsController
 
 
 
->>>>>>> 066f4b43196b90d593fee9a6ce52ce3b6f71699b
+
     public static function getAll()
     {
         $interventionM = new interventionsModel();
