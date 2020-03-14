@@ -1,64 +1,159 @@
 <?php
 //require_once CLASSES.DS.'view.php';
-
 require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
-require_once './classes/view.php ';
+require_once 'C:/wamp64/www/Interventions-Management/classes/view.php ';
+//require_once CLASSES.DS.'view.php';
+//require_once './Models/InterventionModel.php ';
+require_once 'C:/wamp64/www/Interventions-Management/Controllers/RapportsController.php';
+
 
 
 class InterventionsController
-{   
+{
+    
+    
+    public static function validerapport($etat,$id,$commentaire)
+    {
+        $interventionM = new interventionsModel();
+        if ($commentaire!=null){
+            $interventionM->ajoutcommentaire($id,$commentaire);
+        }
+        $listeIntervention =  $interventionM->validationrapport($etat,$id);
+        //  var_dump($listeIntervention);
+        $v=new View();
+        $v->setVar('message',"validation effectuer avec succè");
+        self::listeallrapportchef();
+    }
+
+    public static function valide($etat,$id,$commentaire){
+        self::validerapport($etat,$id,$commentaire);
+    }
+    public static function rejete($etat,$id,$commentaire){
+        self::validerapport($etat,$id,$commentaire);
+    }
+
+<<<<<<< HEAD
+=======
+
+    public static function ispersonnel($P_CODE)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->ispersonnel($P_CODE);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
+    public static function isresponsable($P_CODE)
+    {
+        $interventionM = new interventionsModel();
+        $etat = $interventionM->isresponsable($P_CODE);
+        if (isset($etat[0]))
+            return true;
+        else
+            return false;
+    }
+
+
+
+>>>>>>> 066f4b43196b90d593fee9a6ce52ce3b6f71699b
     public static function getAll()
     {
         $interventionM = new interventionsModel();
         $listeIntervention =  $interventionM->getall();
+        $v=new View();
+        $v->setVar('interventions',$listeIntervention);
+        $v->setVar('listeinterventions',$interventionM);
 
+        $v->render('listeintervention');
+    }
+
+
+
+    public static function ajoutRapport($rapport,$numero_intervention)
+    {
+        $interventionM = new interventionsModel();
+        $listeIntervention =  $interventionM->ajoutrapport($rapport,$numero_intervention);
+        //var_dump($listeIntervention);
+        self::listeIRapportnonrediger();
+    }
+
+    public static function listeallrapportchef()
+    {
+        $interventionM = new interventionsModel();
+        $listeR = $interventionM->listeAllRapport();
+        //var_dump($listeIntervention);
+        $v=new View();
+        $v->setVar('rapport',$listeR);
+        $v->render('listeAllRapportchef');
+    }
+
+
+    public static function listeIRapportnonrediger()
+    {
+        $interventionM = new interventionsModel();
+        //$listeIntervention =  $interventionM->listeIRapportnonrediger();
+        $listeIntervention =  $interventionM->listeIRapportnonredigerlogin(1);
+
+         // var_dump($listeIntervention);
 
         $v=new View();
         $v->setVar('interventions',$listeIntervention);
-        $v->render('listeintervention');
+        $v->render('liste_rapport_en_attente_de_redaction');
     }
-    public static function detailintervention($id)
+
+    public static function detail($id,$pageretourner)
     {
         $interventionM = new interventionsModel();
         $Intervention =  $interventionM->getbyinterventionid($id);
         //var_dump($listeIntervention);
+        $rapports =  $interventionM->getinterventionrapport($id);
+        if(isset($rapports[0]))
+            $rapports = $rapports[0];
+
         $listeengin =  $interventionM->getenginbyinterventionID($id);
         //var_dump($listeengin);
         $listepersonnel =  $interventionM->getpersonnelbyenginID(1,$id);    
         //var_dump($listepersonnel);
-        //$responsable = $interventionM->getResponsablePersonnelID(4);
-       // var_dump($responsable);
+        $responsable = $interventionM->getResponsableIntervention($id);
+        // var_dump($responsable);
         $v=new View();
-        $v->setVar('intervention',$Intervention[0]);
+        $v->setVar('intervention',$Intervention);
         $v->setVar('engins',$listeengin);
         $v->setVar('idinterventions',$id);
+        $v->setVar('rapport',$rapports);
+        $rapport = new rapportsModel();
+        $comment = null;
+        if(isset($rapports->id_rapport))
+            $comment = $rapport->listerapportcommentaire($rapports->id_rapport);
+        $v->setVar('commentaire',$comment);
         $v->setVar('interventionM',$interventionM);
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('interventiondetail');
-    }
-    public static function redactionRapport()
-    {
-        $interventionM = new interventionsModel();
-        //$listeIntervention =  $interventionM->getall();
-        //  var_dump($listeIntervention);
-        $v=new View();
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('redactionrapport');
+        $v->setVar('responsable',$responsable);
+
+        $v->render($pageretourner);
     }
 
-    public static function validationRapport()
+    public static function detailintervention($id)
     {
-        $interventionM = new interventionsModel();
-        //$listeIntervention =  $interventionM->getall();
-        //var_dump($listeIntervention);
-        $v=new View();
-        //$v->setVar('interventions',$listeIntervention);
-        $v->render('validationrapport');
+        self::detail($id,'interventiondetail');
+    }
+    public static function redactionRapport($id)
+    {
+        self::detail($id,'redactionrapport');
+    }
+    public static function validationRapport($id)
+    {
+        self::detail($id,'validationrapport');
     }
 
     static public function getAllType()
     {
+
+        $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=typeintervention&m=getAll");
+
         $Type_Inter = file_get_contents("http://localhost/api/utilisateurs.php?c=interventions&m=getAll");
+
         //  echo $response;
         $type = json_decode($Type_Inter,true);
         return $type;
@@ -75,8 +170,57 @@ class InterventionsController
     }
     //Recuperation des Roles associers a l'engin
     static public function getRolebyEngins($TV){
-        $Role = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
-        return json_decode($Role,true);
+        $RoleEngin = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
+        return json_decode($RoleEngin,true);
+    }
+
+    public function addInterventionEngins(){
+        $i=1;
+        global $TableIntervention;
+        global $TableEngin;
+        global $Pompier;
+        if(isset($_POST['submit'])){
+            if(is_null($_POST['Important'])){
+                $_POST['Important']="off";
+            }
+            if(is_null($_POST['Opm'])){
+                $_POST['Opm']="off";
+            }
+            //if(empty($TableIntervention)){
+                $TableIntervention = array(
+                    'Commune' => $_POST['Commune'],
+                    'Adresse' => $_POST['Adresse'],
+                    'Type_interv' => $_POST['Type_interv'],
+                    'Date_Heure_Debut' => $_POST['Date_Heure_Debut'],
+                    'Date_Heure_Fin' => $_POST['Date_Heure_Fin'],
+                    'Important' => $_POST['Important'],
+                    'Opm' => $_POST['Opm'],
+                );             
+            //}else{
+                $TableEngin = array(
+                    'Nom_Engin' => $_POST['Nom_Engin'],
+                    'Date_Heur_Depart' => $_POST['Date_Heur_Depart'],
+                    'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
+                    'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
+                );
+                $Pompier = array();
+//                    'Role'.$i => $_POST['Role'.$i]
+//                );
+                if(isset($_POST['su'])){
+                    do {
+                        $Pompier['Role'.$i]=$_POST['Role'.$i];
+                        $i++;
+                    } while (isset($_POST['Role'.$i]));
+                }
+                var_dump($_POST);
+                var_dump($TableIntervention);
+                var_dump($TableEngin);
+                die(var_dump($Pompier));
+                $Insertion = interventionsModel::AddIntervention($TableIntervention,$TableEngin,$_POST['Nom']);
+                //die(var_dump($TableIntervention));               
+            //}
+        //$TableEngin=json_encode($TableIntervention);
+        }
     }
 }
 

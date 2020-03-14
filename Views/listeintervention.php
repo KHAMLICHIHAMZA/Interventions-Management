@@ -24,7 +24,7 @@
                         <td scope="col"><?php if (isset($i->Type_interv)) echo $i->Type_interv ; ?></td>
                         <td scope="col"><?php if (isset($i->Date_Heure_Debut)) echo  $i->Date_Heure_Debut ;?></td>
                       <td scope="col"><?php if (isset($i->Date_Heure_Fin)) echo  $i->Date_Heure_Fin ;?></td>
-                      <td scope="col"><?php if (isset($i->rnom)) echo $i->rnom ;?></td>
+                      <td scope="col"><?php if (isset( $listeinterventions->getResponsableIntervention($i->Numero_Intervention)[0]->Nom)) echo $listeinterventions->getResponsableIntervention($i->Numero_Intervention)[0]->Nom ;?></td>
 
                         <td  class="d-flex flex-row" >
                            <a href="index.php?c=InterventionsController&m=detailintervention&id=<?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye" ></i></button></a>

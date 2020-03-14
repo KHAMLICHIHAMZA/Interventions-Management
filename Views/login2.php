@@ -1,4 +1,8 @@
 <?php
+
+    var_dump($_SESSION);
+
+//die(print_r($_SESSION));
 require_once './Controllers/UsersController.php ';
 require_once './index.php';
 
@@ -11,7 +15,7 @@ $users= UsersController::test();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">

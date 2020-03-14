@@ -5,7 +5,8 @@ $data= new UsersController();
 $users= $data->getAllUsers();
 $dd=$data->getOnUser();
 */
-
+require_once 'Controllers/InterventionsController.php';
+$Intervention = new InterventionsController();
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -56,7 +57,7 @@ $dd=$data->getOnUser();
                 </a>
             </li>
 
-            <li class="nav-item has-treeview">
+            <li <?php if ($Intervention->ispersonnel(1) == true) echo 'hidden' ?> class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
@@ -65,18 +66,27 @@ $dd=$data->getOnUser();
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=redactionRapport" class="nav-link">
+                    <li <?php if ($Intervention->isresponsable(1) == false) echo 'hidden' ?>  class="nav-item">
+                        <a href="index.php?c=InterventionsController&m=listeIRapportnonrediger" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Rediger Rapport</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=validationRapport" class="nav-link">
-                            <i class="nav-icon fas fa-layers-text "></i>
-                            <p>Valider Rapport</p>
+
+                    <li <?php if ($Intervention->isresponsable(1) == false) echo 'hidden' ?> class="nav-item">
+                        <a href="index.php?c=RapportsController&m=listeAllrapportresponsable" class="nav-link">
+                            <i class="nav-icon fas fa-pencil "></i>
+                            <p>liste all rapport</p>
                         </a>
                     </li>
+                    <div  >
+                        <li  <?php if ($Intervention->isresponsable(1) == true) echo 'hidden' ?>  class="nav-item">
+                            <a href="index.php?c=InterventionsController&m=listeallrapportchef" class="nav-link">
+                                <i class="nav-icon fas fa-layers-text "></i>
+                                <p>Valider Rapport</p>
+                            </a>
+                        </li>
+                    </div>
 
                 </ul>
             </li>

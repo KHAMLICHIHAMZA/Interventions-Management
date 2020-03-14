@@ -26,9 +26,18 @@ $controllerfilename=$controller.'.php';
 //On inclut les fichiers nécessaires
 include CONTROLLERS.DS.$controllerfilename;
 $c=new $controller();
-//On appelle la méthode demandée (ou la méthode par défaut)
+//On appelle la méthode derapportmandée (ou la méthode par défaut)
 //id,title,firstname,middlename,lastname,nationalidnumber,birthday,hireday,maritialstatus,gender,heurevacance,heuremaladie,email,telephone,poste,idmanager
-if (isset($_GET['id']))
+    if ($method == "Modificationrapport" ){
+        $c->$method($_GET['id_rapport'],$_GET['rapport']);
+    }
+    elseif ($method == "valide" or $method == "rejete"){
+        $c->$method($method,$_GET['id_rapport'],$_GET['commentaire']);
+    }
+    elseif ($method == "ajoutrapport" && isset($_GET['rapport']) && isset($_GET['numero_intervention'])){
+    $c->$method($_GET['rapport'],$_GET['numero_intervention']);
+}
+elseif (isset($_GET['id']))
     $c->$method($_GET['id']);
 else
     $c->$method();
@@ -39,11 +48,11 @@ else{
 
 
 $home = new HomeController();
-$pages = ['analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepasse'];
+$pages = ['details','analyses','parame','interventionAdd','add','home','update','delete','liste','login','login2','motdepasse',];
 //if(true)
 //var_dump($_SESSION);
-if(true)
-//if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
+//if(true)
+if ( isset($_SESSION['logged']) && $_SESSION['logged'] ==true )
 {
    // echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/liste");</script>';
 

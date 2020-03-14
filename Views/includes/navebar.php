@@ -13,6 +13,9 @@
      
     </ul>
 
+
+
+    
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -22,6 +25,20 @@
             <i class="fas fa-search"></i>
           </button>
         </div>
+        
+    <script type="text/javascript">
+
+function googleTranslateElementInit() 
+{
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<a class=" form-control form-control-navbar text-muted " href=""><div   id="google_translate_element"></div>
+ </a>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
       </div>
     </form>
 
@@ -36,10 +53,11 @@ function myFunction2() {
   var txt;
   if (confirm("vous étes sure de vous deconecter !")) {
     <?php 
-     require_once './Controllers/UsersController.php ';
-              UsersController::logout();
-            ?>
-   // window.open('http://localhost/Interventions-Management/home');
+     require_once '././Controllers/UsersController.php ';
+//UsersController::logout()    
+//window.open('http://localhost/Interventions-Management/login2');
+    ?>
+
   } else {
     window.location.href;
   }
