@@ -91,7 +91,7 @@ $Type_Inters = InterventionsController::getAllType();
             <!-- checkbox -->
             <div class="form-group">
               <div class="form-check">
-                <input class="form-check-input" name="Important" type="checkbox" onclick="ma_fonction(this)">
+                <input class="form-check-input" name="Important" type="checkbox" checked>
                 <label class="form-check-label">Important</label>
               </div>
             </div>
@@ -100,8 +100,8 @@ $Type_Inters = InterventionsController::getAllType();
             <!-- checkbox -->
             <div class="form-group">
               <div class="form-check">
-                <input class="form-check-input" name="Opm" type="checkbox" onclick="ma_fonction(this)">
-                <label class="form-check-label">OPM</label>
+                <input class="form-check-input" name="Opm" type="checkbox" checked>
+                <label class="form-check-label"> OPM </label>
               </div>
             </div>
 
@@ -220,6 +220,7 @@ $Type_Inters = InterventionsController::getAllType();
   </form>
   <?php
     if (isset($_POST['submit'])) {
+      die(var_dump($_POST));
       $Send = new InterventionsController();
       $Send->addInterventionEngins();
     }

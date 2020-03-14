@@ -5,8 +5,6 @@ require_once './Controllers/HomeController.php ';
 require_once './Controllers/UsersController.php ';
 $users= UsersController::getAllUsers();
 
-require_once 'Controllers/InterventionsController.php';
-$Intervention = new InterventionsController();
 
 ?>
 
@@ -29,7 +27,7 @@ $Intervention = new InterventionsController();
                   <tbody>
                     <?php foreach($users as $user):?>
 
-                  <tr <?php if( $_SESSION['username'] != $user['P_CODE'] && ( $Intervention->ispersonnel($_SESSION['username']) == true or $Intervention->isresponsable($_SESSION['username']) == true) ) echo 'hidden'?> >
+                  <tr>
                         <td scope="col"><?php echo $user['P_PRENOM'].''.$user['P_PRENOM2'];  ?></td>
                         <td scope="col"><?php echo $user['P_NOM'] ; ?></td>
                         <td scope="col"><?php echo $user['P_EMAIL'] ; ?></td>
@@ -54,7 +52,7 @@ $Intervention = new InterventionsController();
                         </form>
                         <form  class="mr-1" method="post" action="delete">
                         
-                           <button <?php if(  $Intervention->ispersonnel($_SESSION['username']) == true or $Intervention->isresponsable($_SESSION['username']) == true ) echo 'hidden'?> name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
+                           <button name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
 
                            <input type="hidden" name="P_ID" value="<?php
                            echo $user['P_ID'];?>

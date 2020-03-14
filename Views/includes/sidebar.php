@@ -13,7 +13,7 @@ $Intervention = new InterventionsController();
     <a href="" class="brand-link">
       <img src="dist/img/sdis68.png" alt="AdminLTE Logo" class="brand-image img-responsive elevation-3"
            style="opacity: .8">
-           
+
       <span class="brand-text font-weight-light">gestion d'intervention </span>
     </a>
 
@@ -35,27 +35,37 @@ $Intervention = new InterventionsController();
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-fire-extinguisher"></i>
-              <p>
-                Inteventions
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-
-          </li>
 
 
-            <li class="nav-item">
-                <a href="index.php?c=InterventionsController&m=getAll"  class="nav-link">
+
+            <li  class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
-                        liste des Inteventions
-                        <span class="right badge badge-danger"></span>
+                        Intervention
+                        <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li  class="nav-item">
+                        <a href="/Interventions-Management/interventionAdd" class="nav-link">
+                            <i class="nav-icon fas fa-pencil "></i>
+                            <p>ajout intervention</p>
+                        </a>
+                    </li>
+
+                    <li  class="nav-item">
+                        <a href="index.php?c=InterventionsController&m=getAll" class="nav-link">
+                            <i class="nav-icon fas fa-pencil "></i>
+                            <p>liste intervention</p>
+                        </a>
+                    </li>
+
+
+                </ul>
             </li>
+
+
 
             <li <?php if ($Intervention->ispersonnel($_SESSION['username']) == true) echo 'hidden' ?> class="nav-item has-treeview">
                 <a href="#" class="nav-link">
@@ -91,9 +101,9 @@ $Intervention = new InterventionsController();
                 </ul>
             </li>
 
-            
-          </li>
-     
+
+
+
 
 
 
@@ -106,7 +116,7 @@ $Intervention = new InterventionsController();
               </p>
             </a>
           </li>
-     
+
 
           <li class="nav-item">
                 <a href="http://localhost/Interventions-Management/parame"  class="nav-link">
@@ -115,33 +125,18 @@ $Intervention = new InterventionsController();
                     paramètres                     </p>
                 </a>
             </li>
-            
-          <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-list"></i>
+
+            <li class="nav-item">
+                <a href="index.php?c=ArchiveController&m=getAll" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
                     <p>
                         Archive
-                        <i class="right fas fa-angle-left"></i>
+                        <span class="right badge badge-danger"></span>
                     </p>
                 </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                        <a href="index.php?c=ArchiveController&m=getAll" class="nav-link">
-                            <i class="nav-icon fas fa-pencil "></i>
-                            <p>Liste des interventions</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.php?c=InterventionsController&m=validationRapport" class="nav-link">
-                            <i class="nav-icon fas fa-layers-text "></i>
-                            <p>Valider Rapport</p>
-                        </a>
-                    </li>
-
-                </ul>
             </li>
 
-   
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

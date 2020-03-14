@@ -1,5 +1,13 @@
 
-
+<?php
+/*
+$data= new UsersController();
+$users= $data->getAllUsers();
+$dd=$data->getOnUser();
+*/
+require_once 'Controllers/InterventionsController.php';
+$Intervention = new InterventionsController();
+?>
 
                 <table class="table table-hover">
                   <thead>
@@ -17,7 +25,7 @@
                   </thead>
                   <tbody>
                     <?php foreach($interventions as $i):?>
-                  <tr <?php if (!$c->isinterventionresponsable($i->Numero_Intervention)) echo 'hidden' ?> >
+                  <tr <?php if (!$c->isinterventionresponsable($i->Numero_Intervention) && ($Intervention->isresponsable($_SESSION['username']) == true or $Intervention->ispersonnel($_SESSION['username']) == true)) echo 'hidden' ?> >
                          <td scope="col"><?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?></td>
                       <td scope="col"><?php if (isset($i->Commune)) echo $i->Commune  ?></td>
                         <td scope="col"><?php if (isset($i->Adresse)) echo $i->Adresse  ?></td>

@@ -35,9 +35,14 @@ class ArchiveController
                     $name = "Adresse";
                     break;
                 }
-            case 'adresse': {
-                    $nameBD = "Adresse";
-                    $name = "Adresse";
+            case 'redacteur': {
+                    $nameBD = "	Responsable_idResponsable";
+                    $name = "Rédacteur";
+                    break;
+                }
+            case 'motif': {
+                    $nameBD = "Type_interv";
+                    $name = "Motif";
                     break;
                 }
         }
@@ -71,9 +76,28 @@ class ArchiveController
         //$v->setVar('interventions',$listeIntervention);
         $v->render('archivevueintervention');
     }
-
+    public static function export(){
+       
+        
+        header("Content-Type: application/xls");
+        header("Content-Disposition: attachment; filename=llol.xls");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        $output = '
+        <table class="table" bordered="1">  
+                         <tr>  
+                             <th>numero Intervention</th>  
+                             <th>Commune</th>  
+                             <th>adresse</th>  
+                             <th>typeintervention</th>
+                             <th>date heure debut</th>
+                             <th>date heure fin	</th>
+                         </tr>
+       ';
+       echo $output;
+              
+        echo $_POST["var"];
+    }
 }
-
-
 
 ?>
