@@ -1,7 +1,7 @@
 <?php
-require_once CLASSES.DS.'view.php';
-require_once './Models/RapportModel.php ';
-require_once 'Controllers/InterventionsController.php';
+require_once 'C:/wamp64/www/Interventions-Management/classes/view.php';
+require_once 'C:/wamp64/www/Interventions-Management/Models/RapportModel.php ';
+require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php';
 
 class RapportsController
 {

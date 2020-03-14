@@ -1,15 +1,17 @@
 <?php
 //require_once CLASSES.DS.'view.php';
-
-
 require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
-//require_once './classes/view.php ';
-require_once CLASSES.DS.'view.php';
-require_once './Models/InterventionModel.php ';
-require_once 'Controllers/RapportsController.php';
+require_once 'C:/wamp64/www/Interventions-Management/classes/view.php ';
+//require_once CLASSES.DS.'view.php';
+//require_once './Models/InterventionModel.php ';
+require_once 'C:/wamp64/www/Interventions-Management/Controllers/RapportsController.php';
+
+
 
 class InterventionsController
 {
+    
+    
     public static function validerapport($etat,$id,$commentaire)
     {
         $interventionM = new interventionsModel();
@@ -30,6 +32,8 @@ class InterventionsController
         self::validerapport($etat,$id,$commentaire);
     }
 
+<<<<<<< HEAD
+=======
 
     public static function ispersonnel($P_CODE)
     {
@@ -53,6 +57,7 @@ class InterventionsController
 
 
 
+>>>>>>> 066f4b43196b90d593fee9a6ce52ce3b6f71699b
     public static function getAll()
     {
         $interventionM = new interventionsModel();
@@ -173,15 +178,23 @@ class InterventionsController
     }
     //Recuperation des Roles associers a l'engin
     static public function getRolebyEngins($TV){
-        $Role = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
-        return json_decode($Role,true);
+        $RoleEngin = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
+        return json_decode($RoleEngin,true);
     }
 
     public function addInterventionEngins(){
-        $TableIntervention=null;
-        $TableEngin=array();
-        if(isset($_POST['submit']) || isset($_POST['submit1'])){
-            if(empty($TableIntervention)){
+        $i=1;
+        global $TableIntervention;
+        global $TableEngin;
+        global $Pompier;
+        if(isset($_POST['submit'])){
+            if(is_null($_POST['Important'])){
+                $_POST['Important']="off";
+            }
+            if(is_null($_POST['Opm'])){
+                $_POST['Opm']="off";
+            }
+            //if(empty($TableIntervention)){
                 $TableIntervention = array(
                     'Commune' => $_POST['Commune'],
                     'Adresse' => $_POST['Adresse'],
@@ -190,16 +203,30 @@ class InterventionsController
                     'Date_Heure_Fin' => $_POST['Date_Heure_Fin'],
                     'Important' => $_POST['Important'],
                     'Opm' => $_POST['Opm'],
-                );
-                die(var_dump($TableIntervention));               
-            }else{
+                );             
+            //}else{
                 $TableEngin = array(
                     'Nom_Engin' => $_POST['Nom_Engin'],
                     'Date_Heur_Depart' => $_POST['Date_Heur_Depart'],
                     'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
                     'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
                 );
-            }
+                $Pompier = array();
+//                    'Role'.$i => $_POST['Role'.$i]
+//                );
+                if(isset($_POST['su'])){
+                    do {
+                        $Pompier['Role'.$i]=$_POST['Role'.$i];
+                        $i++;
+                    } while (isset($_POST['Role'.$i]));
+                }
+                var_dump($_POST);
+                var_dump($TableIntervention);
+                var_dump($TableEngin);
+                die(var_dump($Pompier));
+                $Insertion = interventionsModel::AddIntervention($TableIntervention,$TableEngin,$_POST['Nom']);
+                //die(var_dump($TableIntervention));               
+            //}
         //$TableEngin=json_encode($TableIntervention);
         }
     }
