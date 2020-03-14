@@ -34,5 +34,9 @@
 
 
     </tbody>
+
     <!--jusque la qui doit changer-->
 </table>
+</br>
+</br>
+<?php if(!isset($interventions[0])) echo "tous les rapports sont rediger" ?>

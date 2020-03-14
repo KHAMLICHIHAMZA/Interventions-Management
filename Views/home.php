@@ -6,7 +6,7 @@ require_once './Controllers/UsersController.php ';
 
 $users= UsersController::getAllUsers();
 //session_destroy();
-echo $_SESSION['username'];
+//echo $_SESSION['username'];
 ?>
 
 

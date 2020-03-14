@@ -1,17 +1,21 @@
 <?php
 //require_once CLASSES.DS.'view.php';
-require_once 'C:/wamp64/www/Interventions-Management/Models/InterventionModel.php ';
-require_once 'C:/wamp64/www/Interventions-Management/classes/view.php ';
+require_once 'Models/InterventionModel.php ';
+require_once 'classes/view.php ';
 //require_once CLASSES.DS.'view.php';
 //require_once './Models/InterventionModel.php ';
-require_once 'C:/wamp64/www/Interventions-Management/Controllers/RapportsController.php';
+require_once 'Controllers/RapportsController.php';
 
 
 
 class InterventionsController
 {
     
-    
+    /* permet de rentre si l'etat est validee ou rejetter ou null
+    null :en cour de validation
+
+
+     */
     public static function validerapport($etat,$id,$commentaire)
     {
         $interventionM = new interventionsModel();
@@ -31,8 +35,6 @@ class InterventionsController
     public static function rejete($etat,$id,$commentaire){
         self::validerapport($etat,$id,$commentaire);
     }
-
-
 
     public static function ispersonnel($P_CODE)
     {
@@ -193,16 +195,17 @@ class InterventionsController
         return json_decode($RoleEngin,true);
     }
 
-    public function addInterventionEngins(){
+    static public function addInterventionEngins(){
         $i=1;
         global $TableIntervention;
         global $TableEngin;
         global $Pompier;
+        //die(var_dump($_POST));
         if(isset($_POST['submit'])){
             if(is_null($_POST['Important'])){
                 $_POST['Important']="off";
             }
-            if(is_null($_POST['Opm'])){
+            if(!isset($_POST['Opm'])){
                 $_POST['Opm']="off";
             }
             //if(empty($TableIntervention)){
@@ -222,25 +225,16 @@ class InterventionsController
                     'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
                     'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
                 );
-                $Pompier = array();
-//                    'Role'.$i => $_POST['Role'.$i]
-//                );
-                if(isset($_POST['su'])){
-                    do {
-                        $Pompier['Role'.$i]=$_POST['Role'.$i];
-                        $i++;
-                    } while (isset($_POST['Role'.$i]));
+                $InserResp = interventionsModel::AddResponsable($_POST['Nom']);
+                $InserEngins = interventionsModel::AddEnginIntervention($TableEngin['Nom_Engin'],$TableEngin['Date_Heur_Depart'],$TableEngin['Date_Heure_Arriver'],$TableEngin['Date_Heure_Retour']);
+                $InserInterv = interventionsModel::AddIntervention($TableIntervention['Commune'],$TableIntervention['Adresse'],$TableIntervention['Type_interv'],$TableIntervention['Date_Heure_Debut'],$TableIntervention['Date_Heure_Fin'],$TableIntervention['Important'],$TableIntervention['Opm']);
+                
+
+                while (isset($_POST['Role'.$i])){
+                    //die(var_dump($_POST['Role'.$i]));
+                    $InserPersonnel = interventionsModel::AddPersonnel($_POST['Role'.$i]);
+                    $i++; 
                 }
-                var_dump($_POST);
-                var_dump($TableIntervention);
-                var_dump($TableEngin);
-                die(var_dump($Pompier));
-                $Insertion = interventionsModel::AddIntervention($TableIntervention,$TableEngin,$_POST['Nom']);
-                //die(var_dump($TableIntervention));               
-            //}
-        //$TableEngin=json_encode($TableIntervention);
         }
     }
 }
-
-?>

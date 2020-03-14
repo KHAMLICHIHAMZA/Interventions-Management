@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 13, 2020 at 11:10 PM
+-- Generation Time: Mar 14, 2020 at 10:17 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.0.33
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `id_rapport` int(11) NOT NULL,
   PRIMARY KEY (`id_commentaire`),
   KEY `id_rapport` (`id_rapport`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `commentaire`
@@ -49,7 +49,9 @@ INSERT INTO `commentaire` (`id_commentaire`, `contenu`, `date`, `id_rapport`) VA
 (4, 'bien fait', '2020-03-11', 5),
 (5, 'caséalksd asjnkljasdn aslnlkasdlk asdljnlksd ', '2020-03-12', 8),
 (6, 'mec toujours pas bon ', '2020-03-12', 8),
-(7, 'tu plaisante', '2020-03-12', 8);
+(7, 'tu plaisante', '2020-03-12', 8),
+(8, 'pas bon', '2020-03-14', 8),
+(9, 'bien', '2020-03-14', 8);
 
 -- --------------------------------------------------------
 
@@ -103,7 +105,8 @@ INSERT INTO `engins_personnel` (`Engins_idEngins`, `Personnel_idPersonnel`, `Int
 (1, 5, 2, NULL),
 (2, 1, 1, NULL),
 (2, 2, 2, NULL),
-(2, 3, 3, NULL);
+(2, 3, 3, NULL),
+(3, 5, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -141,8 +144,8 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   `Commune` varchar(45) DEFAULT NULL,
   `Adresse` varchar(45) DEFAULT NULL,
   `Type_interv` varchar(45) DEFAULT NULL,
-  `Opm` tinyint(4) DEFAULT NULL,
-  `Important` tinyint(4) DEFAULT NULL,
+  `Opm` varchar(4) DEFAULT NULL,
+  `Important` varchar(4) DEFAULT NULL,
   `Date_Heure_Debut` datetime DEFAULT NULL,
   `Date_Heure_Fin` date DEFAULT NULL,
   `Geographique_idGeographique` int(11) NOT NULL,
@@ -157,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `intervention` (
 --
 
 INSERT INTO `intervention` (`Numero_Intervention`, `Commune`, `Adresse`, `Type_interv`, `Opm`, `Important`, `Date_Heure_Debut`, `Date_Heure_Fin`, `Geographique_idGeographique`, `Responsable_idResponsable`) VALUES
-(1, 'casa', '47 barte', 'feu de brousse', 1, 1, '2020-02-03 00:00:00', '2020-02-10', 1, 1),
-(2, 'bamako', '56 charle stoessel', 'bombe', 1, 1, '2020-02-11 00:00:00', '2020-02-29', 2, 2),
-(3, 'kalaban', '46 deste', 'tremblement', 4, 5, '2020-02-26 00:00:00', '2020-02-27', 3, 3),
-(4, 'paris', '57 retw', 'terrorist', 0, 0, '2020-02-11 00:00:00', '2020-02-19', 4, 3);
+(1, 'casa', '47 barte', 'ssa', '1', '1', '2020-02-03 00:00:00', '2020-02-10', 1, 1),
+(2, 'bamako', '56 charle stoessel', 'sshc', '1', '1', '2020-02-11 00:00:00', '2020-02-29', 2, 2),
+(3, 'kalaban', '46 deste', 'sstr', '4', '5', '2020-02-26 00:00:00', '2020-02-27', 3, 3),
+(4, 'paris', '57 retw', 'sstre', '0', '0', '2020-02-11 00:00:00', '2020-02-19', 4, 3);
 
 -- --------------------------------------------------------
 
@@ -189,7 +192,8 @@ INSERT INTO `intervention_engins` (`Intervention_Numero_Intervention`, `Engins_i
 (2, 2),
 (3, 3),
 (4, 1),
-(4, 2);
+(4, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -268,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `rapport` (
 INSERT INTO `rapport` (`id_rapport`, `contenu`, `Numero_intervention`, `statut`, `date`) VALUES
 (4, 'nouveau rapport', 1, 'valide', '2020-02-25'),
 (5, 'tooot ttrettrebbyx yx,nbxmc mnbkj< kkjyx  poolk', 4, 'valide', '2020-02-25'),
-(8, 'dernier rapport maitenant je faais la dernierre modification fifn mec qdfjsd sdjfknlkdf knk df sdnlksdf dsfsmd   sdfl  df j\'aos', 2, 'rejete', '2020-03-11');
+(8, 'dernier rapport maitenant je faais la dernierre modification fifn mec qdfjsd sdjfknlkdf knk df sdnlksdf dsfsmd   sdfl  df j\'aos poopo khckybfnm', 2, 'valide', '2020-03-11');
 
 -- --------------------------------------------------------
 

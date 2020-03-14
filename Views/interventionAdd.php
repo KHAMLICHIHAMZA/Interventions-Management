@@ -1,5 +1,5 @@
 <?php
-require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php';
+require_once 'Controllers/InterventionsController.php';
 $Intervention = new InterventionsController;
 $Pompier = array();
 if (isset($_POST['submit'])) {

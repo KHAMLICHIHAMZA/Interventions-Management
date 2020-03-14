@@ -1,11 +1,10 @@
 <?php
-require_once 'C:/wamp64/www/Interventions-Management/classes/view.php';
-require_once 'C:/wamp64/www/Interventions-Management/Models/RapportModel.php ';
-require_once 'C:/wamp64/www/Interventions-Management/Controllers/InterventionsController.php';
+require_once 'classes/view.php';
+require_once 'Models/RapportModel.php ';
+require_once 'Controllers/InterventionsController.php';
 
 class RapportsController
 {
-
 
     public static function listerapportcommentaire($id)
     {
@@ -18,7 +17,6 @@ class RapportsController
         $RapportM = new rapportsModel();
         //  var_dump($listeIntervention);
         $v=new View();
-
       //  $v->setVar('rapport',$RapportM->listeAllRapportresponsable());
         $v->setVar('rapport',$RapportM->listeAllRapportresponsablebylogin($_SESSION['username']));
         $v->render('listeAllRapportresponsable');
@@ -43,7 +41,6 @@ class RapportsController
 
         if(isset($rapports[0]))
             $rapports = $rapports[0];
-
 
         $listeengin =  $interventionM->getenginbyinterventionID($id);
         $listepersonnel =  $interventionM->getpersonnelbyenginID(1,$id);

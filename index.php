@@ -1,5 +1,29 @@
 <?php
- 
+/*
+ * les mots de passe chef du corps : MD : 1234 pwd : 1234
+ * les mots de passe Responsable   : MD : 1 pwd : 111
+ * les mots de passe Responsable   : MD : 2 pwd : 222
+ * les mots de passe Responsable   : MD : 3 pwd : 333
+ * les mots de passe pompier  : MD : 4 pwd : 4444
+ * les mots de passe pompier  : MD : 5 pwd : 5555
+ * les mots de passe pompier  : MD : 6 pwd : 6666
+ * les mots de passe pompier  : MD : 7 pwd : 7777
+ * les mots de passe pompier  : MD : 8 pwd : 8888
+ *
+ *
+ * le bouton ajout ne marche pas avec la base prerempli car on a n'a pas gerer la recuperation des des P_CODE ; on les a ajouter
+ * manuellement
+ * elle marche uniquement avec la base de donner vide qui ne gerre pas la recuperation des des P_CODE
+ *
+ * on a utliser 2 methodes de routage dans l'index car certain etait habituer a une methode precis
+ *
+ * l'ajout des utilisatuers est deja gere par l'api ebrigade
+ *
+ *
+ * il faut aussi  etre connecter a l'internet car les documents ajax on ete directement de certaine librairie sont telecharger directement
+ *
+ * */
+
 require_once './autoload.php';
 
 define('DS', DIRECTORY_SEPARATOR);
@@ -18,6 +42,8 @@ require_once './Controllers/UsersController.php ';
 
 
 // ********************************************************************************************************.
+// methode 1
+
 if (isset($_GET['c']) && isset($_GET['m'])){
     //Il y a un paramètre de précisé: c'est le nom du controleur demandé.
     $controller=$_GET['c'];
@@ -44,6 +70,7 @@ else
 }
 else{
 
+// methode 2 //
 // **********************************************************************************************************.
 
 

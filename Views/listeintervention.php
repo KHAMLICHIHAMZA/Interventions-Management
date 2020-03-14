@@ -25,7 +25,7 @@ $Intervention = new InterventionsController();
                   </thead>
                   <tbody>
                     <?php foreach($interventions as $i):?>
-                  <tr <?php if (!$c->isinterventionresponsable($i->Numero_Intervention) && ($Intervention->isresponsable($_SESSION['username']) == true or $Intervention->ispersonnel($_SESSION['username']) == true)) echo 'hidden' ?> >
+                  <tr <?php if (!$c->isinterventionresponsable($i->Numero_Intervention) && ($Intervention->isresponsable($_SESSION['username']) == true )) echo 'hidden' ?> >
                          <td scope="col"><?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?></td>
                       <td scope="col"><?php if (isset($i->Commune)) echo $i->Commune  ?></td>
                         <td scope="col"><?php if (isset($i->Adresse)) echo $i->Adresse  ?></td>

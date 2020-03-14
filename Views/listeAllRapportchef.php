@@ -31,6 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     <?php foreach ($rapport as $r){ ?>
                     <tr>
                         <td><?php if (isset($r->Numero_intervention)) echo $r->Numero_intervention  ?></td>
@@ -41,8 +42,11 @@
                         </td>
                     </tr>
                     <?php } ?>
+
                     </tbody>
+
                 </table>
+                <?php if(!isset($rapport[0])) echo "tous les rapports on ete valider" ?>
             </div>
             <!-- /.card-body -->
         </div>

@@ -47,7 +47,7 @@ $Intervention = new InterventionsController();
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li  class="nav-item">
+                    <li <?php if ($Intervention->ispersonnel($_SESSION['username']) == true) echo 'hidden' ?>  class="nav-item">
                         <a href="/Interventions-Management/interventionAdd" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>ajout intervention</p>
@@ -134,6 +134,17 @@ $Intervention = new InterventionsController();
                         <span class="right badge badge-danger"></span>
                     </p>
                 </a>
+
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="index.php?c=ArchiveController&m=getAll" class="nav-link">
+                            <i class="nav-icon fas fa-pencil "></i>
+                            <p>Liste des interventions</p>
+                        </a>
+                    </li>
+
+                </ul>
+
             </li>
 
 

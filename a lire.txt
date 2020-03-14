@@ -1,0 +1,1 @@
+les mots passe et explication se trouve en commentaire dans home.php 
