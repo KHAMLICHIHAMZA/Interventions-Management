@@ -71,9 +71,28 @@ class ArchiveController
         //$v->setVar('interventions',$listeIntervention);
         $v->render('archivevueintervention');
     }
-
+    public static function export(){
+       
+        
+        header("Content-Type: application/xls");
+        header("Content-Disposition: attachment; filename=llol.xls");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        $output = '
+        <table class="table" bordered="1">  
+                         <tr>  
+                             <th>Nom d\'intervention</th>  
+                             <th>Statut</th>  
+                             <th>Date de debut</th>  
+                             <th>Heure de debut</th>
+                             <th>Date de fin</th>
+                             <th>Heure de fin</th>
+                         </tr>
+       ';
+       echo $output;
+              
+        echo $_POST["var"];
+    }
 }
-
-
 
 ?>
